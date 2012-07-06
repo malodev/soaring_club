@@ -14,9 +14,6 @@
 .idea
 __minitage__*
 
-#Directories
-bin/
-
 #Locale
 *.mo
 
