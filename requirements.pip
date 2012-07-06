@@ -37,3 +37,4 @@ pytz
 yolk
 distribute
 gunicorn
+PIL
