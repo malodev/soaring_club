@@ -20,7 +20,7 @@ __minitage__*
 docs/_build/*
 uploads
 dev.db
-django_template.egg-info
+soaring_club.egg-info
 develop-eggs
 downloads
 eggs

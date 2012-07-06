@@ -11,7 +11,7 @@ from colors import *
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR, PROJECT_MODULE_NAME = os.path.split(os.path.dirname(BASE_DIR))
 APPS_DIR = os.path.abspath(os.path.join(BASE_DIR, '../apps'))
-
+sys.path.append(APPS_DIR)
 
 # Check that the project module can be imported.
 try:
@@ -19,7 +19,6 @@ try:
 except ImportError:
     # Couldn't import the project, place it on the Python path and try again.
     sys.path.append(PROJECT_DIR)
-    sys.path.append(APPS_DIR)
     try:
         __import__(PROJECT_MODULE_NAME)
     except ImportError:
