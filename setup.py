@@ -6,4 +6,4 @@ setup(name='soaring_club',
       packages=find_packages(),
       package_data={'soaring_club': ['bin/*.*', 'static/*.*', 'templates/*.*']},
       exclude_package_data={'soaring_club': ['bin/*.pyc']},
-      scripts=['soaring_club/bin/manage.py'])
+      scripts=['soaring_club/bin/manage.py', 'soaring_club/bin/colors.py'])
