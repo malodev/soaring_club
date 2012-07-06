@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load paginator %}
+
+{% block subtitle %}
+ - Flights
+{% endblock %}
+
+{% block fullscript %}
+   <script type="text/javascript" src="/admin/jsi18n/"></script>
+   <script type="text/javascript" src="/admin_media/js/core.js"></script> 
+   <script type="text/javascript" src="/admin_media/js/admin/RelatedObjectLookups.js"></script>
+   {{ form_range_flights.media }}
+{% endblock %}
+{% block stylesheet_bottom %}
+<link href="/media/css/print.css" rel="stylesheet" type="text/css" media="print" />
+{% endblock %}
+
+
+{% block header %}
+	<div id="logo">
+		<h1><a href="/">Volo a Vela</a></h1>
+		<p><a href="/">CUS Trento</a></p>
+	</div>
+{% endblock %}
+
+{% block flights %}
+<li class="current_page_item"><a href="/flights/">{% trans "Flights" %}</a></li>
+{% endblock %}
+
+{% block content %}
+	<div class="post">
+		<h2 class="title">{% trans "Flights list" %}</h2>
+		<p class="meta">{% trans "List your flights stored on data base" %}</p>
+		<div class="entry">
+            {% if hits %}
+            
+                <h2>{% blocktrans count hits as length %}
+                one flight found
+                {% plural %}
+                {{ length }} flights found
+                {% endblocktrans %}
+                </h2>
+                {% if first_date %}
+                    <h3>
+                    {% trans "From" %} {{ first_date|date:"d F Y"  }} {{ member.first_name }} {{ member.last_name }} {% trans "have" %}:
+                    </h3>
+                    <ul>
+
+                    {% for dsc, val in flights_durations %}
+                            <li class="indent"><h3>{% trans "flown for" %} {{ val }} {% trans "in aircrafts of type" %} {{ dsc|lower }}</h3></li>
+                    {% endfor %}
+                    {% if flights_missing %}
+                        <li><h3>
+                        {% blocktrans count flights_missing as length %}
+                            one flight misses time landing
+                        {% plural %}
+                            {{ length }} flights misses time landing
+                        {% endblocktrans %}
+                        </h3></li>
+                    {% endif %}
+                    
+                    </ul>
+                {% endif %}
+
+
+                <table class="logs">
+                <thead>
+                <tr>
+                    <th>{% trans "ID" %}</th><th>{% trans "Date" %}</th><th>{% trans "Plane" %}</th>
+                    {% ifequal role "copilot" %}
+                    <th>{% trans "Pilot" %}</th>
+                    {% endifequal %}
+
+                    <th>{% trans "Takeoff" %}</th><th>{% trans "Takeoff field" %}</th><th>{% trans "Landing" %}</th><th>{% trans "Landing field" %}</th><th>{% trans "Flight Duration" %}</th>
+                    </tr>
+                </thead>
+                {% for flight in flights.object_list %}
+                  <tr class="{% cycle 'even' 'odd' %}">
+                    <td><a href="{{ flight.id }}">{{ flight.id }}</a><td>{{ flight.date|date:"j M Y" }}</td><td>{{ flight.plane }}</td>
+                    {% ifequal role "copilot" %}
+                    <td>{{ flight.pilot }}</td>
+                    {% endifequal %}
+
+                    <td>{{ flight.takeoff }}</td><td>{{ flight.takeoff_field }}</td><td>{{ flight.landing }}</td><td>{{ flight.landing_field }}</td><td>{{ flight.flight_duration }}</td>
+                    
+                </tr>
+                {% endfor %}
+                </table>
+
+    <div class="pagination">
+    <span class="step-links">
+        {% if flights.has_previous %}
+            <a href="?page={{ flights.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ flights.number }} of {{ flights.paginator.num_pages }}.
+        </span>
+
+        {% if flights.has_next %}
+            <a href="?page={{ flights.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+
+            {% endif %}
+
+    	</div>
+	</div>
+	<div style="clear: both;">&nbsp;</div>
+
+{% endblock %}{% block sidebar %}
+<div id="sidebar">
+    {% if form_range_flights %}
+        {% ifequal role "copilot" %}
+            <form class="flights" action="/flights/copilot/" method="POST">
+        {% else %}
+            <form class="flights" action="/flights/" method="POST">
+        {% endifequal %}
+    
+        <fieldset>
+            <legend>{% trans "Flights" %}</legend>
+            <div class="notes">
+                <h4>
+                    {% trans "Flights range" %}
+                </h4>
+                <p class="last">
+                    {% trans "Please enter flights dates." %}
+                </p>
+            </div>            
+            <div class="float-left required">
+                 {{ form_range_flights.from_date.label_tag }} {{ form_range_flights.from_date }}
+{{ form_range_flights.from_date.errors }}
+            </div>
+            <div class="float-left required">
+                 {{ form_range_flights.to_date.label_tag }} {{ form_range_flights.to_date }}
+{{ form_range_flights.to_date.errors }}
+            </div>
+            <div class="submit">
+                <div>
+                    <input type="submit" value={% trans "View" %} />
+                </div>
+            </div>
+        </fieldset>                        
+    </form>
+    {% endif %}
+
+
+        <form class="flights" action="/flights/copilot/" method="POST">
+        <fieldset>
+            <legend>{% trans "Copilot" %}</legend>
+            <div class="notes">
+                <h4>
+                    {% trans "Flights as copilot" %}
+                </h4>
+                <p class="last">
+                    {% trans "View flights as copilot" %}
+                </p>
+            </div>            
+            <div class="submit">
+                <div>
+                    <input type="submit" value={% trans "Copilot" %} />
+                </div>
+            </div>
+        </fieldset>                        
+    </form>
+
+
+
+
+</div>
+{% endblock %}
+{% block column1 %}
+{% endblock %}
+{% block column2 %}
+{% endblock %}
+

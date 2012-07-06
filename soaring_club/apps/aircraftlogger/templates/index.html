@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block subtitle %}
+ - Home
+{% endblock %}
+
+{% block home %}
+<li class="current_page_item"><a href="/">Home</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="post">
+        <h2 class="title">CUS Trento Volo a Vela</h2>
+        <p class="meta">Amministrazione contabile della sezione di Volo a Vela</p>
+        <div class="entry">
+            <p>
+               Il sito è riservato ai soci iscritti, per accedere richiedere le credenziali alla casella mail  "voloavelatrento" di gmail.
+            </p>
+        </div>
+    </div>
+    <div id="banner"><img src="/static/images/img07.jpg" alt="" /></div>
+    <div style="clear: both;">&nbsp;</div>
+
+{% endblock %}
+<!-- end #content -->
+{% block sidebar %}
+<div id="sidebar">
+    <ul>
+    {% if logged.is_staff %}
+        <li>
+            <h2>Administration</h2>
+            <p class="links"><a href="/admin/" class="more">Enter to admin backend</a>
+        </li>
+        {% comment %}
+        <li>
+            {% visitors_on_site as visitors %}
+            <p>
+                {{ visitors }} active user{{ visitors|pluralize }}
+            </p>
+        </li>
+        {% endcomment %}
+    {% endif %}
+    {% if logged %}
+        <li>
+            <h2>{% trans "Welcome" %}</h2>
+            <p>{% blocktrans  with logged.username as username %} You are logged in as <strong>{{ username }}</strong> {% endblocktrans %}</p>
+            <div class="clear">
+                <a class="button" href="/accounts/logout/?next=/"><span>{% trans "Logout" %}</span></a>
+            </div>
+            <h3>
+            {% if member %}
+                {% trans "You are registered as" %} <strong>{{ member.first_name }} {{ member.last_name }}</strong>
+                <br />
+            {% endif %}
+
+            {% if membercredit %}
+                {% blocktrans  with membercredit.initial_date|date:"d F Y" as initial_date and membercredit.tow_initial_credit as tow_initial_credit and membercredit.motorglider_initial_credit as tmg_initial_credit %}
+                At {{ initial_date }} your credit was setted to {{ tow_initial_credit }} tow cents and {{ tmg_initial_credit }} TMG cents
+                {% endblocktrans %}
+                <br />
+            {% endif %}
+
+            {% for status in balance %}
+                {% if status.2 %}
+                       {% trans "You still have" %} <span  abbr="{{ status.1|floatformat:0 }}" class="dt-number dst-neg" style="color:green"><strong>{{ status.1|floatformat:0 }}<strong></span> {% trans "units for" %} {{ status.0|lower }}
+                {% else %}
+                    {% trans "Your debit is" %} <span  abbr="{{ status.1|floatformat:0 }}" class="dt-number dst-neg"> {{ status.1|floatformat:0 }}</span> {% trans "units for" %} {{ status.0|lower }}. {% trans "Please remeber to pay" %}.
+                {% endif %}
+                <br />
+            {% endfor %}
+           </h3>
+
+        </li>
+        {% else %}
+        <li>
+            <h2>{% trans "Login to view your data" %}</h2>
+            <div class="clear">
+                <a class="button" href="/accounts/login/?next=/"><span>{% trans "Login" %}</span></a>
+            </div>
+        </li>
+        {% endif %}
+
+    </ul>
+</div>
+{% endblock %}
+<!-- end #sidebar -->
+
+{% comment %}
+{% block column1 %}
+    <div class="column1">
+        <h2><a href="http://www.biofly.it/en/index.html">Biofly</a></h2>
+        <p><a href="http://www.biofly.it/en/company.html">About Biofly</a></p>
+        <p><a href="http://www.biofly.it/en/tower.html">Tower Station</a></p>
+    </div>
+{% endblock %}
+{% block column2 %}
+    <div class="column2">
+        <h2><a href="http://www.flarm.com/index_en.html">Flarm</a></h2>
+        <p><a href="http://www.flarm.com/about/index_en.html">About Flarm</a></p>
+        <p><a href="http://www.flarm.com/support/manual/index.html">Manuals</a></p>
+        <p><a href="http://www.flarm.com/support/updates/index_en.html">Updates</a></p>
+    </div>
+{% endblock %}
+{% endcomment %}
+

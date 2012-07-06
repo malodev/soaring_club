@@ -1,0 +1,19 @@
+{% load i18n %}
+<table class="report">
+    <caption>
+        {% trans "Total" %}: <span abbr="{{ total|floatformat:2 }}" class="dt-number dst-EUR">{{ total|floatformat:2 }}</span>
+    </caption>
+    <thead>
+      <tr>
+        <th>{% trans "Reference" %}</th><th>{% trans "Date" %}</th><th>{% trans "Payer" %}</th><th>{% trans "Total" %}</th><th>{% trans "Payment description" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for receipt in receipts %}
+      <tr class="{% cycle 'even' 'odd' %}">
+        <td><a href="/admin/aircraftlogger/receipt/{{ receipt.id }}/">{{ receipt.reference }}</a><td>{{ receipt.date|date:"j M Y" }}</td><td>{{ receipt.payer }}</td><td  abbr="{{ receipt.total|floatformat:2 }}"  class="dt-number dst-EUR">{{ receipt.total|floatformat:2 }}</td><td>{{ receipt.description }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

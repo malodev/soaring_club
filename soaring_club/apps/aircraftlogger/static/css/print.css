@@ -1,0 +1,252 @@
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+body {
+margin: 0;
+padding: 0;
+background: #ffffff;
+font-family: Arial, sans-serif;
+font-size: 14px;
+color: #000;
+}
+
+h1, h2, h3 {
+margin: 0;
+padding: 0;
+font-weight: normal;
+color: #000;
+font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+
+ul, ol {
+list-style: none;
+}
+
+a {
+text-decoration: none;
+color: #000;
+}
+
+a:hover {
+text-decoration: none;
+}
+
+
+
+
+.entry-top, form, .title, .meta {
+display: none;
+}
+
+
+#wrapper {
+background: #fff;
+width: 100%; margin: 0; float: none;
+}
+
+/* Header */
+
+#header {
+display: none;
+}
+
+/* Logo */
+
+#logo {
+display: none;
+}
+
+
+/* Search */
+
+#search {
+display: none;
+}
+
+
+#banner {
+display: none;
+}
+
+/* Menu */
+
+#menu {
+display: none;
+}
+
+/* Page */
+
+#page {
+width: 100%; margin: 0; float: none;
+}
+
+/* Content */
+
+#content {
+width: 100%; margin: 0; float: none;
+}
+
+
+.more {
+display: none;
+}
+
+.comments {
+display: none;
+}
+
+
+#menu {
+display: none;
+}
+
+
+/* Sidebar */
+
+#sidebar {
+display: none;
+}
+
+/* Calendar */
+
+#calendar {
+display: none;
+}
+
+
+/* Footer */
+
+#footer {
+display: none;
+}
+
+#footer-content {
+display: none;
+}
+
+
+
+.list li {
+margin-bottom: 6px;
+}
+
+/* ref: http://www.xaprb.com/articles/tables-and-data-1.html */
+
+td.dt-number {
+    text-align: right;
+}
+
+td.dst-cents[abbr^="-"] {
+    color:red;
+    font-weight: bold;
+}
+
+td.dst-EUR:after {
+    content: " €";
+}
+
+
+
+/* Set up two rules which will be overridden.  This would not be necessary if CSS3's
+   selectors had negation operators, such as "abbr attribute does NOT end with..." */
+
+/* Add .00 to all currency values by default.*/
+td.dst-currency:after {
+    content: ".00";
+}
+
+/* Override the .00 on currency values that have a decimal point.*/
+td.dst-currency[abbr*="."]:after {
+    content: "";
+}
+
+/**/
+td.dst-currency[abbr$="."]:after {
+    content: "00";
+}
+
+/* Regular expressions would be nice here, yes?*/
+td.dst-currency[abbr$=".0"]:after,
+td.dst-currency[abbr$=".1"]:after,
+td.dst-currency[abbr$=".2"]:after,
+td.dst-currency[abbr$=".3"]:after,
+td.dst-currency[abbr$=".4"]:after,
+td.dst-currency[abbr$=".5"]:after,
+td.dst-currency[abbr$=".6"]:after,
+td.dst-currency[abbr$=".7"]:after,
+td.dst-currency[abbr$=".8"]:after,
+td.dst-currency[abbr$=".9"]:after
+{
+    content: "0";
+}
+
+
+
+
+table {
+    width: 100%;
+    float: none;
+    margin: 1em; 
+	padding: 0;
+    border:medium solid;
+    border-collapse: collapse;
+	text-align: left;
+	line-height: 18px;
+}
+
+caption {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 15px;
+	text-transform: uppercase;
+	line-height: 22px;
+}
+
+td {
+	margin: 0;
+	border: 1px;
+}
+
+
+th {
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+thead tr th {
+	background-color: #575757;
+	padding:  20px 10px;
+	color: #fff;
+	font-weight: bold;
+	border-right: 1px solid #333;
+	border-bottom: 1px solid #333;
+	text-transform: uppercase;
+	text-align:center;
+}
+
+tfoot tr th, tfoot tr td {
+	background-color: transparent;
+	padding:  20px 10px;
+	color: #ccc;
+	border-top: 1px solid #ccc;
+}
+
+tbody tr td {
+	padding: 2px 5px;
+	border-bottom: 1px solid #333;
+	border-right: 1px solid #333;
+	border-left: 1px solid #333;
+}
+
+tbody tr { 
+	background-color: #F0F0F0;
+}
+tbody tr.odd {
+	background-color: #FFFFFF;
+}
+
+

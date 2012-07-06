@@ -1,0 +1,37 @@
+<h2>
+{% for flarm in plane.installation_set.all %}
+{{ flarm.flarmid}}
+<br/>
+{%  endfor %}
+</h2>
+<div class="entry"> 
+<p>
+    <dl>
+    <dt>Registration</dt>
+    <dd>{{ plane.regmark }}</dd>
+    <dt>Manufacturer</dt>
+    <dd>{{ plane.manufacturer }}</dd>
+    <dt>Model</dt>
+    <dd>{{ plane.model }}</dd>
+    <dt>Owners</dt>
+    <dd>
+        <table class="plane">
+        <thead>
+        <tr>
+            <th>Name</th><th>Surname</th>
+        </tr>
+        </thead>
+        {% for pilot in plane.owners.all %}
+          <tr class="{% cycle 'even' 'odd' %}">
+            <td>{{ pilot.first_name }}</td><td>{{ pilot.last_name }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+    </dd>
+
+    </dl>
+    
+</p>
+
+</div>
+

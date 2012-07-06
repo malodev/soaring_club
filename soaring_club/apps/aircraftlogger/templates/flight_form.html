@@ -1,0 +1,22 @@
+{% extends "flight_base.html" %}
+{% load i18n %}
+{% block stylesheet_bottom %}
+	{{ block.super }}
+	<link rel="StyleSheet" href="{{ MEDIA_URL }}jquery/css/jquery-ui-1.7.2.custom.css" type="text/css" media="screen"/>
+	<link rel="StyleSheet" href="{{ MEDIA_URL }}jquery/css/jquery.timepickr.css" type="text/css" media="screen"/>
+{% endblock %}
+
+{% block fullscript %}	
+	<script src="{{ MEDIA_URL }}jquery/jquery-1.3.2.min.js"></script>
+	<script src="{{ MEDIA_URL }}jquery/jquery-ui-1.7.2.custom.min.js"></script>
+	<script src="{{ MEDIA_URL }}jquery/jquery-ui-i18n.min.js"></script>
+	<script src="{{ MEDIA_URL }}jquery/ui.timepickr.min.js"></script>
+	<script src="{{ MEDIA_URL }}datepicker/datepicker.js"></script>
+{% endblock %}
+{% block content %}
+	<div class="top-bar">
+		<h1>{% if object.pk %}{% trans "Update Flight" %}  {{ object }}{% else %}{% trans "Create Flight" %}{% endif %}</h1>
+		<div class="breadcrumbs"><a href="#">Homepage</a> / <a href="#">Contents</a></div>
+	</div><br />
+	{% include "form.html" %}
+{% endblock %}

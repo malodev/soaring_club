@@ -1,0 +1,82 @@
+{% load i18n %}
+{% if hits %}
+    <h2>
+    {% blocktrans count hits as length %}
+    one flight found
+    {% plural %}
+    {{ length }} flights found
+    {% endblocktrans %}
+    </h2>
+    {% if first_date %}
+        <h3> 
+        {% blocktrans with first_date|date:"d F Y" as first_date %} from {{first_date}} you:{% endblocktrans %}
+        </h3>
+        <ul>
+        {% if tow_cents %}
+            <li><h3> {% blocktrans %} used {{ tow_cents }} cents  for towing{% endblocktrans %}</h3></li>
+        {% endif %}
+        {% if tmg_cents %}
+            <li><h3> {% blocktrans %} used {{ tmg_cents }} cents for motorglider{% endblocktrans %}</h3></li>
+        {% endif %}
+        </ul>
+    {% endif %}
+
+
+    <table class="logs">
+    <thead>
+    <tr>
+        <th>{% trans "ID" %}</th><th>{% trans "Date" %}</th><th>{% trans "Takeoff" %}</th><th>{% trans "Takeoff field" %}</th><th>{% trans "Landing" %}</th><th>{% trans "Landing field" %}</th><th>{% trans "Flight Duration" %}</th><th>{% trans "Pilot" %}</th><th>{% trans "Plane" %}</th><th>{% trans "Tow Plane" %}</th><th>{% trans "Cents" %}</th>
+        </tr>
+    </thead>
+    {% if is_paginated %}
+        {% for flight in flights.object_list %}
+          <tr class="{% cycle 'even' 'odd' %}">
+            <td><a href="{{ flight.id }}">{{ flight.id }}</a><td>{{ flight.date|date:"j M Y" }}</td><td>{{ flight.takeoff|time:"H:i" }}</td><td>{{ flight.takeoff_field }}</td><td>{{ flight.landing|time:"H:i" }}</td><td>{{ flight.landing_field }}</td><td>{{ flight.flight_duration }}</td><td>{{ flight.pilot }}</td><td>{{ flight.plane }}</td><td>{{ flight.tow_flight.flight.plane }}</td>
+            <td>{% if flight.tow_flight %} 
+                    {{ flight.tow_flight.cost }} 
+                {% else %} 
+                    {{ flight.flight.cost }}  
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        {% for flight in flights %}
+          <tr class="{% cycle 'even' 'odd' %}">
+            <td><a href="{{ flight.id }}">{{ flight.id }}</a><td>{{ flight.date|date:"j M Y" }}</td><td>{{ flight.takeoff|time:"H:i" }}</td><td>{{ flight.takeoff_field }}</td><td>{{ flight.landing|time:"H:i" }}</td><td>{{ flight.landing_field }}</td><td>{{ flight.flight_duration }}</td><td>{{ flight.pilot }}</td><td>{{ flight.plane }}</td><td>{{ flight.tow_flight.flight.plane }}</td>
+            <td>{% if flight.tow_flight %} 
+                    {{ flight.tow_flight.cost }} 
+                {% else %} 
+                    {{ flight.flight.cost }}  
+                {% endif %}
+            </td>
+            
+        </tr>
+        {% endfor %}
+    {% endif %}
+    </table>
+
+    <div class="pagination">
+    <form class="pages" action="?page=all" method="POST">
+        <input type="hidden" name="member" value="{{ member.id }}" />
+        
+        
+        <input type="submit" value={% trans "all" %} />
+    </form>
+   
+    <span class="step-links">
+        {% if flights.has_previous %}
+            <a href="?page={{ flights.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ flights.number }} of {{ flights.paginator.num_pages }}.
+        </span>
+
+        {% if flights.has_next %}
+            <a href="?page={{ flights.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+    </div>
+{% endif %}
+

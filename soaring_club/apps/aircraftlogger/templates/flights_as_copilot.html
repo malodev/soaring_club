@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load paginator %}
+
+{% block subtitle %}
+ - Flights
+{% endblock %}
+
+{% block fullscript %}
+   <script type="text/javascript" src="/admin/jsi18n/"></script>
+   <script type="text/javascript" src="/admin_media/js/core.js"></script> 
+   <script type="text/javascript" src="/admin_media/js/admin/RelatedObjectLookups.js"></script>
+   {{ form.media }}
+{% endblock %}
+{% block stylesheet_bottom %}
+<link href="/media/css/print.css" rel="stylesheet" type="text/css" media="print" />
+{% endblock %}
+
+
+{% block flights %}
+<li class="current_page_item"><a href="/coflights/">{% trans "Instructor Flights" %}</a></li>
+{% endblock %}
+
+{% block content %}
+	<div class="post">
+		<h2 class="title">{% trans "Copilot flights list" %}</h2>
+		<p class="meta">{% trans "List your flights as copilot stored on data base" %}</p>
+		<div class="entry">
+            {% if hits %}
+            
+                <h2>{% blocktrans count hits as length %}
+                one flight found
+                {% plural %}
+                {{ length }} flights found
+                {% endblocktrans %}
+                </h2>
+
+                {% if first_date %}
+                    <h3>
+                    {% trans "From" %} {{ first_date|date:"d F Y"  }} {{ member.first_name }} {{ member.last_name }} {% trans "as copilot have" %}:
+                    </h3>
+                    <ul>
+
+                    {% for dsc, val in flights_durations %}
+                            <li class="indent"><h3>{% trans "flown for" %} {{ val }} {% trans "in aircrafts of type" %} {{ dsc|lower }}</h3></li>
+                    {% endfor %}
+                    {% if flights_missing %}
+                        <li><h3>
+                        {% blocktrans count flights_missing as length %}
+                            one flight misses time landing
+                        {% plural %}
+                            {{ length }} flights misses time landing
+                        {% endblocktrans %}
+                        </h3></li>
+                    {% endif %}
+                    
+                    </ul>
+                {% endif %}
+
+
+                <table class="logs">
+                <thead>
+                <tr>
+                    <th>{% trans "ID" %}</th><th>{% trans "Date" %}</th><th>{% trans "Plane" %}</th><th>{% trans "Pilot" %}</th><th>{% trans "Takeoff" %}</th><th>{% trans "Takeoff field" %}</th><th>{% trans "Landing" %}</th><th>{% trans "Landing field" %}</th><th>{% trans "Flight Duration" %}</th>
+                    </tr>
+                </thead>
+                {% for flight in flights_list %}
+                  <tr class="{% cycle 'even' 'odd' %}">
+                    <td><a href="{{ flight.id }}">{{ flight.id }}</a><td>{{ flight.date|date:"j M Y" }}</td><td>{{ flight.plane }}</td><td>{{ flight.pilot }}</td><td>{{ flight.takeoff|time:"H:i" }}</td><td>{{ flight.takeoff_field }}</td><td>{{ flight.landing|time:"H:i" }}</td><td>{{ flight.landing_field }}</td><td>{{ flight.flight_duration }}</td>
+                    
+                </tr>
+                {% endfor %}
+                </table>
+
+            {% endif %}
+
+    	</div>
+	</div>
+	<div style="clear: both;">&nbsp;</div>
+
+{% endblock %}{% block sidebar %}
+{% endblock %}
+{% block column1 %}
+{% endblock %}
+{% block column2 %}
+{% endblock %}
+

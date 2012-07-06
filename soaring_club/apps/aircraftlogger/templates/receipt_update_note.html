@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+Aircraft Log Book - Flights
+{% endblock %}
+
+{% block fullscript %}
+   <script type="text/javascript" src="/admin/jsi18n/"></script>
+   <script type="text/javascript" src="/admin_media/js/core.js"></script>
+   <script type="text/javascript" src="/admin_media/js/admin/RelatedObjectLookups.js"></script>
+   {{ form.media }}
+{% endblock %}
+
+{% block header %}
+	<div id="logo">
+		<h1><a href="/">Volo a Vela</a></h1>
+		<p><a href="/">CUS Trento</a></p>
+	</div>
+{% endblock %}
+
+{% block receipts %}
+<li class="current_page_item"><a href="/receipts/">{% trans "Receipts" %}</a></li>
+{% endblock %}
+
+{% block content %}
+	<div class="post">
+		<h2 class="title">{% trans "Receipt view" %}</h2>
+		<p class="meta">{% trans "Receipt detail and note change" %}</p>
+		<div class="entry">
+            {% if form %}
+                <form class="receipt" action="/receipts/{{ receipt.id }}/" method="POST">
+                    <p>
+                        {% trans "<strong>Bold</strong> fields are required." %}
+                    </p>
+                    <fieldset>
+                        <legend>{% trans "Receipt note update" %}</legend>
+                        <div class="notes">
+                            <h4>
+                                {% trans "Note update" %}
+                            </h4>
+                            <p class="last">
+                                {% if not form_saved %}
+                                    {% trans "Please enter a note if you have someone." %}
+                                {% else %}
+                                    <strong>{% trans "Receipt saved successfully" %}</strong>
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="float-left required">
+                             {{ form.note.label_tag }} {{ form.note }} {{ form.note.errors }}
+                        </div>
+
+
+                        <div class="submit">
+                            <div>
+                                <input type="submit" value={% trans "Save" %} />
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <ul class="data-info">
+                    <li>
+                         <span class="label">{% trans "Reference" %}:</span><span class="data"> {{ receipt.reference }}</span>
+                    </li>
+                    <li>
+                         <span class="label">{% trans "Date" %}:</span><span class="data"> {{ receipt.date|date:"d F Y" }}</span>
+                    </li>
+                    <li>
+                         <span class="label">{% trans "Payer" %}:</span><span class="data"> {{ receipt.payer }}</span>
+                    </li>
+                    <li>
+                         <span class="label">{% trans "Description of payment" %}:</span><span class="data"> {{ receipt.description }}</span>
+                    </li>
+                    <li>
+                         <span class="label">{% trans "Created" %}:</span><span class="data"> {{ receipt.created|date:"d F Y - H:i:s" }}</span>
+                    </li>
+                    <li>
+                         <span class="label">{% trans "Created by" %}:</span><span class="data"> {{ receipt.created_by }}</span>
+                    </li>
+                    {% if receipt.updated %}
+                    <li>
+                         <span class="label">{% trans "Updated" %}:</span><span class="data"> {{ receipt.updated|date:"d F Y - H:i:s" }}</span>
+                    </li>
+                    {% endif %}
+                    {% if receipt.updated_by %}
+                    <li>
+                         <span class="label">{% trans "Updated by" %}:</span><span class="data"> {{ receipt.updated_by }}</span>
+                    </li>
+                    {% endif %}
+                    {% if receipt.generic_total %}
+                    <li>
+                         <span class="label">{% trans "Others amounts" %}:</span><span class="data"> {{ receipt.generic_total }}</span>
+                    </li>
+                    {% endif %}
+                    {% if receipt.tow_price %}
+                    <li>
+                         <span class="label">{% trans "Tow amount" %}</span><span class="data"> {{ receipt.tow_price }}</span>
+                    </li>
+                    {% endif %}
+                    {% if receipt.tow_cents %}
+                    <li>
+                         <span class="label">{% trans "Tow cents" %}</span><span class="data"> {{ receipt.tow_cents }}</span>
+                    </li>
+                    {% endif %}
+                    {% if receipt.tmg_price %}
+                    <li>
+                         <span class="label">{% trans "Motorglider amount" %}</span><span class="data"> {{ receipt.tmg_price }}</span>
+                    </li>
+                    {% endif %}
+                    {% if receipt.tmg_cents %}
+                    <li>
+                         <span class="label">{% trans "Motorglider cents" %}</span><span class="data"> {{ receipt.tmg_cents }}</span>
+                    </li>
+                    {% endif %}
+                    <li>
+                         <span class="label">{% trans "Total" %}</span><span class="data"> {{ receipt.total }}</span>
+                    </li>
+                </ul>
+
+            {% endif %}
+
+
+    	</div>
+	</div>
+	<div id="banner"><img src="/media/images/img07.jpg" alt="" /></div>
+	<div style="clear: both;">&nbsp;</div>
+
+{% endblock %}{% block sidebar %}
+<div id="sidebar">
+	<ul>
+		<li>
+			<h2>{% trans "Return to receipts list" %}</h2>
+			<div class="clear">
+            <a href="/receipts/" class="button"><span>{% trans "Receipts" %}</span></a>
+            </div>
+		</li>
+	</ul>
+</div>
+		
+{% endblock %}
+{% block column1 %}
+{% endblock %}
+{% block column2 %}
+{% endblock %}
+

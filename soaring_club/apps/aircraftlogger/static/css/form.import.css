@@ -1,0 +1,82 @@
+/* form.import.css */
+
+/*
+label img {
+  behavior: url(label_img.htc);
+}
+*/
+form fieldset legend {
+  line-height: 150%;
+}
+
+form textarea.expanding {
+  overflow: auto;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+div.optional label:before {
+  content: '';
+}
+
+div.required label:before {
+  content: '';
+}
+  
+div.optional label:after {
+  content: ':';
+}
+
+div.required label:after {
+  content: ':';
+}
+
+
+form div label.labelCheckbox, form div label.labelRadio, label.labelCheckbox, label.labelRadio {
+  display: block;
+  width: 190px;
+  /*zoom: 1;*/
+  padding: 4px 0 0 18px;
+  text-indent: -18px;
+  line-height: 120%;
+}
+
+form div label.labelCheckbox input.inputCheckbox, form div label.labelRadio input.inputRadio, label.labelCheckbox input.inputCheckbox, label.labelRadio input.inputRadio {
+  margin: 0;
+}
+
+form div fieldset input.inputText, form div fieldset input.inputPassword, form div fieldset input.inputFile, form div fieldset textarea.inputTextarea {
+  width: 160px;
+  margin: 0 0 0 18px;
+  /*margin: expression(setCntr(), '0px 0 0 -124px'); */
+}
+
+form div label.compact {
+  display: inline;
+  width: auto;
+  padding: 4px 10px 0 0;
+  text-indent: 0;
+  margin: 0 0 0 0;
+}
+
+form div.wide label {
+  float: none;
+  display: block;
+}
+
+form div label.wide {
+  width: 348px;
+}
+
+form div.wide input.inputText, form div.wide input.inputPassword, form div.wide input.inputFile, form div.wide select, form div.wide textarea {
+  width: 344px;
+  margin: 0;
+}
+
+form div.notes p, form div small {
+  line-height: 125%;
+}
+
+form div.wide small {
+  margin: 0 0 5px 0;
+}

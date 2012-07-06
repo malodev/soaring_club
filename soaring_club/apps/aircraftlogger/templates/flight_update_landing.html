@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block subtitle %}
+ - Flight Landing Update
+{% endblock %}
+
+{% block fullscript %}
+   <script type="text/javascript" src="/admin/jsi18n/"></script>
+   <script type="text/javascript" src="/admin_media/js/core.js"></script>
+   <script type="text/javascript" src="/admin_media/js/admin/RelatedObjectLookups.js"></script>
+   {{ form.media }}
+{% endblock %}
+
+{% block content %}
+	<div class="post">
+		<h2 class="title">{% trans "Flights managment" %}</h2>
+		<p class="meta">{% trans "Flight detail and landing information editing" %}</p>
+		<div class="entry">
+            {% if form %}
+                <form class="flight" action="/flights/{{ flight.id }}/" method="POST">
+                    <p>
+                        {% trans "<strong>Bold</strong> fields are required." %}
+                    </p>
+                    <fieldset>
+                        <legend>{% trans "Flight landing update" %}</legend>
+                        <div class="notes">
+                            <h4>
+                                {% trans "Landing update" %}
+                            </h4>
+                            <p class="last">
+                                {% if not form_saved %}
+                                    {% trans "Please enter flight landing information" %}
+                                {% else %}
+                                    <strong>{% trans "Flight saved successfully" %}</strong>
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="float-left required">
+                             {{ form.landing.label_tag }} {{ form.landing }} {{ form.landing.errors }}
+                        </div>
+                        <div class="float-left required">
+                             {{ form.landing_field.label_tag }} {{ form.landing_field }} {{ form.landing_field.errors }}
+                        </div>
+                        <div class="submit">
+                            <div>
+                                <input type="submit" value={% trans "Save" %} />
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <ul class="data-info">
+                    <li>
+                         <span class="label">{% trans "Date" %}:</span><span class="data"> {{ flight.date }}</span>
+                    </li>
+                    <li>
+                         <span class="label">{% trans "Takeoff" %}:</span><span class="data"> {{ flight.takeoff }}</span>
+                    </li>
+                    <li>
+                         <span class="label">{% trans "Takeoff field" %}:</span><span class="data"> {{ flight.takeoff_field }}</span>
+                    </li>
+                    <li>
+                         <span class="label">{% trans "Pilot" %}:</span><span class="data"> {{flight.pilot.first_name}} {{flight.pilot.last_name}}</span>
+                    </li>
+                    <li>
+                         <span class="label">{% trans "Plane" %}:</span><span class="data"> {{ flight.plane.regmark }} -  {{ flight.plane.type_desc }} - {{ flight.plane.model }}</span>
+                    </li>
+                    <li>
+                         <span class="label">{% trans "Porpouse" %}:</span><span class="data"> {{ flight.porpouse }}</span>
+                    </li>
+                </ul>
+            {% endif %}
+    	</div>
+	</div>
+	<div id="banner"><img src="/media/images/img07.jpg" alt="" /></div>
+	<div style="clear: both;">&nbsp;</div>
+
+{% endblock %}{% block sidebar %}
+<div id="sidebar">
+	<ul>
+		<li>
+			<h2>{% trans "Return to flights list" %}</h2>
+			<div class="clear">
+            <a href="/flights/" class="button"><span>{% trans "Flights" %}</span></a>
+            </div>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+{% block column1 %}
+{% endblock %}
+{% block column2 %}
+{% endblock %}
+

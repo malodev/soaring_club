@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block subtitle %}
+ - Reports
+{% endblock %}
+
+{% block fullscript %}
+   <script type="text/javascript" src="/admin/jsi18n/"></script>
+   <script type="text/javascript" src="/admin_media/js/core.js"></script> 
+   <script type="text/javascript" src="/admin_media/js/admin/RelatedObjectLookups.js"></script>
+   {{ form_range_receipts.media }}
+{% endblock %}
+{% block stylesheet_bottom %}
+<link href="/static/css/print.css" rel="stylesheet" type="text/css" media="print" />
+{% endblock %}
+{% block header %}
+	<div id="logo">
+		<h1><a href="/">Volo a Vela</a></h1>
+		<p><a href="/">CUS Trento</a></p>
+	</div>
+{% endblock %}
+
+
+{% if request.user.is_staff %}
+    {% block admin %}
+    <li class="current_page_item"><a href="/reports/">{% trans "Reports" %}</a></li>
+    {% endblock %}
+{% endif %}
+
+{% block content %}
+	<div class="post">
+		<h2 class="title">{% trans "Reports view" %}</h2>
+
+        {% if clearance %}
+        <p class="meta">{% trans "List of pilots with flight clearance" %}</p>
+        {% endif %}
+
+        {% if report %}
+        <p class="meta">{% trans "Report cents for every member" %}</p>
+        {% endif %}
+
+        {% if debits %}
+        <p class="meta">{% trans "Report debits for member" %}</p>
+        {% endif %}
+
+        {% if receipts %}
+        <p class="meta">{% trans "Report receipts" %}</p>
+        {% endif %}
+
+        {% if empty %}
+		<p class="meta">{% trans "Here you find various reports" %}</p>
+        {% endif %}
+		
+		<div class="entry">
+            {% if debits %}
+                <table class="report">
+                <caption>
+                {% for debit in totals %}
+                    <p>
+                    {% trans "Balance for" %} {{ debit.0 }}:
+                    <span  abbr="{{ debit.1|floatformat:0 }}" class="dt-number dst-neg"> {{ debit.1|floatformat:0 }}</span>
+                    </p>
+                {% endfor %}
+                </caption>
+                <thead>
+                <tr>
+                    <th>Cognome</th><th>Nome</th>
+                    {% for debit in totals %}
+                    <th>{{ debit.0 }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                {% for member in debits %}
+                  <tr class="{% cycle 'even' 'odd' %}">
+                    <td><a href="{{ member.member_id }}">{{ member.last_name }}</a><td>{{ member.first_name }}</td>
+                    {% for debit in member.debits %}
+                    <td abbr="{{ debit.1|floatformat:0 }}" class="dt-number dst-neg">{{ debit.1|floatformat:0 }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                </table>
+
+            {% endif %}
+
+            {% if from and to %}
+                {% blocktrans with from|date:"j M Y" as from and to|date:"j M Y" as to %} Period: from {{ from }} to {{ to }}  {% endblocktrans %}
+            {% endif %}
+
+            {% if member %}
+                {% trans "Report for member" %}: <span class="strong">{{ member.first_name }} {{ member.last_name }}</span>
+            {% endif %}
+
+            {% if receipts %}
+                {% include "receipts_table.html" %}
+            {% endif %}
+            {% if flights %}
+                {% include "flights_table.html" %}
+            {% endif %}
+    	</div>
+	</div>
+    {% if not receipts and not report%}
+	<div id="banner"><img src="/static/images/img07.jpg" alt="" /></div>
+    {% endif %}
+	<div style="clear: both;">&nbsp;</div>
+
+{% endblock %}{% block sidebar %}
+<div id="sidebar">
+    <form action="/reports/debits/" method="POST">{% csrf_token %}
+        <fieldset>
+            <legend>{% trans "Report debits for every member" %}</legend>
+            <div class="notes">
+                <h4>
+                    {% trans "Members Debits" %}
+                </h4>
+                <p class="last">
+                    {% trans "Click button to view." %}
+                </p>
+            </div> 
+            <div class="float-left">
+                {{ form_only_negative.istrue }}  {{ form_only_negative.istrue.label_tag }}
+{{ form_only_negative.istrue.errors }}
+            </div>
+                      
+            <div class="submit">
+                <div>
+                    <input type="submit" name="debits" value={% trans "All" %} />                    
+                    <input type="submit" name="debits" value={% trans "Active" %} />
+                    <input type="submit" name="debits" value={% trans "Registered" %} />
+                </div>
+            </div>
+        </fieldset>                        
+    </form>
+
+
+    {% if form_range_receipts %}
+    <form class="receipt" action="/reports/receipts/" method="POST">{% csrf_token %}
+        <fieldset>
+            <legend>{% trans "Receipts report" %}</legend>
+            <div class="notes">
+                <h4>
+                    {% trans "Receipts range" %}
+                </h4>
+                <p class="last">
+                    {% trans "Please enter receipt references." %}
+                </p>
+            </div>            
+            <div class="float-left required">
+                 {{ form_range_receipts.reference_from.label_tag }} {{ form_range_receipts.reference_from }}
+{{ form_range_receipts.reference_from.errors }}
+            </div>
+            <div class="float-left required">
+                 {{ form_range_receipts.reference_to.label_tag }} {{ form_range_receipts.reference_to }}
+{{ form_range_receipts.reference_to.errors }}
+            </div>
+            <div class="submit">
+                <div>
+                    <input type="submit" value={% trans "View" %} />
+                </div>
+            </div>
+        </fieldset>                        
+    </form>
+    {% endif %}
+
+    {% if form_member %}
+    <form class="receipt" action="/reports/member/" method="POST">{% csrf_token %}
+        <fieldset>
+            <legend>{% trans "Set personality" %}</legend>
+            <div class="notes">
+                <h4>
+                    {% trans "Member" %}
+                </h4>
+                <p class="last">
+                    {% trans "Please choose a member." %}
+                </p>
+            </div>            
+            <div class="float-left required">
+                 {{ form_member.member }} {{ form_member.member.errors }}
+            </div>
+            <div class="submit">
+                <div>
+                    <input type="submit" value={% trans "View" %} />
+                </div>
+            </div>
+        </fieldset>                        
+    </form>
+    {% endif %}
+
+
+</div>
+
+
+{% endblock %}
+{% block column1 %}
+{% endblock %}
+{% block column2 %}
+{% endblock %}
+

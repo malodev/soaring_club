@@ -1,0 +1,42 @@
+/****
+Liste di definizione
+****/
+dl
+{
+width: 41.1em;
+margin: 2em 0;
+padding: 0;
+font-family: georgia, times, serif;
+}
+
+dt
+{
+width: 15em;
+float: left;
+margin: 0 0 0 0;
+padding: .5em;
+border-top: 1px solid #999;
+font-weight: bold;
+}
+
+/* commented backslash hack for mac-ie5 \*/
+dt { clear: both; }
+/* end hack */
+
+dd
+{
+float: left;
+width: 24em;
+margin: 0 0 0 0;
+padding: .5em;
+border-top: 1px solid #999;
+}
+
+.list, .head-list {
+float:  none;
+}
+
+.list div, .head-list div {
+width: 10em;
+float:  left;
+}

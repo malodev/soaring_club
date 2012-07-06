@@ -1,0 +1,750 @@
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <title>CSS-Only, Table-less Forms :: Code Samples :: Jeff Howden :: JeffHowden.com</title>
+    <meta name="keywords" content="web design,oregon,web development,information architecture,usability,accessibility,user experience,ColdFusion,JavaScript,XHTML,CSS,DHTML,HTML,SQL,Behaviors,HTC,HTA" />
+    <meta name="description" content="A website that houses a collection of tips, code snippets, links, articles, and other rhetoric related to web development and/or design &#8212; specifically anything related to ColdFusion, IIS 5, Microsoft SQL Server 2000, Search Engine Optimization, XHTML, JavaScript, CSS, and DHTML." />
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta name="copyright" content="Copyright 2010 Jeff Howden" />
+    <meta name="author" content="Jeff Howden" />
+    <meta name="ROBOTS" content="INDEX, FOLLOW" />
+    <meta name="resource-type" content="document" />
+    <meta name="distribution" content="Global" />
+    <meta name="robots" content="All" />
+    <meta name="rating" content="General" />
+    <meta name="revisit-after" content="1 days" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <link rel="stylesheet" type="text/css" href="/styles/tags.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/form.css" />
+    <link rel="stylesheet" type="text/css" title="Stinger" href="/styles/bee.css" />
+    <link rel="alternate stylesheet" type="text/css" title="Minimum" href="/styles/minimum.css" />
+    <link rel="alternate stylesheet" type="text/css" title="Big Fonts" href="/styles/big.css" />
+    <style type="text/css">
+      @import "/styles/ie.css";
+      @import "/styles/form.import.css";
+      @import "/styles/pre.css";
+    </style>
+    <link rel="stylesheet" type="text/css" href="/styles/print.css" media="print" />
+    <script type="text/javascript" src="/scripts/library.js"></script>
+    <script type="text/javascript" src="/scripts/navigation.cfm"></script>
+    <script type="text/javascript" src="/scripts/styleswitcher.js"></script>
+    <script type="text/javascript" src="/scripts/print.js"></script>
+    <script type="text/javascript" src="/scripts/adsense.js"></script>
+    <!--[if lte IE 7]>
+<script type="text/javascript">
+    //<![CDATA[
+      var gnExpr = 0;
+    var gCntrDisplay;
+    var gbOn = false;
+    
+    function setCntr()
+    {
+      gnExpr++;
+      if(gbOn)
+      	displayCntr();
+      return true;
+    }
+    
+    function displayCntr()
+    {
+      if(!gCntrDisplay)
+      	gCntrDisplay = document.getElementById('cntrdisp');
+      if(gCntrDisplay)
+      {
+        if(gCntrDisplay.parentNode.style.display == 'none')
+          gCntrDisplay.parentNode.style.display = 'block';
+      	gCntrDisplay.innerText = gnExpr;
+      }
+    }
+    //]]>
+    </script>
+    <![endif]-->
+  </head>
+<body>
+<p style="display: none"><a name="top" id="top" style="display: none"></a></p><!-- <a href="/~email/">Email addresses</a> -->
+<div id="layout">
+<div id="textnav">
+<a href="#content">Skip Navigation</a>
+
+ | <a href="/">Home</a>
+
+ | <a href="/code/">Code Samples</a>
+
+ | <a href="/articles/">Articles</a>
+
+ | <a href="/links/">Links</a>
+
+ | <a href="/about/">About</a>
+
+ | <a href="/contact/">Contact Me</a>
+
+ | <a href="/make_a_payment/">Make a Payment</a>
+
+</div>
+<div id="header">
+<h1>JeffHowden.com</h1>
+<em>A collection of everything that is Jeff Howden.</em>
+</div>
+<div id="adsense"><script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script></div>
+<div id="content">
+<div id="breadcrumb">
+/ <a href="/">Home</a>
+ / <a href="/code/">Code Samples</a>
+ / <a href="/code/css/">CSS</a>
+ / <a href="/code/css/forms/">CSS-Only, Table-less Forms</a>
+</div>
+<div id="main">
+
+
+  
+
+
+  
+  
+  
+    
+
+
+  <div class="divAlignRight">
+    <h4>Licensing</h4>
+    <p>I've gotten alot of email asking about using this work in various projects and sites.  These requests often need me to license my work using one of the myriad of open source licenses.  Unfortunately, for the people requesting, I don't like any of these licenses as pretty much all of them require me to allow redistribution, which I'm not ok with.  So, to quell any further requests in that vein, let me just say that anybody looking to use my work should check my <a href="/legal/copyright/">copyright</a> as everything is clearly laid out in there.  In essence, if you want to hire me to implement this work in a project or site or it'll be for a non-commercial project that won't be redistributed, then we can probably work something out.</p>
+    
+    <h4>Backend</h4>
+    <p>For those that automatically assume I'm using PHP, sorry to burst your bubble.  This site is proudly built using ColdFusion.  I won't make the server-side source code for this work available, however, for those interested, I am fine with giving a rundown on the approximate logic flow to accomplish the error messages.</p>
+  </div>
+  <p>Most of the CSS-only, table-less forms available <strong>suck</strong>.  So, not wanting to stoop to mediocrity, I decided to take on the task of coming up with something better.  This is the result of my efforts.  It works in Win/IE6, Firefox v1.0+, Win/Opera v8.0, has minor layout differences in Mac/Safari v1.0.3 and Mac/Safari v1.2, and is usable but fairly buggered in Mac/IE5.2.</p>
+  <p>The problems with Mac/IE5.2 probably aren't worth fixing.  The minor layout differences in Safari are related to the ugly (in my opinion), egotistical forcing of the Aqua-skinned form elements upon the browser and what that does to sizing.  It wouldn't be so bad if skinned elements rendered at the sizes defined in the CSS, but they don't.  I'm not sure I care about that actually.</p>
+  <p>Additionally, no amount of persuading, convincing, or beating into submission will get Safari or Firefox on Mac OS 10.2 to honor the tabindexes.  It is simply unable or unwilling to pass focus to selects, radio buttons, checkboxes, file inputs, or buttons when the user tabs from an input or textarea.  Additionally, what is wrong with Safari and labels?  Click all you want, the focus won't be moved to the element the label is bound to.  Until Apple fixes these (along with numerous show-stopping OS-specific concerns), my stance will remain that Macs are inherently inaccessible.  Ironically, MacIE5.2 does <strong>not</strong> have these issues.  I wonder how many workarounds Microsoft had to employ to get this to work correctly.</p>
+  <p>Submitting the form will allow you to see how this form displays with error messages for the user.  To get a feel for longer error messages, enter <strong>username</strong> for the username.</p>
+  <p>This is a <strong>fictitious</strong> form, designed purposely to include every possible layout I can anticipate wanting/needing to use.</p>
+  <p>Thanks to the excellent <a href="http://www.alagad.com/index.cfm/name-captcha" target="_blank">CAPTCHA component</a> from <a href="http://www.alagad.com/" target="_blank">Alagad Systems</a>, I'm able to include <a href="http://en.wikipedia.org/wiki/Captcha" target="_blank">CAPTCHA</a> as an example image/field combination in this form.  For accessibility reasons I'd also like to add audio, but that'll have to wait.</p>
+  <h4>Update</h4>
+  <p>June 28, 2006 &#8212; Safari v2.0.4 on Mac OS 10.4.6 now at least focuses selects when tabbing.  However, radio buttons, checkboxes, and submit buttons are <strong>still</strong> not available via the keyboard.  Firefox, as of v1.5.0.4, is still <strong>very</strong> broken with respect to the keyboard access to form elements.</p>
+  <p>October 30, 2006 &#8212; Over the past few days, I've received several emails about tabbing to radio buttons, checkboxes, and buttons in browsers on OSX.  According to these readers, OSX allows these elements to be included or excluded from access by tabbing.  In a completely brain-dead move (not the first, I assure you), Apple felt that these shouldn't be included in tabbing by default.  So, for thsoe of you who want to correct an incredible oversight in default settings, you simply need to go into keyboard settings in system settings.</p>
+
+  
+  
+  <dl style="display: none"><dt>Expression Evaluations:</dt><dd id="cntrdisp"></dd></dl>
+
+  <form action="/code/css/forms/" method="post" enctype="multipart/form-data">
+    <p><strong>Bold</strong> fields are required.</p>
+    <fieldset><legend>Personal Information</legend>
+      <div class="notes">
+        <h4>Personal Information</h4>
+        <p class="last">Please enter your name and address as they are listed for your debit card, credit card, or bank account.</p>
+       </div>
+      <div class="required">
+        
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" id="first_name" class="inputText" size="10" maxlength="100" value="" />
+      </div>
+      <div class="required">
+        
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" id="last_name" class="inputText" size="10" maxlength="100" value="" />
+      </div>
+      <div class="optional">
+        
+        <label for="address_1">Address:</label>
+        <input type="text" name="address_1" id="address_1" class="inputText" size="10" maxlength="100" value="" />
+        <input type="text" name="address_2" id="address_2" class="inputText" size="10" maxlength="100" value="" />
+      </div>
+      <div class="optional">
+        
+        <label for="city">City:</label>
+        <input type="text" name="city" id="city" class="inputText" size="10" maxlength="100" value="" />
+      </div>
+      <div class="optional">
+        
+        <label for="state">State:</label>
+        
+<select name="state" id="state" class="selectOne"><option value="">Select a State/Province</option><option value="">---------------</option><option value="AL">AL - Alabama</option><option value="AK">AK - Alaska</option><option value="AZ">AZ - Arizona</option><option value="AR">AR - Arkansas</option><option value="CA">CA - California</option><option value="CO">CO - Colorado</option><option value="CT">CT - Connecticut</option><option value="DE">DE - Delaware</option><option value="DC">DC - District of Columbia</option><option value="FL">FL - Florida</option><option value="GA">GA - Georgia</option><option value="HI">HI - Hawaii</option><option value="ID">ID - Idaho</option><option value="IL">IL - Illinois</option><option value="IN">IN - Indiana</option><option value="IA">IA - Iowa</option><option value="KS">KS - Kansas</option><option value="KY">KY - Kentucky</option><option value="LA">LA - Louisiana</option><option value="ME">ME - Maine</option><option value="MD">MD - Maryland</option><option value="MA">MA - Massachusetts</option><option value="MI">MI - Michigan</option><option value="MN">MN - Minnesota</option><option value="MS">MS - Mississippi</option><option value="MO">MO - Missouri</option><option value="MT">MT - Montana</option><option value="NE">NE - Nebraska</option><option value="NV">NV - Nevada</option><option value="NH">NH - New Hampshire</option><option value="NJ">NJ - New Jersey</option><option value="NM">NM - New Mexico</option><option value="NY">NY - New York</option><option value="NC">NC - North Carolina</option><option value="ND">ND - North Dakota</option><option value="OH">OH - Ohio</option><option value="OK">OK - Oklahoma</option><option value="OR">OR - Oregon</option><option value="PA">PA - Pennsylvania</option><option value="RI">RI - Rhode Island</option><option value="SC">SC - South Carolina</option><option value="SD">SD - South Dakota</option><option value="TN">TN - Tennessee</option><option value="TX">TX - Texas</option><option value="UT">UT - Utah</option><option value="VT">VT - Vermont</option><option value="VA">VA - Virginia</option><option value="WA">WA - Washington</option><option value="WV">WV - West Virginia</option><option value="WI">WI - Wisconsin</option><option value="WY">WY - Wyoming</option><option value="">---------------</option><option value="AE">AE - Armed Forces Africa</option><option value="AA">AA - Armed Forces Americas (except Canada)</option><option value="AE">AE - Armed Forces Canada</option><option value="AE">AE - Armed Forces Europe</option><option value="AE">AE - Armed Forces Middle East</option><option value="AP">AP - Armed Forces Pacific</option><option value="">---------------</option><option value="AB">AB - Alberta</option><option value="BC">BC - British Columbia</option><option value="MB">MB - Manitoba</option><option value="NB">NB - New Brunswick</option><option value="NL">NL - Newfoundland and Labrador</option><option value="NT">NT - Northwest Territories</option><option value="NS">NS - Nova Scotia</option><option value="NU">NU - Nunavut</option><option value="ON">ON - Ontario</option><option value="PE">PE - Prince Edward Island</option><option value="QC">QC - Quebec</option><option value="SK">SK - Saskatchewan</option><option value="YT">YT - Yukon</option><option value="">---------------</option><option value="AS">AS - American Samoa</option><option value="FM">FM - Federated States of Micronesia</option><option value="GU">GU - Guam</option><option value="MH">MH - Marshall Islands</option><option value="MP">MP - Northern Mariana Islands</option><option value="PW">PW - Palau</option><option value="PR">PR - Puerto Rico</option><option value="VI">VI - Virgin Islands</option><option value="">---------------</option><option value="XX">XX - Other State/Province/Territory</option></select>
+
+      </div>
+      <div class="optional">
+        
+        <label for="postal">Zip/Postal Code:</label>
+        <input type="text" name="postal" id="postal" class="inputText" size="10" maxlength="50" value="" />
+      </div>
+      <div class="optional">
+        
+        <label for="country">Country:</label>
+        
+<select name="country" id="country" class="selectOne"><option value="Select a Country">Select a Country</option><option value="">---------------</option><option value="United States" selected="selected">US - United States</option><option value="Canada">CA - Canada</option><option value="">---------------</option><option value="Afghanistan">AF - Afghanistan</option><option value="Albania">AL - Albania</option><option value="Algeria">DZ - Algeria</option><option value="American Samoa">AS - American Samoa</option><option value="Andorra">AD - Andorra</option><option value="Angola">AO - Angola</option><option value="Anguilla">AI - Anguilla</option><option value="Antarctica">AQ - Antarctica</option><option value="Antigua and Barbuda">AG - Antigua and Barbuda</option><option value="Argentina">AR - Argentina</option><option value="Armenia">AM - Armenia</option><option value="Aruba">AW - Aruba</option><option value="Australia">AU - Australia</option><option value="Austria">AT - Austria</option><option value="Azerbaijan">AZ - Azerbaijan</option><option value="Bahamas">BS - Bahamas</option><option value="Bahrain">BH - Bahrain</option><option value="Bangladesh">BD - Bangladesh</option><option value="Barbados">BB - Barbados</option><option value="Belarus">BY - Belarus</option><option value="Belgium">BE - Belgium</option><option value="Belize">BZ - Belize</option><option value="Benin">BJ - Benin</option><option value="Bermuda">BM - Bermuda</option><option value="Bhutan">BT - Bhutan</option><option value="Bolivia">BO - Bolivia</option><option value="Bosnia and Herzegovina">BA - Bosnia and Herzegovina</option><option value="Botswana">BW - Botswana</option><option value="Bouvet Island">BV - Bouvet Island</option><option value="Brazil">BR - Brazil</option><option value="British Indian Ocean Territory">IO - British Indian Ocean Territory</option><option value="Brunei Darussalam">BN - Brunei Darussalam</option><option value="Bulgaria">BG - Bulgaria</option><option value="Burkina Faso">BF - Burkina Faso</option><option value="Burundi">BI - Burundi</option><option value="Cambodia">KH - Cambodia</option><option value="Cameroon">CM - Cameroon</option><option value="Cape Verde">CV - Cape Verde</option><option value="Cayman Islands">KY - Cayman Islands</option><option value="Central African Republic">CF - Central African Republic</option><option value="Chad">TD - Chad</option><option value="Chile">CL - Chile</option><option value="China">CN - China</option><option value="Christmas Island">CX - Christmas Island</option><option value="Cocos (Keeling) Islands">CC - Cocos (Keeling) Islands</option><option value="Colombia">CO - Colombia</option><option value="Comoros">KM - Comoros</option><option value="Congo">CG - Congo</option><option value="Congo, Democratic Republic of the">CD - Congo, Democratic Republic of the</option><option value="Cook Islands">CK - Cook Islands</option><option value="Costa Rica">CR - Costa Rica</option><option value="Cote d'Ivoire">CI - Cote d'Ivoire</option><option value="Croatia">HR - Croatia</option><option value="Cuba">CU - Cuba</option><option value="Cyprus">CY - Cyprus</option><option value="Czech Republic">CZ - Czech Republic</option><option value="Denmark">DK - Denmark</option><option value="Djibouti">DJ - Djibouti</option><option value="Dominica">DM - Dominica</option><option value="Dominican Republic">DO - Dominican Republic</option><option value="East Timor">TP - East Timor</option><option value="Ecuador">EC - Ecuador</option><option value="Egypt">EG - Egypt</option><option value="El Salvador">SV - El Salvador</option><option value="Equatorial Guinea">GQ - Equatorial Guinea</option><option value="Eritrea">ER - Eritrea</option><option value="Estonia">EE - Estonia</option><option value="Ethiopia">ET - Ethiopia</option><option value="Falkland Islands (Malvinas)">FK - Falkland Islands (Malvinas)</option><option value="Faroe Islands">FO - Faroe Islands</option><option value="Fiji">FJ - Fiji</option><option value="Finland">FI - Finland</option><option value="France">FR - France</option><option value="French Guiana">GF - French Guiana</option><option value="French Polynesia">PF - French Polynesia</option><option value="French Southern Territories">TF - French Southern Territories</option><option value="Gabon">GA - Gabon</option><option value="Gambia">GM - Gambia</option><option value="Georgia">GE - Georgia</option><option value="Germany">DE - Germany</option><option value="Ghana">GH - Ghana</option><option value="Gibraltar">GI - Gibraltar</option><option value="Greece">GR - Greece</option><option value="Greenland">GL - Greenland</option><option value="Grenada">GD - Grenada</option><option value="Guadeloupe">GP - Guadeloupe</option><option value="Guam">GU - Guam</option><option value="Guatemala">GT - Guatemala</option><option value="Guinea">GN - Guinea</option><option value="Guinea-Bissau">GW - Guinea-Bissau</option><option value="Guyana">GY - Guyana</option><option value="Haiti">HT - Haiti</option><option value="Heard Island and McDonald Islands">HM - Heard Island and McDonald Islands</option><option value="Holy See (Vatican City)">VA - Holy See (Vatican City)</option><option value="Honduras">HN - Honduras</option><option value="Hong Kong">HK - Hong Kong</option><option value="Hungary">HU - Hungary</option><option value="Iceland">IS - Iceland</option><option value="India">IN - India</option><option value="Indonesia">ID - Indonesia</option><option value="Iran, Islamic Republic of">IR - Iran, Islamic Republic of</option><option value="Iraq">IQ - Iraq</option><option value="Ireland">IE - Ireland</option><option value="Israel">IL - Israel</option><option value="Italy">IT - Italy</option><option value="Jamaica">JM - Jamaica</option><option value="Japan">JP - Japan</option><option value="Jordan">JO - Jordan</option><option value="Kazakstan">KZ - Kazakstan</option><option value="Kenya">KE - Kenya</option><option value="Kiribati">KI - Kiribati</option><option value="Korea, Democratic People's Republic of">KP - Korea, Democratic People's Republic of</option><option value="Korea, Republic of">KR - Korea, Republic of</option><option value="Kuwait">KW - Kuwait</option><option value="Kyrgyzstan">KG - Kyrgyzstan</option><option value="Lao People's Democratic Republic">LA - Lao People's Democratic Republic</option><option value="Latvia">LV - Latvia</option><option value="Lebanon">LB - Lebanon</option><option value="Lesotho">LS - Lesotho</option><option value="Liberia">LR - Liberia</option><option value="Libyan Arab Jamahiriya">LY - Libyan Arab Jamahiriya</option><option value="Liechtenstein">LI - Liechtenstein</option><option value="Lithuania">LT - Lithuania</option><option value="Luxembourg">LU - Luxembourg</option><option value="Macau">MO - Macau</option><option value="Macedonia, The Former Yugoslav Republic of">MK - Macedonia, The Former Yugoslav Republic of</option><option value="Madagascar">MG - Madagascar</option><option value="Malawi">MW - Malawi</option><option value="Malaysia">MY - Malaysia</option><option value="Maldives">MV - Maldives</option><option value="Mali">ML - Mali</option><option value="Malta">MT - Malta</option><option value="Marshall Islands">MH - Marshall Islands</option><option value="Martinique">MQ - Martinique</option><option value="Mauritania">MR - Mauritania</option><option value="Mauritius">MU - Mauritius</option><option value="Mayotte">YT - Mayotte</option><option value="Mexico">MX - Mexico</option><option value="Micronesia, Federated States of">FM - Micronesia, Federated States of</option><option value="Moldova, Republic of">MD - Moldova, Republic of</option><option value="Monaco">MC - Monaco</option><option value="Mongolia">MN - Mongolia</option><option value="Montserrat">MS - Montserrat</option><option value="Morocco">MA - Morocco</option><option value="Mozambique">MZ - Mozambique</option><option value="Myanmar">MM - Myanmar</option><option value="Namibia">NA - Namibia</option><option value="Nauru">NR - Nauru</option><option value="Nepal">NP - Nepal</option><option value="Netherlands">NL - Netherlands</option><option value="Netherlands Antilles">AN - Netherlands Antilles</option><option value="New Caledonia">NC - New Caledonia</option><option value="New Zealand">NZ - New Zealand</option><option value="Nicaragua">NI - Nicaragua</option><option value="Niger">NE - Niger</option><option value="Nigeria">NG - Nigeria</option><option value="Niue">NU - Niue</option><option value="Norfolk Island">NF - Norfolk Island</option><option value="Northern Mariana Islands">MP - Northern Mariana Islands</option><option value="Norway">NO - Norway</option><option value="Oman">OM - Oman</option><option value="Pakistan">PK - Pakistan</option><option value="Palau">PW - Palau</option><option value="Palestinian Territory, Occupied">PS - Palestinian Territory, Occupied</option><option value="PANAMA">PA - PANAMA</option><option value="Papua New Guinea">PG - Papua New Guinea</option><option value="Paraguay">PY - Paraguay</option><option value="Peru">PE - Peru</option><option value="Philippines">PH - Philippines</option><option value="Pitcairn">PN - Pitcairn</option><option value="Poland">PL - Poland</option><option value="Portugal">PT - Portugal</option><option value="Puerto Rico">PR - Puerto Rico</option><option value="Qatar">QA - Qatar</option><option value="Reunion">RE - Reunion</option><option value="R  omania">RO - R  omania</option><option value="Russian Federation">RU - Russian Federation</option><option value="Rwanda">RW - Rwanda</option><option value="Saint Helena">SH - Saint Helena</option><option value="Saint Kitts and Nevis">KN - Saint Kitts and Nevis</option><option value="Saint Lucia">LC - Saint Lucia</option><option value="Saint Pierre and Miquelon">PM - Saint Pierre and Miquelon</option><option value="Saint Vincent and the Grenadines">VC - Saint Vincent and the Grenadines</option><option value="Samoa">WS - Samoa</option><option value="San Marino">SM - San Marino</option><option value="Sao Tome and Principe">ST - Sao Tome and Principe</option><option value="Saudi Arabia">SA - Saudi Arabia</option><option value="Senegal">SN - Senegal</option><option value="Seychelles">SC - Seychelles</option><option value="Sierra Leone">SL - Sierra Leone</option><option value="Singapore">SG - Singapore</option><option value="Slovakia">SK - Slovakia</option><option value="Slovenia">SI - Slovenia</option><option value="Solomon Islands">SB - Solomon Islands</option><option value="Somalia">SO - Somalia</option><option value="South Africa">ZA - South Africa</option><option value="South Georgia and the South Sandwich Islands">GS - South Georgia and the South Sandwich Islands</option><option value="Spain">ES - Spain</option><option value="Sri Lanka">LK - Sri Lanka</option><option value="Sudan">SD - Sudan</option><option value="Suriname">SR - Suriname</option><option value="Svalbard and Jan Mayen">SJ - Svalbard and Jan Mayen</option><option value="Swaziland">SZ - Swaziland</option><option value="Sweden">SE - Sweden</option><option value="Switzerland">CH - Switzerland</option><option value="Syrian Arab Republic">SY - Syrian Arab Republic</option><option value="Taiwan, Province of China">TW - Taiwan, Province of China</option><option value="Tajikistan">TJ - Tajikistan</option><option value="Tanzania, United Republic of">TZ - Tanzania, United Republic of</option><option value="Thailand">TH - Thailand</option><option value="Togo">TG - Togo</option><option value="Tokelau">TK - Tokelau</option><option value="Tonga">TO - Tonga</option><option value="Trinidad and Tobago">TT - Trinidad and Tobago</option><option value="Tunisia">TN - Tunisia</option><option value="Turkey">TR - Turkey</option><option value="Turkmenistan">TM - Turkmenistan</option><option value="Turks and Caicos Islands">TC - Turks and Caicos Islands</option><option value="Tuvalu">TV - Tuvalu</option><option value="Uganda">UG - Uganda</option><option value="Ukraine">UA - Ukraine</option><option value="United Arab Emirates">AE - United Arab Emirates</option><option value="United Kingdom">GB - United Kingdom</option><option value="United States Minor Outlying Islands">UM - United States Minor Outlying Islands</option><option value="Uruguay">UY - Uruguay</option><option value="Uzbekistan">UZ - Uzbekistan</option><option value="Vanuatu">VU - Vanuatu</option><option value="Venezuela">VE - Venezuela</option><option value="Viet Nam">VN - Viet Nam</option><option value="Virgin Islands, British">VG - Virgin Islands, British</option><option value="Virgin Islands, U.S.">VI - Virgin Islands, U.S.</option><option value="Wallis and Futuna">WF - Wallis and Futuna</option><option value="Western Sahara">EH - Western Sahara</option><option value="Yemen">YE - Yemen</option><option value="Yugoslavia">YU - Yugoslavia</option><option value="Zambia">ZM - Zambia</option><option value="Zimbabwe">ZW - Zimbabwe</option></select>
+ 
+      </div>
+    </fieldset>
+
+    <fieldset><legend>Contact Information</legend>
+      <div class="notes">
+        <h4>Contact Information</h4>
+        <p>Please enter your full email address, for example, <strong>name@domain.com</strong></p>
+        <p>It is important that you provide a valid, working email address that you have access to as it must be verified before you can use your account.</p>
+        <p>Please enter a land line number, not a mobile phone number.</p>
+        <p class="last">Your phone number will not be shared or used for telemarketing. Your information is protected by our <a href="/legal/privacy_policy/" title="View our Privacy Policy">Privacy Policy</a>.</p>
+      </div>
+      <div class="optional">
+        <fieldset><legend>How to Contact You?</legend>
+          <label for="how_contact_phone" class="labelRadio compact"><input type="radio" name="how_contact" id="how_contact_phone" class="inputRadio" value="Phone" /> Phone</label>
+          <label for="how_contact_email" class="labelRadio compact"><input type="radio" name="how_contact" id="how_contact_email" class="inputRadio" value="Email" checked="checked" /> Email</label>
+        </fieldset>
+      </div>
+      <div class="required">
+        
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" class="inputText" size="10" maxlength="250" value="" />
+        <small>We will never sell or disclose your email address to anyone.  Once your account is setup, you may add additional email addresses.</small>
+      </div>
+      <div class="required">
+        
+        <label for="confirm_email">Re-enter Email:</label>
+        <input type="text" name="confirm_email" id="confirm_email" class="inputText" size="10" maxlength="250" value="" />
+        <small>Must match the email address you just entered above.</small>
+      </div>
+      <div class="optional">
+        
+        <label for="phone">Phone:</label>
+        <input type="text" name="phone" id="phone" class="inputText" size="10" maxlength="50" value="" />
+      </div>
+      <div class="optional">
+        
+        <label for="fax">Fax:</label>
+        <input type="text" name="fax" id="fax" class="inputText" size="10" maxlength="50" value="" />
+      </div>
+      <div class="optional">
+        
+        <fieldset><legend>Message Subject:</legend>
+          <label for="subject_help" class="labelRadio"><input type="radio" name="message_subject" id="subject_help" class="inputRadio" value="Help, my brother/sister is driving me crazy!" /> Help, my brother/sister is driving me crazy!</label>
+          <label for="subject_retire" class="labelRadio"><input type="radio" name="message_subject" id="subject_retire" class="inputRadio" value="How can I tell my father/mother, it's time for them to retire?" /> How can I tell my father/mother, it's time for them to retire?</label>
+          <label for="subject_partner" class="labelRadio"><input type="radio" name="message_subject" id="subject_partner" class="inputRadio" value="I'm exasperated with an awkward partner!" /> I'm exasperated with an awkward partner!</label>
+          <label for="subject_interfere" class="labelRadio"><input type="radio" name="message_subject" id="subject_interfere" class="inputRadio" value="How do I stop my family members from interfering?" /> How do I stop my family members from interfering?</label>
+          <label for="subject_other" class="labelRadio"><input type="radio" name="message_subject" id="subject_other" class="inputRadio" onclick="this.form.message_subject_other.focus()" onfocus="this.form.message_subject_other.focus()" value="" checked="checked"  /> Other:</label>
+          <input type="text" name="message_subject_other" id="message_subject_other" class="inputText" value="" />
+        </fieldset>
+      </div>
+      <div class="required">
+        
+        <label for="note_narrow">Your Message:</label>
+        <textarea name="note_narrow" id="note_narrow" class="inputTextarea" rows="10" cols="21"></textarea>
+        <small>Must be 250 characters or less.</small>
+      </div>
+      <div class="required wide">
+        
+        <label for="note_wide">Your Message:</label>
+        <textarea name="note_wide" id="note_wide" class="inputTextarea" rows="10" cols="21"></textarea>
+        <small>We'd love to get your feedback on any of the products or services we offer or on your experience with us.</small>
+      </div>
+      <div class="optional">
+        
+        <label for="image">Image:</label>
+        <input type="file" name="image" id="image" class="inputFile" />
+        <label for="delete_image" class="labelCheckbox"><input type="checkbox" name="delete_image" id="delete_image" class="inputCheckbox" value="1" /> Delete</label>
+        <small>We only accept JPG files.</small>
+      </div>
+      <div class="required">
+        
+        <label for="availability_select">What is your current availability?</label>
+        <select name="availability_select" id="availability_select" class="selectMultiple" size="3" multiple="multiple">
+          <option value="Part-time">Part-time</option>
+          <option value="Full-time (Days)">Full-time (Days)</option>
+          <option value="Full-time (Swing)">Full-time (Swing)</option>
+          <option value="Full-time (Graveyard)">Full-time (Graveyard)</option>
+          <option value="Weekends Only">Weekends Only</option>
+        </select>
+        <small>Use the <kbd>CTRL</kbd> key to select more than one.</small>
+      </div>
+      <div class="required">
+        
+        <fieldset><legend>Availability:</legend>
+          <label for="availability_checkbox_0" class="labelCheckbox"><input type="checkbox" name="availability_checkbox" id="availability_checkbox_0" class="inputCheckbox" value="Part-time" /> Part-time</label>
+          <label for="availability_checkbox_1" class="labelCheckbox"><input type="checkbox" name="availability_checkbox" id="availability_checkbox_1" class="inputCheckbox" value="Full-time (Days)" /> Full-time (Days)</label>
+          <label for="availability_checkbox_2" class="labelCheckbox"><input type="checkbox" name="availability_checkbox" id="availability_checkbox_2" class="inputCheckbox" value="Full-time (Swing)" /> Full-time (Swing)</label>
+          <label for="availability_checkbox_3" class="labelCheckbox"><input type="checkbox" name="availability_checkbox" id="availability_checkbox_3" class="inputCheckbox" value="Full-time (Graveyard)" /> Full-time (Graveyard)</label>
+          <label for="availability_checkbox_4" class="labelCheckbox"><input type="checkbox" name="availability_checkbox" id="availability_checkbox_4" class="inputCheckbox" value="Weekends Only" /> Weekends Only</label>
+        </fieldset>
+      </div>
+    </fieldset>
+    
+    <fieldset><legend>Login Information</legend>
+      <div class="notes">
+        <h4>Login Information</h4>
+        <p>Your username and password must both be at least 8 characters long and are case-sensitive. Please do not enter accented characters.</p>
+        <p>We recommend that your password is not a word you can find in the dictionary, includes both capital and lower case letters, and contains at least one special character (1-9, !, *, _, etc.).</p>
+        <p class="last">Your password will be encrypted and stored in our system.  Due to the encryption, we <strong>cannot</strong> retrieve your password for you.  If you lose or forget your password, we offer the ability to reset it.</p>
+      </div>
+      <div class="required">
+        
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" class="inputText" size="10" maxlength="20" value="" />
+        <small>May only contain letters, numbers, and underscore (_) and 8-20 characters long.</small>
+      </div>
+      <div class="required">
+        
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" class="inputPassword" size="10" maxlength="25" value="" />
+        <small>Must be 8-25 characters long.</small>
+      </div>
+      <div class="required">
+        
+        <label for="confirm_password">Please re-enter your password:</label>
+        <input type="password" name="confirm_password" id="confirm_password" class="inputPassword" size="10" maxlength="25" value="" />
+        <small>Must match the password you entered just above.</small>
+      </div>
+      <div class="optional">
+        <label for="remember" class="labelCheckbox"><input type="checkbox" name="remember" id="remember" class="inputCheckbox" value="1" /> Remember Me</label>
+        <small>If you don't want to bother with having to login every time you visit the site, then checking &quot;Remember Me&quot; will place a unique identifier only our site can read that we'll use to identify you and log you in automatically each time you visit.</small>
+      </div>
+    </fieldset>
+
+    <fieldset><legend>Verification</legend>
+      <input type="hidden" name="captcha_hash" value="722A18D9677B3BDB4050992E2A80A207" />
+      <input type="hidden" name="captcha_file" value="EB800620-1372-5714-9146CDD6076E3159.jpg" />
+      <div class="notes">
+        <h4>Verification Information</h4>
+        <p class="last">Type the characters you see in this picture.  This ensures that a person, not an automated program, is creating this account.</p>
+      </div>
+      <div class="required">
+        <label for="captcha">Picture:</label>
+        <img src="/images/captcha/EB800620-1372-5714-9146CDD6076E3159.jpg" border="0" alt="" />
+      </div>
+      <div class="required">
+        
+        <label for="captcha">Characters:</label>
+        <input type="text" name="captcha" id="captcha" class="inputText" size="10" maxlength="25" value="" />
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="submit">
+        <div>
+          <input type="submit" class="inputSubmit" value="Submit &raquo;" />
+          <input type="submit" class="inputSubmit" value="Cancel" />
+        </div>
+      </div>
+    </fieldset>
+  </form>
+  <hr />
+  <pre title="form.css">/* form.css */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  min-width: 560px;
+  max-width: 620px;
+  width: 590px;
+}
+
+form fieldset {
+  clear: both;
+  font-size: 100%;
+  border-color: #000000;
+  border-width: 1px 0 0 0;
+  border-style: solid none none none;
+  padding: 10px;
+  margin: 0 0 0 0;
+}
+
+form fieldset legend {
+  font-size: 150%;
+  font-weight: normal;
+  color: #000000;
+  margin: 0 0 0 0;
+  padding: 0 5px;
+}
+
+label {
+  font-size: 100%;
+}
+
+label u {
+  font-style: normal;
+  text-decoration: underline;
+}
+
+input, select, textarea {
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 100%;
+  color: #000000;
+}
+
+textarea {
+  overflow: auto;
+}
+
+form div {
+  clear: left;
+  display: block;
+  width: 354px;
+  zoom: 1;
+  margin: 5px 0 0 0;
+  padding: 1px 3px;
+}
+
+form fieldset div.notes {
+  float: right;
+  width: 158px;
+  height: auto;
+  margin: 0 0 10px 10px;
+  padding: 5px;
+  border: 1px solid #666666;
+  background-color: #ffffe1;
+  color: #666666;
+  font-size: 88%;
+}
+
+form fieldset div.notes h4 {
+  background-image: url(/images/icon_info.gif);
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding: 3px 0 3px 27px;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #666666;
+  color: #666666;
+  font-size: 110%;
+}
+
+form fieldset div.notes p {
+  margin: 0em 0em 1.2em 0em;
+  color: #666666;
+}
+
+form fieldset div.notes p.last {
+  margin: 0em;
+}
+
+form div fieldset {
+  clear: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #666666;
+  margin: 0 0 0 144px;
+  padding: 0 5px 5px 5px;
+  width: 197px;
+}
+
+form div fieldset legend {
+  font-size: 100%;
+  padding: 0 3px 0 9px;
+}
+
+form div.required fieldset legend {
+  font-weight: bold;
+}
+
+form div label {
+  display: block;
+  float: left;
+  width: 130px;
+  padding: 3px 5px;
+  margin: 0 0 5px 0;
+  text-align: right;
+}
+
+form div.optional label, label.optional {
+  font-weight: normal;
+}
+
+form div.required label, label.required {
+  font-weight: bold;
+}
+
+form div label.labelCheckbox, form div label.labelRadio {
+  float: none;
+  display: block;
+  width: 200px;
+  zoom: 1;
+  padding: 0;
+  margin: 0 0 5px 142px;
+  text-align: left;
+}
+
+form div fieldset label.labelCheckbox, form div fieldset label.labelRadio {
+  margin: 0 0 5px 0;
+  width: 170px;
+}
+
+form div img {
+  border: 1px solid #000000;
+}
+
+p.error {
+  background-color: #ff0000;
+  background-image: url(/images/icon_error.gif);
+  background-repeat: no-repeat;
+  background-position: 3px 3px;
+  color: #ffffff;
+  padding: 3px 3px 5px 27px;
+  border: 1px solid #000000;
+  margin: auto 100px;
+}
+
+form div.error {
+  background-color: #ffffe1;
+  background-image: url(/images/required_bg.gif);
+  background-repeat: no-repeat;
+  background-position: top left;
+  color: #666666;
+  border: 1px solid #ff0000;
+}
+
+form div.error p.error {
+  background-image: url(/images/icon_error.gif);
+  background-position: top left;
+  background-color: transparent;
+  border-style: none;
+  font-size: 88%;
+  font-weight: bold;
+  margin: 0 0 0 118px;
+  width: 200px;
+  color: #ff0000;
+}
+
+form div select, form div textarea {
+  width: 200px;
+  padding: 1px 3px;
+  margin: 0 0 0 0;
+}
+
+form div input.inputText, form div input.inputPassword {
+  width: 200px;
+  padding: 1px 3px;
+  margin: 0 0 0 0;
+}
+
+form div input.inputFile {
+  width: 211px;
+}
+
+form div select.selectOne, form div select.selectMultiple {
+  width: 211px;
+  padding: 1px 3px;
+}
+
+form div input.inputCheckbox, form div input.inputRadio, input.inputCheckbox, input.inputRadio {
+  display: inline;
+  height: auto;
+  width: auto;
+  background-color: transparent;
+  border-width: 0;
+  padding: 0;
+  margin: 0 0 0 140px;
+}
+
+form div.submit {
+  width: 214px;
+  padding: 0 0 0 146px;
+}
+
+form div.submit div {
+  display: inline;
+  float: left;
+  text-align: left;
+  width: auto;
+  padding: 0;
+  margin: 0;
+}
+
+form div input.inputSubmit, form div input.inputButton, input.inputSubmit, input.inputButton {
+  background-color: #cccccc;
+  color: #000000;
+  width: auto;
+  padding: 0 6px;
+  margin: 0;
+}
+
+form div.submit div input.inputSubmit, form div.submit div input.inputButton {
+  float: right;
+  margin: 0 0 0 5px;
+}
+
+form div small {
+  display: block;
+  margin: 0 0 5px 142px;
+  padding: 1px 3px;
+  font-size: 88%;
+  zoom: 1;
+}
+</pre>
+  <pre title="form.import.css">/* form.import.css */
+
+label img {
+  behavior: url(/behaviors/label_img.htc);
+}
+
+form fieldset legend {
+  line-height: 150%;
+}
+
+form input, form select, form textarea {
+  background-color: #ffffff;
+}
+
+form textarea.expanding {
+  overflow: auto;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+div.optional label:before {
+  content: '';
+}
+
+div.required label:before {
+  content: '';
+}
+  
+form div label.labelCheckbox, form div label.labelRadio, label.labelCheckbox, label.labelRadio {
+  display: block;
+  width: 190px;
+  zoom: 1;
+  padding: 4px 0 0 18px;
+  text-indent: -18px;
+  line-height: 120%;
+}
+
+form div label.labelCheckbox input.inputCheckbox, form div label.labelRadio input.inputRadio, label.labelCheckbox input.inputCheckbox, label.labelRadio input.inputRadio {
+  margin: 0;
+}
+
+form div fieldset input.inputText, form div fieldset input.inputPassword, form div fieldset input.inputFile, form div fieldset textarea.inputTextarea {
+  width: 160px;
+  margin: 0 0 0 18px;
+  margin: expression(setCntr(), '0px 0 0 -124px');
+}
+
+form div label.compact {
+  display: inline;
+  width: auto;
+  padding: 4px 10px 0 0;
+  text-indent: 0;
+  margin: 0 0 0 0;
+}
+
+form div.wide label {
+  float: none;
+  display: block;
+}
+
+form div label.wide {
+  width: 348px;
+}
+
+form div.wide input.inputText, form div.wide input.inputPassword, form div.wide input.inputFile, form div.wide select, form div.wide textarea {
+  width: 344px;
+  margin: 0;
+}
+
+form div.notes p, form div small {
+  line-height: 125%;
+}
+
+form div.wide small {
+  margin: 0 0 5px 0;
+}</pre>
+
+<br style="clear: both; height: 0px; line-height: 0px" />
+</div>
+<div id="footer">
+<div id="copyright">&#169; <a href="/legal/copyright/">Copyright</a> 1997-2010 <a href="http://jeffhowden.com/">Jeff Howden</a>.</div>
+<div id="legal" class="noprint"><a href="/legal/privacy_policy/">Privacy Policy</a> | <a href="/legal/terms_of_use/">Terms of Use</a></div>
+<!--
+  <rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Work rdf:about="http://jeffhowden.com/">
+      <dc:title>JeffHowden.com</dc:title>
+      <dc:date>1997-1-1</dc:date>
+      <dc:description>A website that houses a collection of tips, code snippets, links, articles, and other rhetoric related to web development and/or design &#8212; specifically anything related to ColdFusion, IIS, Microsoft SQL Server 2000, Search Engine Optimization, XHTML, JavaScript, CSS, and DHTML.</dc:description>
+      <dc:creator><Agent>
+          <dc:title>Jeff Howden</dc:title>
+      </Agent></dc:creator>
+      <dc:rights><Agent>
+        <dc:title>Jeff Howden</dc:title>
+      </Agent></dc:rights>
+      <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+      <license rdf:resource="http://creativecommons.org/licenses/by-nd-nc/1.0/" />
+    </Work>
+    <License rdf:about="http://creativecommons.org/licenses/by-nd-nc/1.0/">
+      <requires rdf:resource="http://web.resource.org/cc/Attribution" />
+      <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+      <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+      <prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+      <requires rdf:resource="http://web.resource.org/cc/Notice" />
+    </License>
+  </rdf:RDF>
+-->
+<br style="clear: both;" />
+<div id="credit">Developed by and powered by <a href="http://jeffhowden.com/">Jeff Howden</a>.</div>
+<div id="validates" class="noprint"><a href="http://validator.w3.org/check/referer" title="Validate this page at W3.org" onclick="return newWindow(this.href)" onkeypress="return newWindow(this.href)">XHTML 1.0</a> | <a href="http://bobby.watchfire.com/" title="Bobby's Home Page" onclick="return newWindow(this.href)" onkeypress="return newWindow(this.href)">Bobby AAA/Section 508</a> | <a href="http://www.w3.org/WAI/WCAG1A-Conformance" title="Explanation of Level A Conformance" onclick="return newWindow(this.href)" onkeypress="return newWindow(this.href)">WAI-A WCAG 1.0</a></div>
+<br style="clear: both;" />
+</div>
+<br style="clear: both;" />
+<br style="clear: both;" />
+</div>
+<div id="menu">
+<div id="navigation">
+  <ul>
+    <li><a href="/">Home</a></li>
+  
+    <li class="selected"><a href="/code/" onclick="toggleDisplay(toggledDisplay['subnav_code'], 'subnav_code'); return false" onkeypress="toggleDisplay(toggledDisplay['subnav_code'], 'subnav_code'); return false">Code Samples</a>
+      <ul id="subnav_code">
+        <li><a href="/code/coldfusion/">ColdFusion</a></li>
+      
+        <li class="selected"><a href="/code/css/">CSS</a></li>
+      
+        <li><a href="/code/javascript/">JavaScript</a></li>
+      </ul>
+    </li>
+  
+    <li><a href="/articles/">Articles</a></li>
+  
+    <li><a href="/links/">Links</a></li>
+  
+    <li><a href="/about/" onclick="toggleDisplay(toggledDisplay['subnav_about'], 'subnav_about'); return false" onkeypress="toggleDisplay(toggledDisplay['subnav_about'], 'subnav_about'); return false">About</a>
+      <ul id="subnav_about">
+        <li><a href="/about/resume/">R&eacute;sum&eacute;</a></li>
+      
+        <li><a href="/about/site/">Site</a></li>
+      </ul>
+    </li>
+  
+    <li><a href="/contact/">Contact Me</a></li>
+  
+    <li><a href="/make_a_payment/">Make a Payment</a></li>
+  </ul>
+</div>
+
+<div id="utilities">
+<ul>
+  <li><a href="/email/?url=%2Fcode%2Fcss%2Fforms%2F">Email this page to a friend</a></li>
+  <li><a href="/code/css/forms/?format=print"  onmouseover="window.status = 'Print this page.'; return true" onmouseout="window.status = ''" onfocus="window.status = 'Print this page.'; return true" onblur="window.status = ''" onclick="if(window.print) { window.print(); return false; }" onkeypress="if(window.print) { window.print(); return false; }">Print</a></li>
+  <li id="styleSwitcherLI"><a href="/styleswitcher/" id="styleSwitcherA">Style Switcher</a>
+
+  </li>
+</ul>
+</div>
+
+
+
+
+</div>
+</div>
+<script type="text/javascript" src="http://www.google-analytics.com/urchin.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+  _uacct = 'UA-423971-1';
+  urchinTracker();
+//]]>
+</script>
+</body>
+</html>

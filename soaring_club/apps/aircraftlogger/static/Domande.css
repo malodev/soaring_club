@@ -1,0 +1,93 @@
+body {
+	font-size: 10pt; 
+	font-family: Tahoma, Arial, Helvetica;
+	background-color: #444444;
+}
+a:link, a:visited  {
+  color: #86E160;
+ 
+}
+
+a:hover {
+  color: #FFF;
+}
+
+a.newmenu {
+	font-weight: bold; 
+	color: red; 
+	text-decoration: none;
+}
+a.newmenu:hover {
+	color: red; 
+	text-decoration: underline;
+}
+p {
+	font-size: 10pt;
+}
+li {
+	font-size: 10pt;
+}
+
+h1 {font: 700 1.3em verdana, sans-serif;color:#86E160;}
+h2 {font: 700 1.2em verdana, sans-serif;color:#86E160;}
+h3 {font: 700 1.1em verdana, sans-serif;color:#86E160;}
+h4 {font: 700 1.0em verdana, sans-serif;color:#86E160;}
+h5 {font: 700 0.9em verdana, sans-serif;color:#86E160;}
+
+table {
+	font-size: 10pt;
+}
+td {
+	font-size: 10pt;
+	padding: 3px;
+}
+th {
+	text-align: left;
+	margin: 5px 0;
+	padding:3px;
+	font: 700 1.2em verdana, sans-serif;
+	text-transform: uppercase;
+	color: #7BD32C;
+	background: #686868 url(greenery_ii/images/rounded_tl.gif) no-repeat top left;
+}
+pre {
+	font-size: 10pt
+}
+.tablebg {
+	background-color: #000000;
+}
+.tabletitsx {
+	font-weight: bold; background-color: #d0e5c8; padding-right: 20px; text-align: left
+}
+.TableTitDX {
+	font-weight: bold; color:#ffffff; background-color: #444444; padding-right: 20px; text-align: right
+}
+.tabletitcen {
+	font-weight: bold; background-color: #d0e5c8; padding-right: 20px; text-align: center
+}
+.TableTitFRA {
+	font-weight: bold; background-color: #444444; padding-right: 20px; text-align: center
+}
+.tabletit1c {
+	font-weight: bold; background-color: #d0e5c8;
+}
+.tabletit1l {
+	font-weight: bold; background-color: #d0e5c8;
+}
+.tablerowc1 {
+	background-color: #ffffff;  padding-left: 20px;
+}
+.TableRowC2 {
+	color: #ffffff; background-color: #222222;  padding-left: 20px;
+}
+.tablerowc3 {
+	background-color: #d0e5c8;
+}
+.tablerowc4 {
+	background-color: #eeeeee;
+}
+.tablerowspacer {
+	height: 5px;
+}
+
+img{ border: 0px solid white; }

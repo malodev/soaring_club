@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+Aircraft Log Book - Flights
+{% endblock %}
+
+{% block fullscript %}
+   <script type="text/javascript" src="/admin/jsi18n/"></script>
+   <script type="text/javascript" src="/admin_media/js/core.js"></script> 
+   <script type="text/javascript" src="/admin_media/js/admin/RelatedObjectLookups.js"></script>
+   {{ form.media }}
+{% endblock %}
+
+{% block header %}
+	<div id="logo">
+		<h1><a href="/">Volo a Vela</a></h1>
+		<p><a href="/">CUS Trento</a></p>
+	</div>
+{% endblock %}
+
+{% block admin %}
+{% if logged.is_staff %}<li class="current_page_item"><a href="/reports/">{% trans "Reports" %}</a></li>{% endif %}
+{% endblock %}
+
+{% block content %}
+	<div class="post">
+		<h2 class="title">{% trans "Reports view" %}</h2>
+		<p class="meta">{% trans "For now you find only cents report" %}</p>
+		<div class="entry">
+            <h2>Report enabled pilots</h2>
+            <form action="/reports/clearance/" method="POST">
+	        <ul>
+                <li><input type="submit" value="View" /></li>
+             </ul>
+            </form>
+            {% endif %}
+
+            {% if report %}
+            
+                <table class="logs">
+                <thead>
+                <tr>
+                    <th>Cognome</th><th>Nome</th><th>Traino CUS</th><th>Traino Privato</th>
+                    </tr>
+                </thead>
+                {% for member in report %}
+                  <tr class="{% cycle 'even' 'odd' %}">
+                    <td><a href="{{ member.member_id }}">{{ member.last_name }}</a><td>{{ member.first_name }}</td><td>{{ member.cus_enabled }}</td><td>{{ member.private_enabled }}</td>
+                </tr>
+                {% endfor %}
+                </table>
+
+            {% endif %}
+
+    	</div>
+	</div>
+	<div id="banner"><img src="/media/images/img07.jpg" alt="" /></div>
+	<div style="clear: both;">&nbsp;</div>
+
+{% endblock %}{% block sidebar %}
+{% endblock %}
+{% block column1 %}
+{% endblock %}
+{% block column2 %}
+{% endblock %}
+

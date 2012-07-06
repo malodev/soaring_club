@@ -1,0 +1,11 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Glider Club Administration' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans 'Glider Club Administration' %}</h1>
+<h2 id="return-link"><a href='/'>{% trans 'Return to frontend' %}</a><h2>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

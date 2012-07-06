@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block subtitle %}
+ - Logs
+{% endblock %}
+
+{% if request.user.is_staff %}
+    {% block logs %}
+    <li class="current_page_item"><a href="/logs/">Logs</a></li>
+    {% endblock %}
+{% endif %}
+
+
+{% block content %}
+	<div class="post">
+		<h2 class="title">Tower Station Logger Analyzer</h2>
+		<p class="meta">Automatic planes time table generator</p>
+		<div class="entry">
+	        {% if log_selection %}
+
+            <h2>Select one Tower Station log file</h2>
+            <form action="/logs/" method="POST">
+	        <ul>
+                <li style="float:left;"><label for="id_file_log">Choose Log:</label>{{ log_selection.file_log }} {{ log_selection.file_log.errors }}</li>
+                <li><input type="submit" value="View" /></li>
+             </ul>
+            </form>
+            {% endif %}
+            
+    
+            {% if logs %}
+            <h2>{{ logs|length }} flights found</h2>
+	        <form action="/logs/" method="POST">
+                <table class="logs">
+                <thead>
+                <tr>
+                    <th>Landing Date</th><th><a href="/flarms/" target="_blank">Regmark</a></th><th>Plane</th><th>Takeoff</th><th>Landing</th><th>Duration</th><th>Good Status</th><th>Error Informations</th>
+                    </tr>
+                </thead>
+                {% for log in logs %}
+                <tr class="{% cycle 'even' 'odd' %}">
+                <td><label><input type="checkbox" id="flights" name="flights" value="{{ log|join:"," }}" />{{ log.0 }}</label></td><td><a href="/flarm/{{ log.1|upper }}/" target="_blank">{{ log.1 }}</a></td>
+                <td>{% for plane in log.7 %} {{ plane }} {% endfor %}</td>
+                <td>{{ log.2 }}</td><td>{{ log.3 }}</td><td>{{ log.4 }}</td><td>{{ log.5 }}</td><td>{{ log.6 }}</td>
+                </tr>
+               
+                {% endfor %}
+                </table>
+                <input type="submit" value="Add" />
+
+            </form>
+            {% endif %}
+
+    	</div>
+	</div>
+	<div id="banner"><img src="/static/images/img07.jpg" alt="" /></div>
+	<div style="clear: both;">&nbsp;</div>
+{% endblock %}{% block sidebar %}
+{% endblock %}
+{% block column1 %}
+{% endblock %}
+{% block column2 %}
+{% endblock %}
+

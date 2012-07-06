@@ -1,0 +1,50 @@
+rmc_nmea_regex_str = r'''[$](?P<talker>[A-Z][A-Z])(?P<sentence>RMC),
+(?P<time_utc>(?P<hour>\d\d)(?P<minute>\d\d)(?P<second>\d\d\.\d*))?,
+(?P<status>[AV])?,
+(?P<lat>(?P<lat_deg>\d\d)(?P<lat_min>\d\d\.\d*))?,
+(?P<lat_hemi>[NS])?,
+(?P<lon>(?P<lon_deg>\d{3})(?P<lon_min>\d\d\.\d*))?,
+(?P<lon_hemi>[EW])?,
+(?P<speed>\d+\.\d*)?,
+(?P<course>\d+\.\d*)?,
+(?P<utcdate>(?P<day>\d\d)(?P<month>\d\d)(?P<year>\d\d))?,
+(?P<magvar>\d+\.\d*)?,
+(?P<magdir>[EWNS])?,
+(?P<boh>[A])?
+\*(?P<checksum>[0-9A-F][0-9A-F])'''
+
+psk_nmea_regex_str = r'''[$](?P<sentence>PSK),
+(?P<p1>\d+)?,
+(?P<latitude>\d+\.\d*)?,
+(?P<longitude>\d+\.\d*)?,
+(?P<altitude>\d+)?,
+(?P<head>\d+)?,
+(?P<p6>\d+)?,
+(?P<p7>\d+)?,
+(?P<speed>\d+)?,
+(?P<id>[A-Za-z0-9]+)?,
+(?P<flarmid>[A-Za-z0-9]+)?
+\*(?P<checksum>[0-9A-F][0-9A-F])'''
+
+regex_dict = {}
+regex_dict['gga'] = re.compile(gga_nmea_regex_str, re.VERBOSE)
+regex_dict['rmc'] = re.compile(rmc_nmea_regex_str, re.VERBOSE)
+regex_dict['psk'] = re.compile(psk_nmea_regex_str, re.VERBOSE)
+
+
+gga_nmea_regex_str = r'''[$](?P<talker>[A-Z][A-Z])(?P<sentence>GGA),
+(?P<time_utc>(?P<hour>\d\d)(?P<minute>\d\d)(?P<second>\d\d\.\d*))?,
+(?P<lat>(?P<lat_deg>\d\d)(?P<lat_min>\d\d\.\d*))?,
+(?P<lat_hemi>[NS])?,
+(?P<lon>(?P<lon_deg>\d{3})(?P<lon_min>\d\d\.\d*))?,
+(?P<lon_hemi>[EW])?,
+(?P<gps_quality>\d+)?,
+(?P<satellites>\d+)?,
+(?P<hdop>\d+\.\d+)?,
+(?P<antenna_height>[+-]?\d+\.\d+)?,
+(?P<antenna_height_units>M)?,
+(?P<geoidal_height>[+-]?\d+\.\d+)?,
+(?P<geoidal_height_units>M)?,
+(?P<differential_ref_station>[A-Z0-9.]*),
+(?P<differential_age_sec>\d+)?
+\*(?P<checksum>[0-9A-F][0-9A-F])'''

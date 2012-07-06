@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+Aircraft Log Book - Flights
+{% endblock %}
+
+{% block flights %}
+<li class="current_page_item"><a href="/flight/">Flights</a></li>
+{% endblock %}
+
+{% block sidebar %}
+	{% if flight.pk %}
+	<h3>{% trans "Flight" %} {{ flight }}</h3>
+    <div id="sidebar">
+    <ul>
+		<li><a href="{{ flight.get_absolute_url }}">{% trans "Update flight" %}</a></li>
+		<li class="last"><a href="{{ flight.get_twin_flight_url }}">{% trans "Flight releted" %}</a></li>
+	</ul>
+	</div>
+	{% endif %}
+{% endblock %}

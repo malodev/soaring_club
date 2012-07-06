@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block subtitle %}
+ - Receipts
+{% endblock %}
+
+{% block fullscript %}
+   <script type="text/javascript" src="/admin/jsi18n/"></script>
+   <script type="text/javascript" src="/admin_media/js/core.js"></script> 
+   <script type="text/javascript" src="/admin_media/js/admin/RelatedObjectLookups.js"></script>
+   {{ form.media }}
+{% endblock %}
+{% block stylesheet_bottom %}
+<link href="/media/css/print.css" rel="stylesheet" type="text/css" media="print" />
+{% endblock %}
+
+{% block receipts %}
+<li class="current_page_item"><a href="/receipts/">{% trans "Receipts" %}</a></li>
+{% endblock %}
+
+{% block content %}
+	<div class="post">
+		<h2 class="title">{% trans "Receipts view" %}</h2>
+		<p class="meta">{% trans "List bills payed by you" %}</p>
+		<div class="entry">
+            {% if receipts %}
+            
+                <h2>
+                {% blocktrans count receipts|length as length %}
+                    one bill found
+                {% plural %}
+                    {{ length }} bills found
+                {% endblocktrans %}
+                </h2>
+                {% if first_date %}
+                    <h3> 
+                    {% trans "From" %} {{ first_date|date:"d F Y"  }} {{ member.first_name }} {{ member.last_name }} {% trans " has" %}:</h3>
+                    </h3>
+                    <ul>
+                    {% if total %}
+                        <li class="indent"><h3> {% trans "spent" %} {{ total }} euro</h3></li>
+                    {% endif %}
+                    {% for dsc,val in credits %}
+                        {% if val %}
+                            <li class="indent"><h3>{% trans "purchased" %} {{ val }} {% trans "units" %} {% trans "for" %} {{ dsc|lower }} </h3></li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+    
+                <table class="logs">
+                    <thead>
+                    <tr>
+                        <th>{% trans "Reference" %}</th><th>{% trans "Date" %}</th><th>{% trans "Total" %}</th>
+                        {% for dsc,val in credits %}
+                            {% if val %}
+                                <th>{{ dsc }}</th>
+                            {% endif %}
+                        {% endfor %}
+                        <th>{% trans "Description of payment" %}</th><th>{% trans "Note" %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for receipt in receipts %}
+                      <tr class="{% cycle 'even' 'odd' %}">
+                        <td><a href="{{ receipt.id }}">{{ receipt.reference }}</a><td>{{ receipt.date|date:"j M Y" }}</td><td>{{ receipt.total }}</td>
+                        {% for dsc, val in credits %}
+                            {% for dsc1, val1 in receipt.credits %}
+                                {% if val %}
+                                    {% ifequal dsc dsc1 %}
+                                        <td>{{ val1 }}</td>
+                                    {% endifequal %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        <td>{{ receipt.description }}</td><td>{{ receipt.note }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            {% endif %}
+
+    	</div>
+	</div>
+	<div id="banner"><img src="/media/images/img07.jpg" alt="" /></div>
+	<div style="clear: both;">&nbsp;</div>
+
+{% endblock %}{% block sidebar %}
+{% endblock %}
+{% block column1 %}
+{% endblock %}
+{% block column2 %}
+{% endblock %}
+

@@ -1,0 +1,39 @@
+# This file collects all required third-party applications that are needed
+# to run this project. Later you can install all these apps in a row
+# using pip. Example::
+#
+#     pip install -r requirements.pip
+#Django          - 1.4          - active 
+#Fabric          - 1.4.2        - active 
+#PIL             - 1.1.7        - active 
+#Python          - 2.7.3        - active development (/usr/lib/python2.7/lib-dynload)
+#South           - 0.7.5        - active 
+#Werkzeug        - 0.8.3        - active 
+#argparse        - 1.2.1        - active development (/usr/lib/python2.7)
+#configobj       - 4.7.2        - active 
+#distribute      - 0.6.24       - active 
+#django-extensions - 0.9          - active 
+#django-startproject - 1.0a         - active 
+#gunicorn        - 0.14.3       - active 
+#ipython         - 0.12.1       - active 
+#pip             - 1.1          - active 
+#psycopg2        - 2.4.5        - active 
+#pycrypto        - 2.6          - active 
+#pytz            - 2012c        - active 
+#ssh             - 1.7.14       - active 
+#wsgiref         - 0.1.2        - active development (/usr/lib/python2.7)
+#yolk            - 0.4.3        - active 
+#
+
+django==1.4
+south==0.7.5
+django-extensions==0.9
+configobj==4.7.2
+Werkzeug==0.8.3
+Fabric==1.4.2
+ipython==0.12.1
+psycopg2==2.4.5
+pytz==2012c
+yolk==0.4.3
+distribute==0.6.24
+

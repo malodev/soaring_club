@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block subtitle %}
+ - Flights Sheet
+{% endblock %}
+
+{% block fullscript %}
+   <script type="text/javascript" src="/admin/jsi18n/"></script>
+   <script type="text/javascript" src="/admin_media/js/core.js"></script> 
+   <script type="text/javascript" src="/admin_media/js/admin/RelatedObjectLookups.js"></script>
+   {{ form.media }}
+{% endblock %}
+
+{% block sheet %}
+    <li class="current_page_item"><a href="/sheet/">{% trans "Fligths sheet" %}</a></li>
+{% endblock %}
+
+{% block content %}
+	<div class="post">
+		<h2 class="title">{% trans "Flights Insert" %}</h2>
+		<p class="meta">{% trans "Input table for register tow flights sheets" %}</p>
+        {% if saved %}
+    		<p class="meta" style="color:green">{% trans "Form SAVED" %}</p>
+        {% else %}
+    		<p class="meta" style="color:red">{% trans "Form not saved" %}</p>
+        {% endif %}
+		
+		<div class="entry">
+            <form class="flights-sheet" action="/sheet/" method="POST">
+                <table id="id_flights_sheet_head" border="0" cellpadding="0" cellspacing="5">
+                    <tr><td>{{ form.date.label_tag }}</td><td>{{ form.date }}{{ form.date.errors }}</td><td>{{ form.pilot.label_tag }}</td><td></td><td></td><td>{{ form.counter_unit.label_tag }}</td><td>{{ form.counter_unit }}{{ form.counter_unit.errors }}</td></tr>
+                    <tr><td>{{ form.tow.label_tag }}</td><td>{{ form.tow }}</td><td>{{ form.pilot }}</td><td>{{ form.warmup_cost.label_tag }}</td><td>{{ form.warmup_cost }}</td><td></td><td></td></tr>
+                </table>
+                <table id="id_flights_sheet" border="0" cellpadding="0" cellspacing="5">
+                    <thead>
+                        <tr>
+                            <th scope="col">N.</th>
+                            <th scope="col">{{ formset.forms.0.glider.label_tag }}</th>
+                            <th scope="col">{{ formset.forms.0.pilot.label_tag }}</th>
+                            <th scope="col">{{ formset.forms.0.instructor.label_tag }}</th>
+                            <th scope="col">{{ formset.forms.0.takeoff.label_tag }}</th>
+                            <th scope="col">{{ formset.forms.0.landing.label_tag }}</th>
+                            <th scope="col">{{ formset.forms.0.tow_cost.label_tag }}</th>
+                            <th scope="col">{{ formset.forms.0.porpouse.label_tag }}</th>
+                            <th scope="col">{{ formset.forms.0.landing_glider.label_tag }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for form in formset.forms %}
+                        <tr  class="{% cycle 'even' 'odd' %}" id="{{ form.prefix }}-row">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ form.glider }}{{ form.glider.errors }}</td>
+                            <td>{{ form.pilot }}{{ form.pilot.errors }}</td>
+                            <td>{{ form.instructor }}{{ form.instructor.errors }}</td>
+                            <td>{{ form.takeoff }}{{ form.takeoff.errors }}</td>
+                            <td>{{ form.landing }}{{ form.landing.errors }}</td>
+                            <td>{{ form.tow_cost }}{{ form.tow_cost.errors }}</td>
+                            <td>{{ form.porpouse }}{{ form.porpouse.errors }}</td>
+                            <td>{{ form.landing_glider }}{{ form.landing_glider.errors }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <p>
+                    {{ formset.management_form }}
+                    <input type="submit" value="Submit" />
+                </p>
+            </form>
+        </div>
+	</div>
+	<div id="banner"><img src="/media/images/img07.jpg" alt="" /></div>
+	<div style="clear: both;">&nbsp;</div>
+
+{% endblock %}{% block sidebar %}
+{% endblock %}
+{% block column1 %}
+{% endblock %}
+{% block column2 %}
+{% endblock %}
+

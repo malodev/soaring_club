@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+Aircraft Log Book - Home
+{% endblock %}
+
+{% block header %}
+	<div id="logo">
+		<h1><a href="/">Volo a Vela</a></h1>
+		<p><a href="/">CUS Trento</a></p>
+	</div>
+{% endblock %}
+
+
+{% block flarms %}
+<li class="current_page_item"><a href="/flarms/">Flarms</a></li>
+{% endblock %}
+
+
+{% block content %}
+	<div class="post">
+		<h2 class="title">Flarm DB</h2>
+		<p class="meta">{% trans "Flarms installed on aircrafts" %}</p>
+		<div class="entry">
+            {% if planes %}
+                {% for plane in planes %}
+                    {% include "plane.html" %}
+                {% endfor %}
+            {% endif %}
+    	</div>
+	</div>
+
+	<div style="clear: both;">&nbsp;</div>
+{% endblock %}{% block sidebar %}
+{% endblock %}
+{% block column1 %}
+{% endblock %}
+{% block column2 %}
+{% endblock %}
+

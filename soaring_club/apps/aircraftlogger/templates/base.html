@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : EarthlingTwo  
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20090918
+-->
+{% load i18n %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>
+{% block title %}
+Soaring Club
+{% endblock %}
+{% block subtitle %}
+{% endblock %}
+</title>
+{% block stylesheet_top %}{% endblock %}
+{% block stylesheet %}
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+{% endblock %}
+{% block stylesheet_bottom %}{% endblock %}
+{% block fullscript %}{% endblock %}
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+    {% block header %}
+    	<div id="logo">
+		<h1><a href="/">Volo a Vela</a></h1>
+		<p><a href="/">CUS Trento</a></p>
+	</div>
+    {% endblock %}
+	</div>
+	<!-- end #header -->
+	<div id="menu">
+    {% block topmenu %}
+   	<ul>
+        {% block home %}<li><a href="/">Home</a></li> {% endblock %}
+        {% block flights %}<li><a href="/flights/">{% trans "Flights" %}</a></li>{% endblock %}
+        {% block flights_bills %}<li><a href="/bills/">{% trans "Flights bills" %}</a></li>{% endblock %}
+        {% block receipts %}<li><a href="/receipts/">{% trans "Receipts" %}</a></li>{% endblock %}
+        {% if request.user.is_staff %}
+            {% block admin %}<li><a href="/reports/">{% trans "Reports" %}</a></li>{% endblock %}
+            {% block logs %}<li><a href="/logs/">Logs</a></li>{% endblock %}
+            {% block sheet %}<li><a href="/sheet/">{% trans "Fligths sheet" %}</a></li>{% endblock %}
+        {% endif %}
+
+        
+	</ul>
+    {% endblock %}
+	</div>
+	<!-- end #menu -->
+	<div id="page">
+    {% block page %}
+		<div id="content">
+        #test: {{ request.user.is_staff }}
+        {% block content %}
+        {% endblock %}
+		</div>
+		<!-- end #content -->
+        {% block sidebar %}
+		<div id="sidebar">
+			<ul>
+				<li>
+					<h2>Barra Laterale</h2>
+					<p></p>
+				</li>
+				<li>
+					<h2>Barra Laterale</h2>
+				</li>
+			</ul>
+		</div>
+        {% endblock %}
+		<!-- end #sidebar -->
+		<div style="clear: both;">&nbsp;</div>
+    {% endblock %}
+	</div>
+	<!-- end #page -->
+</div>
+
+{% block footer-content %}
+<div id="footer-content">
+    {% block column1 %}
+    {% endblock %}
+    <div id="webfaction-affiliate" style="text-align: center;
+              margin-top: 100px;">
+       <a href="http://www.webfaction.com/services/hosting?affiliate=voloavela">
+           <img src="{{STATIC_URL}}images/webfaction-240x60-django-rails-wp.png"
+                alt="Webfaction: Smarter web hosting"
+                text="Webfaction: Smarter web hosting"
+                width="240" height="60" />
+       </a>
+    </div>
+    {% block column2 %}
+    {% endblock %}
+</div>
+{% endblock %}
+<div id="footer">
+{% block footer %}
+    <p> (c) 2009 voloavela.tn.it. Design by <a href="http://www.nodethirtythree.com">nodethirtythree</a> and <a href="http://www.freecsstemplates.org">Free CSS Templates</a>.</p>
+{% comment %}
+    <p>
+        <a href="http://petition.stopsoftwarepatents.eu/531005677623/">
+            <img src="http://petition.stopsoftwarepatents.eu/banner/531005677623/ssp-181-30.gif"
+                 alt="stopsoftwarepatents.eu petition banner"
+                 width="181" height="30" />
+        </a>
+    </p>
+{% endcomment %}
+{% endblock %}
+</div>
+<!-- end #footer -->
+</body>
+</html>
