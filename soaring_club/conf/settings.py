@@ -122,7 +122,7 @@ INSTALLED_APPS = (
     #'django_notify',
     #'pagination',
     #'tracking',
-    #'gunicorn',
+    'gunicorn',
 
 )
 

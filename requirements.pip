@@ -27,13 +27,13 @@
 
 django==1.4
 south==0.7.5
-django-extensions==0.9
-configobj==4.7.2
-Werkzeug==0.8.3
-Fabric==1.4.2
-ipython==0.12.1
-psycopg2==2.4.5
-pytz==2012c
-yolk==0.4.3
-distribute==0.6.24
-
+django-extensions
+configobj
+Werkzeug
+Fabric
+ipython
+psycopg2
+pytz
+yolk
+distribute
+gunicorn
