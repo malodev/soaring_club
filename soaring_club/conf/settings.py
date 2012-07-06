@@ -68,7 +68,7 @@ MEDIA_ROOT = os.path.join(VAR_ROOT, 'uploads')
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, PROJECT_MODULE_NAME, 'static'),
-    os.path.join(PROJECT_DIR, PROJECT_MODULE_NAME, 'aircraftlogger/static'),
+    os.path.join(PROJECT_DIR, PROJECT_MODULE_NAME, 'apps/aircraftlogger/static'),
 )
 
 
