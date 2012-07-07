@@ -45,3 +45,5 @@ PIL
 setproctitle 
 greenlet
 gevent
+#for FastCGI
+flup

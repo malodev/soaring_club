@@ -4,7 +4,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
 from aircraftlogger.models import *
-from soaring_club.settings import *
+from soaring_club.conf.settings import *
 
 class InstallationInline(admin.TabularInline):
     model = Installation
