@@ -47,7 +47,7 @@ Soaring Club
         {% block flights %}<li><a href="/flights/">{% trans "Flights" %}</a></li>{% endblock %}
         {% block flights_bills %}<li><a href="/bills/">{% trans "Flights bills" %}</a></li>{% endblock %}
         {% block receipts %}<li><a href="/receipts/">{% trans "Receipts" %}</a></li>{% endblock %}
-        {% if request.user.is_staff %}
+        {% if user.is_staff %}
             {% block admin %}<li><a href="/reports/">{% trans "Reports" %}</a></li>{% endblock %}
             {% block logs %}<li><a href="/logs/">Logs</a></li>{% endblock %}
             {% block sheet %}<li><a href="/sheet/">{% trans "Fligths sheet" %}</a></li>{% endblock %}
@@ -61,7 +61,6 @@ Soaring Club
 	<div id="page">
     {% block page %}
 		<div id="content">
-        #test: {{ request.user.is_staff }}
         {% block content %}
         {% endblock %}
 		</div>

@@ -22,7 +22,7 @@
 {% endblock %}
 
 
-{% if request.user.is_staff %}
+{% if user.is_staff %}
     {% block admin %}
     <li class="current_page_item"><a href="/reports/">{% trans "Reports" %}</a></li>
     {% endblock %}

@@ -55,13 +55,13 @@ else:
 
 ROOT_URLCONF = 'soaring_club.conf.urls'
 
-LOGIN_URL = '/accounts/login/'
-LOGOUT_URL = '/accounts/logout/'
-LOGIN_REDIRECT_URL = '/'
+#LOGIN_URL = '/accounts/login/'
+#LOGOUT_URL = '/accounts/logout/'
+#LOGIN_REDIRECT_URL = '/'
 
 MEDIA_URL = '/uploads/'
 STATIC_URL = '/static/'
-
+#ADMIN_MEDIA_PREFIX = '/static/admin/'
 STATIC_ROOT = os.path.join(VAR_ROOT, 'static')
 MEDIA_ROOT = os.path.join(VAR_ROOT, 'uploads')
 #MEDIA_ROOT = os.path.join(PROJECT_DIR, 'aircraftlogger/media/')
@@ -125,7 +125,6 @@ INSTALLED_APPS = (
     'gunicorn',
 
 )
-
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

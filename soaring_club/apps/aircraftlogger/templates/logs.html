@@ -4,7 +4,7 @@
  - Logs
 {% endblock %}
 
-{% if request.user.is_staff %}
+{% if user.is_staff %}
     {% block logs %}
     <li class="current_page_item"><a href="/logs/">Logs</a></li>
     {% endblock %}
