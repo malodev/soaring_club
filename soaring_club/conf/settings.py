@@ -153,7 +153,7 @@ LOGGING = {
 
 
     
-AUTH_PROFILE_MODULE = 'soaring_club.aircraftlogger.Member'    
+AUTH_PROFILE_MODULE = 'aircraftlogger.Member'    
 SESSION_COOKIE_AGE = 3600 # Default: 1209600 (2 weeks, in seconds)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 

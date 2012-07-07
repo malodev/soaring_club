@@ -7,7 +7,7 @@ from models import * #@UnusedWildImport
 
 
 
-urlpatterns = patterns('soaring_club.aircraftlogger.views',
+urlpatterns = patterns('aircraftlogger.views',
     # Example:
     url(r'^meta/$', 'display_meta'),
     url(r'^logs/$', 'logs'),
@@ -19,7 +19,7 @@ urlpatterns = patterns('soaring_club.aircraftlogger.views',
 )
 
 #flight
-urlpatterns += patterns('soaring_club.aircraftlogger.views',
+urlpatterns += patterns('aircraftlogger.views',
     url(r'^sheet/$', 'flights_sheet'),
     url(r'^flights/$', 'flights'),
     url(r'^flights/(?P<flight_id>\d+)/$', 'update_flight_landing'),

@@ -3,7 +3,7 @@ from django.contrib.contenttypes import generic
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
-from soaring_club.aircraftlogger.models import *
+from aircraftlogger.models import *
 from soaring_club.settings import *
 
 class InstallationInline(admin.TabularInline):

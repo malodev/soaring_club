@@ -24,6 +24,9 @@
 #wsgiref         - 0.1.2        - active development (/usr/lib/python2.7)
 #yolk            - 0.4.3        - active 
 #
+# you have to get psyco_gevent from source directly :(
+# wget http://bitbucket.org/dvarrazzo/psycogreen/raw/tip/gevent/psyco_gevent.py
+
 
 django==1.4
 south==0.7.5
@@ -38,3 +41,7 @@ yolk
 distribute
 gunicorn
 PIL
+#python-memcached 
+setproctitle 
+greenlet
+gevent
