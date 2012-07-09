@@ -15,3 +15,6 @@ TIME_INPUT_FORMATS = ('%H:%M:%S', '%H:%M')
 DATETIME_INPUT_FORMATS = ('%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M', '%Y-%m-%d', '%d/%m/%Y %H:%M:%S', '%d/%m/%Y %H:%M', '%d/%m/%Y', '%d/%m/%y %H:%M:%S', '%d/%m/%y %H:%M', '%d/%m/%y')
 ADMIN_GROUP = 'managers'
 MIN_CREDIT = -5 #threshold for consider a Member in debit status
+import datetime
+MAX_DAYS_FROM_LAST_FLIGHT_CLUB = datetime.timedelta(60)
+MAX_DAYS_FROM_LAST_FLIGHT_PRIVATE = datetime.timedelta(180)

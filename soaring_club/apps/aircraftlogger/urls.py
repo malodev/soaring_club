@@ -31,6 +31,7 @@ urlpatterns += patterns('aircraftlogger.views',
     url(r'^reports/$', 'reports'),
     url(r'^reports/(?P<action>\w+)/$', 'reports'),
     url(r'^reports/debits/(?P<member_id>\d+)/$', 'set_member'),
+    url(r'^reports/clearance/(?P<member_id>\d+)/$', 'set_member'),
     
 )
 

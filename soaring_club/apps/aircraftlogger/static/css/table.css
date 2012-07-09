@@ -190,4 +190,18 @@ td.dst-currency[abbr$=".9"]:after
     content: "0";
 }
 
+/* Clearance table */
+.clearance td.yes {
+  text-align: center;
+  font-weight: normal;
+  color: #124e06;
+}
+
+.clearance td.no {
+  text-align: center;
+  font-weight: bold;
+  color: #8e1d00;
+  text-decoration: underline;
+}
+
 

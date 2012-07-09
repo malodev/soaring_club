@@ -11,6 +11,8 @@ background: #ffffff;
 font-family: Arial, sans-serif;
 font-size: 14px;
 color: #000;
+width: 210mm;
+height: 297mm;
 }
 
 h1, h2, h3 {
@@ -28,7 +30,7 @@ list-style: none;
 
 a {
 text-decoration: none;
-color: #000;
+color: inherit;
 }
 
 a:hover {
@@ -184,11 +186,22 @@ td.dst-currency[abbr$=".9"]:after
     content: "0";
 }
 
+.clearance td.yes {
+	text-align: center;
+	font-style: italic;
+}
 
+.clearance td.no {
+	text-align: center;
+	font-style: normal;
+	text-decoration:underline;
+	font-weight: bold;
+	
+}
 
 
 table {
-    width: 100%;
+    width: 90%;
     float: none;
     margin: 1em; 
 	padding: 0;

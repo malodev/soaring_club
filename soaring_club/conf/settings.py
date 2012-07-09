@@ -60,17 +60,15 @@ ROOT_URLCONF = 'soaring_club.conf.urls'
 #LOGIN_REDIRECT_URL = '/'
 
 MEDIA_URL = '/uploads/'
-STATIC_URL = '/static/'
-#ADMIN_MEDIA_PREFIX = '/static/admin/'
-STATIC_ROOT = os.path.join(VAR_ROOT, 'static')
 MEDIA_ROOT = os.path.join(VAR_ROOT, 'uploads')
-#MEDIA_ROOT = os.path.join(PROJECT_DIR, 'aircraftlogger/media/')
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(VAR_ROOT, 'static')
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, PROJECT_MODULE_NAME, 'static'),
     os.path.join(PROJECT_DIR, PROJECT_MODULE_NAME, 'apps/aircraftlogger/static'),
 )
-
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -80,7 +78,9 @@ STATICFILES_FINDERS = (
     #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-
+LOCALE_PATHS = (
+    os.path.join(PROJECT_DIR, PROJECT_MODULE_NAME, 'apps/aircraftlogger/locale'),
+)
 
 #==============================================================================
 # Templates
@@ -93,6 +93,8 @@ TEMPLATE_DIRS = (
 
 TEMPLATE_CONTEXT_PROCESSORS += (
     # 'Custom context processors here',
+    'django.core.context_processors.request',
+
 )
 
 # List of callables that know how to import templates from various sources.
@@ -114,16 +116,9 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django.contrib.databrowse',
     'django_extensions',
-    #'generic_views',
-    #'listtable',
     'aircraftlogger',
     'south',
-    #'crumbs',
-    #'django_notify',
-    #'pagination',
-    #'tracking',
     'gunicorn',
-
 )
 
 # A sample logging configuration. The only tangible logging
@@ -134,11 +129,24 @@ INSTALLED_APPS = (
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(asctime)s  %(module)s %(message)s'
+        },
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
     },
     'loggers': {
         'django.request': {
@@ -146,11 +154,13 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+        'app': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
     }
 }
-
-
-
     
 AUTH_PROFILE_MODULE = 'aircraftlogger.Member'    
 SESSION_COOKIE_AGE = 3600 # Default: 1209600 (2 weeks, in seconds)

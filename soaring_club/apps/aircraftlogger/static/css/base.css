@@ -250,6 +250,12 @@ padding-left: 0;
 color: #493E2B;
 }
 
+#menu .admin a {
+background: url(../images/img05a.jpg) repeat-x left top;
+padding-left: 0;
+color: white;
+}
+
 /* Page */
 
 #page {

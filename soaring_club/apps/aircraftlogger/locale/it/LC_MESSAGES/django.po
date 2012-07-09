@@ -7,34 +7,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-30 23:33+0200\n"
+"POT-Creation-Date: 2012-07-08 23:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Mauro Longano <mlongano@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: admin.py:66 forms.py:105 models.py:486
-#: templates/aircraftlogger/flight_update_landing.html:60
-#: templates/aircraftlogger/flights.html:75
-#: templates/aircraftlogger/flights_as_copilot.html:64
-#: templates/aircraftlogger/flights_table.html:28
+#: admin.py:66 forms.py:114 models.py:563
+#: templates/flight_update_landing.html:60 templates/flights.html:75
+#: templates/flights_as_copilot.html:64 templates/flights_table.html:28
 msgid "Takeoff field"
 msgstr "Aeroporto di decollo"
 
-#: admin.py:67 forms.py:107 forms.py:128 forms.py:159 models.py:488
-#: templates/aircraftlogger/flights.html:75
-#: templates/aircraftlogger/flights_as_copilot.html:64
-#: templates/aircraftlogger/flights_table.html:28
+#: admin.py:67 forms.py:116 forms.py:137 forms.py:168 models.py:565
+#: templates/flights.html:75 templates/flights_as_copilot.html:64
+#: templates/flights_table.html:28
 msgid "Landing field"
 msgstr "Aeroporto di atterraggio"
 
-#: admin.py:165 forms.py:206 templates/aircraftlogger/flights_table.html:28
+#: admin.py:165 forms.py:215 templates/flights_table.html:28
 msgid "Cents"
 msgstr "Centesimi"
 
-#: admin.py:172 templates/aircraftlogger/receipt_update_note.html:103
+#: admin.py:172 templates/receipt_update_note.html:103
 msgid "Tow cents"
 msgstr "Centesimi traino"
 
@@ -50,130 +48,121 @@ msgstr "Centesimi turistico"
 msgid "Promotional flight"
 msgstr "Volo promozionale"
 
-#: forms.py:22
+#: forms.py:24
 msgid "Member Note"
 msgstr "Nota dell'utente"
 
-#: forms.py:25 models.py:382 models.py:823
-#: templates/aircraftlogger/reports.html:167
+#: forms.py:27 models.py:459 models.py:900 templates/reports.html:201
 msgid "Member"
 msgstr "Socio"
 
-#: forms.py:28
+#: forms.py:30
 msgid "Only member with negative balance"
 msgstr "Solo soci con saldo negativo"
 
-#: forms.py:31
+#: forms.py:37
+msgid "Year"
+msgstr ""
+
+#: forms.py:40
 msgid "From reference"
 msgstr "Da riferimento"
 
-#: forms.py:32
+#: forms.py:41
 msgid "To reference"
 msgstr "A riferimento"
 
-#: forms.py:43 forms.py:50
+#: forms.py:52 forms.py:59
 msgid "Receipt does not exist"
 msgstr "La ricevuta non esiste"
 
-#: forms.py:55
+#: forms.py:64
 msgid "Receipt from come after receipt to. Check values"
 msgstr "La ricevuta 'da' viene dopo dopo la ricevuta 'a'"
 
-#: forms.py:64
+#: forms.py:73
 msgid "From date"
 msgstr "Dalla data"
 
-#: forms.py:65
+#: forms.py:74
 msgid "To date"
 msgstr "Alla data:"
 
-#: forms.py:73
+#: forms.py:82
 msgid "From date come after to date. Check values"
 msgstr "La data 'da' viene dopo la data 'a'. Controlla i valori"
 
-#: forms.py:103 forms.py:178 forms.py:202 models.py:484 models.py:577
-#: templates/aircraftlogger/collects_table.html:8
-#: templates/aircraftlogger/flight_update_landing.html:54
-#: templates/aircraftlogger/flights.html:70
-#: templates/aircraftlogger/flights_as_copilot.html:64
-#: templates/aircraftlogger/flights_bills.html:58
-#: templates/aircraftlogger/flights_table.html:28
-#: templates/aircraftlogger/receipt_update_note.html:67
-#: templates/aircraftlogger/receipts.html:55
-#: templates/aircraftlogger/receipts_table.html:8
+#: forms.py:112 forms.py:187 forms.py:211 models.py:561 models.py:654
+#: templates/collects_table.html:8 templates/flight_update_landing.html:54
+#: templates/flights.html:70 templates/flights_as_copilot.html:64
+#: templates/flights_bills.html:58 templates/flights_table.html:28
+#: templates/receipt_update_note.html:67 templates/receipts.html:55
+#: templates/receipts_table.html:8
 msgid "Date"
 msgstr "Data"
 
-#: forms.py:104 forms.py:179 forms.py:193 models.py:485
-#: templates/aircraftlogger/flight_update_landing.html:57
-#: templates/aircraftlogger/flights.html:75
-#: templates/aircraftlogger/flights_as_copilot.html:64
-#: templates/aircraftlogger/flights_table.html:28
+#: forms.py:113 forms.py:188 forms.py:202 models.py:562
+#: templates/flight_update_landing.html:57 templates/flights.html:75
+#: templates/flights_as_copilot.html:64 templates/flights_table.html:28
 msgid "Takeoff"
 msgstr "Decollo"
 
-#: forms.py:106 forms.py:127 forms.py:158 forms.py:180 forms.py:194
-#: models.py:487 templates/aircraftlogger/flights.html:75
-#: templates/aircraftlogger/flights_as_copilot.html:64
-#: templates/aircraftlogger/flights_table.html:28
+#: forms.py:115 forms.py:136 forms.py:167 forms.py:189 forms.py:203
+#: models.py:564 templates/flights.html:75
+#: templates/flights_as_copilot.html:64 templates/flights_table.html:28
 msgid "Landing"
 msgstr "Atterraggio"
 
-#: forms.py:174 forms.py:181 forms.py:191 models.py:489
-#: templates/aircraftlogger/flight_update_landing.html:63
-#: templates/aircraftlogger/flights.html:72
-#: templates/aircraftlogger/flights_as_copilot.html:64
-#: templates/aircraftlogger/flights_table.html:28
+#: forms.py:183 forms.py:190 forms.py:200 models.py:566
+#: templates/flight_update_landing.html:63 templates/flights.html:72
+#: templates/flights_as_copilot.html:64 templates/flights_table.html:28
 msgid "Pilot"
 msgstr "Pilota"
 
-#: forms.py:182 forms.py:192 models.py:95 models.py:490
+#: forms.py:191 forms.py:201 models.py:139 models.py:567
 msgid "Instructor"
 msgstr "Istruttore"
 
-#: forms.py:183 models.py:412 models.py:433 models.py:442 models.py:491
-#: templates/aircraftlogger/flight_update_landing.html:66
-#: templates/aircraftlogger/flights.html:70
-#: templates/aircraftlogger/flights_as_copilot.html:64
-#: templates/aircraftlogger/flights_bills.html:58
-#: templates/aircraftlogger/flights_table.html:28
+#: forms.py:192 models.py:489 models.py:510 models.py:519 models.py:568
+#: templates/flight_update_landing.html:66 templates/flights.html:70
+#: templates/flights_as_copilot.html:64 templates/flights_bills.html:58
+#: templates/flights_table.html:28
 msgid "Plane"
 msgstr "Veivolo"
 
-#: forms.py:190 models.py:393
+#: forms.py:199 models.py:470
 msgid "Glider"
 msgstr "Aliante"
 
-#: forms.py:195
+#: forms.py:204
 msgid "Tow Cost"
 msgstr "Costo Traino"
 
-#: forms.py:196 models.py:492
-#: templates/aircraftlogger/flight_update_landing.html:69
+#: forms.py:205 models.py:569 templates/flight_update_landing.html:69
 msgid "Porpouse"
 msgstr "Finalità"
 
-#: forms.py:197
+#: forms.py:206
 msgid "Glider Landing"
 msgstr "Atterraggio Aliante"
 
-#: forms.py:203 templates/aircraftlogger/flights_table.html:28
+#: forms.py:212 templates/flights_table.html:28
 msgid "Tow Plane"
 msgstr "Traino"
 
-#: forms.py:204 models.py:93
+#: forms.py:213 models.py:137
 msgid "Tow Pilot"
 msgstr "Trainatore"
 
-#: forms.py:205
+#: forms.py:214
 msgid "Warmup Cost"
 msgstr "Costo del riscaldamento"
 
-#: forms.py:206
+#: forms.py:215
 msgid "Minutes"
 msgstr "Minuti"
 
-#: forms.py:206
+#: forms.py:215
 msgid "Counter unit"
 msgstr "Unità dell'orametro"
 
@@ -197,305 +186,306 @@ msgstr "Volo promozionale"
 msgid "Service flight"
 msgstr "Volo di servizio"
 
-#: models.py:90
+#: models.py:134
 msgid "Glider Pilot"
 msgstr "Pilota di Aliante"
 
-#: models.py:91
+#: models.py:135
 msgid "TMG Pilot"
 msgstr "Pilota di Motoaliante"
 
-#: models.py:92
+#: models.py:136
 msgid "PPL Pilot"
 msgstr "Pilota PPL"
 
-#: models.py:94
+#: models.py:138
 msgid "Student"
 msgstr "Allievo"
 
-#: models.py:96 views.py:320 templates/aircraftlogger/reports.html:125
+#: models.py:140 views.py:324 templates/reports.html:158
 msgid "Registered"
 msgstr "Iscritto"
 
-#: models.py:97
+#: models.py:141
 msgid "Inactive"
 msgstr "Non attivo"
 
-#: models.py:98
+#: models.py:142
 msgid "Guest"
 msgstr "Ospite"
 
-#: models.py:110
+#: models.py:154
 msgid "Member type"
 msgstr "Tipo di socio"
 
-#: models.py:111
+#: models.py:155
 msgid "Member types"
 msgstr "Tipi di socio"
 
-#: models.py:131
+#: models.py:175
 msgid "Type"
 msgstr "Tipo"
 
-#: models.py:132
+#: models.py:176
 msgid "First Name"
 msgstr "Nome"
 
-#: models.py:133
+#: models.py:177
 msgid "Last Name"
 msgstr "Cognome"
 
-#: models.py:134
+#: models.py:178
 msgid "sort name"
 msgstr "nome per ordinamento"
 
-#: models.py:135
+#: models.py:179
 msgid "email"
 msgstr "email"
 
-#: models.py:136 models.py:680
+#: models.py:180 models.py:757
 msgid "Notes"
 msgstr "Note"
 
-#: models.py:137
+#: models.py:181
 msgid "Picture"
 msgstr "Foto"
 
-#: models.py:383
+#: models.py:182
+msgid "License expiration date"
+msgstr "Data scadenza licenza"
+
+#: models.py:183
+msgid "Medical certificate expiration date"
+msgstr "Data scadenza visita medica"
+
+#: models.py:460
 msgid "Members"
 msgstr "Soci"
 
-#: models.py:394
+#: models.py:471
 msgid "Self-launching"
 msgstr "Decollo autonomo"
 
-#: models.py:395
+#: models.py:472
 msgid "Touring Motor Gliders"
 msgstr "Motoaliante"
 
-#: models.py:396
+#: models.py:473
 msgid "Propeller"
 msgstr "Elica"
 
-#: models.py:399
+#: models.py:476
 msgid "Plane Type"
 msgstr "Tipo di veivolo"
 
-#: models.py:400
+#: models.py:477
 msgid "Owner"
 msgstr "Proprietario"
 
-#: models.py:401
+#: models.py:478
 msgid "Registration Mark"
 msgstr "Marche"
 
-#: models.py:402 models.py:432
+#: models.py:479 models.py:509
 msgid "Manufacter"
 msgstr "Fabbricante"
 
-#: models.py:403
+#: models.py:480
 msgid "Model"
 msgstr "Modello"
 
-#: models.py:413
+#: models.py:490
 msgid "Planes"
 msgstr "Veivoli"
 
-#: models.py:431
+#: models.py:508
 msgid "Serial"
 msgstr "Seriale"
 
-#: models.py:443
+#: models.py:520
 msgid "Flarm"
 msgstr "Flarm"
 
-#: models.py:444
+#: models.py:521
 msgid "Flarm ID"
 msgstr "Idendificativo Flarm"
 
-#: models.py:445
+#: models.py:522
 msgid "Installation date"
 msgstr "Data di installazione"
 
-#: models.py:446
+#: models.py:523
 msgid "Change/Removed date"
 msgstr "Data di modifica/rimozione"
 
-#: models.py:466
+#: models.py:543
 msgid "Installation"
 msgstr "Installazione"
 
-#: models.py:467
+#: models.py:544
 msgid "Installations"
 msgstr "Installazioni"
 
-#: models.py:473
+#: models.py:550
 msgid "Purchase date"
 msgstr "Data di acquisto"
 
-#: models.py:474
+#: models.py:551
 msgid "Date of sale"
 msgstr "Data di vendita"
 
-#: models.py:480
+#: models.py:557
 msgid "Ownership"
 msgstr "Proprietà"
 
-#: models.py:481
+#: models.py:558
 msgid "Ownerships"
 msgstr "Proprietà"
 
-#: models.py:517 models.py:775 templates/aircraftlogger/flight_base.html:14
+#: models.py:594 models.py:852 templates/flight_base.html:14
 msgid "Flight"
 msgstr "Volo"
 
-#: models.py:518 templates/aircraftlogger/base.html:47
-#: templates/aircraftlogger/flight_detail.html:23
-#: templates/aircraftlogger/flight_update_landing.html:85
-#: templates/aircraftlogger/flights.html:28
-#: templates/aircraftlogger/flights.html:125
-#: templates/aircraftlogger/flights_bills.html:98
+#: models.py:595 templates/base.html:49 templates/flight_detail.html:23
+#: templates/flight_update_landing.html:85 templates/flights.html:28
+#: templates/flights.html.py:125 templates/flights_bills.html:98
 msgid "Flights"
 msgstr "Voli"
 
-#: models.py:576 templates/aircraftlogger/collects_table.html:8
-#: templates/aircraftlogger/receipt_update_note.html:64
-#: templates/aircraftlogger/receipts.html:55
-#: templates/aircraftlogger/receipts_table.html:8
+#: models.py:653 templates/collects_table.html:8
+#: templates/receipt_update_note.html:64 templates/receipts.html:55
+#: templates/receipts_table.html:8
 msgid "Reference"
 msgstr "Riferimento"
 
-#: models.py:582 models.py:785 templates/aircraftlogger/collects_table.html:8
-#: templates/aircraftlogger/receipt_update_note.html:70
-#: templates/aircraftlogger/receipts_table.html:8
+#: models.py:659 models.py:862 templates/collects_table.html:8
+#: templates/receipt_update_note.html:70 templates/receipts_table.html:8
 msgid "Payer"
 msgstr "Pagante"
 
-#: models.py:584 templates/aircraftlogger/receipt_update_note.html:73
-#: templates/aircraftlogger/receipts.html:61
+#: models.py:661 templates/receipt_update_note.html:73
+#: templates/receipts.html:61
 msgid "Description of payment"
 msgstr "Causale"
 
-#: models.py:585
+#: models.py:662
 msgid "Created in"
 msgstr "Creata il"
 
-#: models.py:586
+#: models.py:663
 msgid "Updated in"
 msgstr "Modificata il"
 
-#: models.py:590 templates/aircraftlogger/receipt_update_note.html:79
+#: models.py:667 templates/receipt_update_note.html:79
 msgid "Created by"
 msgstr "Creata da"
 
-#: models.py:595 templates/aircraftlogger/receipt_update_note.html:88
+#: models.py:672 templates/receipt_update_note.html:88
 msgid "Updated by"
 msgstr "Modificata da"
 
-#: models.py:599 templates/aircraftlogger/receipts.html:61
+#: models.py:676 templates/receipts.html:61
 msgid "Note"
 msgstr "Nota"
 
-#: models.py:669
+#: models.py:746
 msgid "Receipt"
 msgstr "Ricevuta"
 
-#: models.py:670 templates/aircraftlogger/base.html:49
-#: templates/aircraftlogger/receipt_update_note.html:23
-#: templates/aircraftlogger/receipt_update_note.html:136
-#: templates/aircraftlogger/receipts.html:19
+#: models.py:747 templates/base.html:51 templates/receipt_update_note.html:23
+#: templates/receipt_update_note.html:136 templates/receipts.html:19
 msgid "Receipts"
 msgstr "Ricevute"
 
-#: models.py:679
+#: models.py:756
 msgid "Invoice"
 msgstr "Ricevuta"
 
-#: models.py:681
+#: models.py:758
 msgid "Total Price"
 msgstr "Prezzo totale"
 
-#: models.py:695
+#: models.py:772
 msgid "Description"
 msgstr "Descrizione"
 
-#: models.py:696
+#: models.py:773
 msgid "Quantity"
 msgstr "Quantità"
 
-#: models.py:697
+#: models.py:774
 msgid "Unit Price"
 msgstr "Prezzo unitario"
 
-#: models.py:715
+#: models.py:792
 msgid "Receipt generic detail"
 msgstr "Voce generica"
 
-#: models.py:716
+#: models.py:793
 msgid "Receipt generics details"
 msgstr "Voci generiche"
 
-#: models.py:720
+#: models.py:797
 msgid "Credit"
 msgstr "Credito"
 
-#: models.py:721
+#: models.py:798
 msgid "Price/credit unit"
 msgstr "Prezzo/centesimo"
 
-#: models.py:722
+#: models.py:799
 msgid "Credit class"
 msgstr "Classe di credito"
 
-#: models.py:744
+#: models.py:821
 msgid "Flight receipt detail"
 msgstr "Detteglio ricevuta per i voli"
 
-#: models.py:745
+#: models.py:822
 msgid "Flights receipt details"
 msgstr "Dettegli ricevuta per i voli"
 
-#: models.py:779
+#: models.py:856
 msgid "Tow Flight"
 msgstr "Traino di"
 
-#: models.py:787
+#: models.py:864
 msgid "Flight cost"
 msgstr "Costo del volo"
 
-#: models.py:792 templates/aircraftlogger/flights_bills.html:58
+#: models.py:869 templates/flights_bills.html:58
 msgid "Cost class"
 msgstr "Classe di costo"
 
-#: models.py:800
+#: models.py:877
 msgid "Flight Bill"
 msgstr "Stralcio del volo"
 
-#: models.py:801
+#: models.py:878
 msgid "Flights Bills"
 msgstr "Stralci dei voli"
 
-#: models.py:824
+#: models.py:901
 msgid "Initial date"
 msgstr "Data iniziale"
 
-#: models.py:825
+#: models.py:902
 msgid "Initial tow credit"
 msgstr "Credito traino iniziale"
 
-#: models.py:826
+#: models.py:903
 msgid "Initial TMG credit"
 msgstr "Credito motoaliante iniziale"
 
-#: models.py:836
+#: models.py:913
 msgid "Member credit"
 msgstr "Credito Socio"
 
-#: models.py:837
+#: models.py:914
 msgid "Member credits"
 msgstr "Crediti Socio"
 
-#: views.py:318 templates/aircraftlogger/reports.html:124
+#: views.py:322 templates/reports.html:157
 msgid "Active"
 msgstr "Attivi"
 
@@ -507,110 +497,128 @@ msgstr "Le due password non corrispondono"
 msgid "A user with that username already exists."
 msgstr "Un utente con questo nome esiste già"
 
-#: templates/aircraftlogger/base.html:48
-#: templates/aircraftlogger/flights_bills.html:28
+#: templates/base.html:50 templates/flights_bills.html:28
 msgid "Flights bills"
 msgstr "Stralci dei voli"
 
-#: templates/aircraftlogger/base.html:51
-#: templates/aircraftlogger/report_cents.html:23
-#: templates/aircraftlogger/reports.html:27
+#: templates/base.html:53 templates/report_cents.html:23
+#: templates/reports.html:27
 msgid "Reports"
 msgstr "Resoconti"
 
-#: templates/aircraftlogger/base.html:53
-#: templates/aircraftlogger/flights_sheet.html:16
+#: templates/base.html:55 templates/flights_sheet.html:16
 msgid "Fligths sheet"
 msgstr "Stralci"
 
-#: templates/aircraftlogger/collects_table.html:4
-#: templates/aircraftlogger/collects_table.html:8
-#: templates/aircraftlogger/receipt_update_note.html:117
-#: templates/aircraftlogger/receipts.html:55
-#: templates/aircraftlogger/receipts_table.html:4
-#: templates/aircraftlogger/receipts_table.html:8
+#: templates/clearance_table.html:5
+msgid "List of pilots permitted to fly on "
+msgstr "Lista dei piloti abilitati a volare in data "
+
+#: templates/clearance_table.html:9
+msgid "Surname"
+msgstr "Cognome"
+
+#: templates/clearance_table.html:9
+msgid "Name"
+msgstr "Nome"
+
+#: templates/clearance_table.html:9
+msgid "CUS permitted"
+msgstr "Abilitato CUS"
+
+#: templates/clearance_table.html:9
+msgid "Private permitted"
+msgstr "Abilitato privato"
+
+#: templates/clearance_table.html:17 templates/clearance_table.html.py:18
+msgid "YES"
+msgstr "SI"
+
+#: templates/clearance_table.html:17 templates/clearance_table.html.py:18
+msgid "NO"
+msgstr "NO"
+
+#: templates/collects_table.html:4 templates/collects_table.html.py:8
+#: templates/receipt_update_note.html:117 templates/receipts.html:55
+#: templates/receipts_table.html:4 templates/receipts_table.html.py:8
 msgid "Total"
 msgstr "Totale"
 
-#: templates/aircraftlogger/collects_table.html:8
-#: templates/aircraftlogger/receipts_table.html:8
+#: templates/collects_table.html:8 templates/receipts_table.html:8
 msgid "Payment description"
 msgstr "Causale"
 
-#: templates/aircraftlogger/flarms.html:24
+#: templates/flarms.html:24
 msgid "Flarms installed on aircrafts"
 msgstr "Flarm installati sugli aerei"
 
-#: templates/aircraftlogger/flight_base.html:17
+#: templates/flight_base.html:17
 msgid "Update flight"
 msgstr "Aggiorna il volo"
 
-#: templates/aircraftlogger/flight_base.html:18
+#: templates/flight_base.html:18
 msgid "Flight releted"
 msgstr "Collegati al volo"
 
-#: templates/aircraftlogger/flight_detail.html:28
-#: templates/aircraftlogger/flight_update_landing.html:17
+#: templates/flight_detail.html:28 templates/flight_update_landing.html:17
 msgid "Flights managment"
 msgstr "Gestione dei voli"
 
-#: templates/aircraftlogger/flight_detail.html:29
+#: templates/flight_detail.html:29
 msgid "Manage flights stored on data base"
 msgstr "Gestisce i voli presenti nella base di dati"
 
-#: templates/aircraftlogger/flight_form.html:18
+#: templates/flight_form.html:18
 msgid "Update Flight"
 msgstr "Aggiorna il Volo"
 
-#: templates/aircraftlogger/flight_form.html:18
+#: templates/flight_form.html:18
 msgid "Create Flight"
 msgstr "Crea un Volo"
 
-#: templates/aircraftlogger/flight_update_landing.html:18
+#: templates/flight_update_landing.html:18
 msgid "Flight detail and landing information editing"
 msgstr "Dettagli del volo e modifica delle informazioni di atterraggio"
 
-#: templates/aircraftlogger/flight_update_landing.html:23
-#: templates/aircraftlogger/receipt_update_note.html:34
+#: templates/flight_update_landing.html:23
+#: templates/receipt_update_note.html:34
 msgid "<strong>Bold</strong> fields are required."
 msgstr "I campi in <strong>grassetto</strong> sono richiesti."
 
-#: templates/aircraftlogger/flight_update_landing.html:26
+#: templates/flight_update_landing.html:26
 msgid "Flight landing update"
 msgstr "Modifica dell'atterraggio del volo"
 
-#: templates/aircraftlogger/flight_update_landing.html:29
+#: templates/flight_update_landing.html:29
 msgid "Landing update"
 msgstr "Modifica atterraggio"
 
-#: templates/aircraftlogger/flight_update_landing.html:33
+#: templates/flight_update_landing.html:33
 msgid "Please enter flight landing information"
 msgstr "Inserisci le informazioni dell'atterraggio"
 
-#: templates/aircraftlogger/flight_update_landing.html:35
+#: templates/flight_update_landing.html:35
 msgid "Flight saved successfully"
 msgstr "Volo salvato con successo"
 
-#: templates/aircraftlogger/flight_update_landing.html:47
-#: templates/aircraftlogger/form.html:11
-#: templates/aircraftlogger/receipt_update_note.html:57
+#: templates/flight_update_landing.html:47 templates/form.html:11
+#: templates/receipt_update_note.html:57
 msgid "Save"
 msgstr "Salva"
 
-#: templates/aircraftlogger/flight_update_landing.html:83
+#: templates/flight_update_landing.html:83
 msgid "Return to flights list"
 msgstr "Ritorna alla lista dei voli"
 
-#: templates/aircraftlogger/flights.html:33
+#: templates/flights.html:33
 msgid "Flights list"
 msgstr "Lista dei voli"
 
-#: templates/aircraftlogger/flights.html:34
+#: templates/flights.html:34
 msgid "List your flights stored on data base"
 msgstr "Visualizza i tuoi voli"
 
-#: templates/aircraftlogger/flights.html:38
-#: templates/aircraftlogger/flights_as_copilot.html:31
+#: templates/flights.html:38 templates/flights_as_copilot.html:31
 #, python-format
 msgid ""
 "\n"
@@ -629,30 +637,25 @@ msgstr[1] ""
 "            %(length)s voli trovati\n"
 "            "
 
-#: templates/aircraftlogger/flights.html:46
-#: templates/aircraftlogger/flights_as_copilot.html:40
-#: templates/aircraftlogger/flights_bills.html:46
-#: templates/aircraftlogger/receipts.html:38
+#: templates/flights.html:46 templates/flights_as_copilot.html:40
+#: templates/flights_bills.html:46 templates/receipts.html:38
 msgid "From"
 msgstr "Dal"
 
-#: templates/aircraftlogger/flights.html:46
+#: templates/flights.html:46
 msgid "have"
 msgstr "ha"
 
 #
-#: templates/aircraftlogger/flights.html:51
-#: templates/aircraftlogger/flights_as_copilot.html:45
+#: templates/flights.html:51 templates/flights_as_copilot.html:45
 msgid "flown for"
 msgstr "volato per"
 
-#: templates/aircraftlogger/flights.html:51
-#: templates/aircraftlogger/flights_as_copilot.html:45
+#: templates/flights.html:51 templates/flights_as_copilot.html:45
 msgid "in aircrafts of type"
 msgstr "in veivoli di tipo"
 
-#: templates/aircraftlogger/flights.html:55
-#: templates/aircraftlogger/flights_as_copilot.html:49
+#: templates/flights.html:55 templates/flights_as_copilot.html:49
 #, python-format
 msgid ""
 "\n"
@@ -671,74 +674,67 @@ msgstr[1] ""
 "            per %(length)s voli manca il tempo di atterraggio\n"
 "            "
 
-#: templates/aircraftlogger/flights.html:70
-#: templates/aircraftlogger/flights_as_copilot.html:64
-#: templates/aircraftlogger/flights_bills.html:58
-#: templates/aircraftlogger/flights_table.html:28
+#: templates/flights.html:70 templates/flights_as_copilot.html:64
+#: templates/flights_bills.html:58 templates/flights_table.html:28
 msgid "ID"
 msgstr "ID"
 
-#: templates/aircraftlogger/flights.html:75
-#: templates/aircraftlogger/flights_as_copilot.html:64
-#: templates/aircraftlogger/flights_table.html:28
+#: templates/flights.html:75 templates/flights_as_copilot.html:64
+#: templates/flights_table.html:28
 msgid "Flight Duration"
 msgstr "Durata volo"
 
-#: templates/aircraftlogger/flights.html:128
-#: templates/aircraftlogger/flights_bills.html:101
+#: templates/flights.html:128 templates/flights_bills.html:101
 msgid "Flights range"
 msgstr "Intervallo date"
 
-#: templates/aircraftlogger/flights.html:131
-#: templates/aircraftlogger/flights_bills.html:104
+#: templates/flights.html:131 templates/flights_bills.html:104
 msgid "Please enter flights dates."
 msgstr "Inserisci le date di interesse"
 
-#: templates/aircraftlogger/flights.html:144
-#: templates/aircraftlogger/flights_bills.html:117
-#: templates/aircraftlogger/reports.html:154
-#: templates/aircraftlogger/reports.html:178
+#: templates/flights.html:144 templates/flights_bills.html:117
+#: templates/reports.html:131 templates/reports.html.py:187
+#: templates/reports.html:212
 msgid "View"
 msgstr "Guarda"
 
-#: templates/aircraftlogger/flights.html:154
-#: templates/aircraftlogger/flights.html:165
+#: templates/flights.html:154 templates/flights.html.py:165
 msgid "Copilot"
 msgstr "Istruttore"
 
-#: templates/aircraftlogger/flights.html:157
+#: templates/flights.html:157
 msgid "Flights as copilot"
 msgstr "Voli come istruttore"
 
-#: templates/aircraftlogger/flights.html:160
+#: templates/flights.html:160
 msgid "View flights as copilot"
 msgstr "Vedi i voli effettuati come istruttore"
 
-#: templates/aircraftlogger/flights_as_copilot.html:21
+#: templates/flights_as_copilot.html:21
 msgid "Instructor Flights"
 msgstr "Voli da istruttore"
 
-#: templates/aircraftlogger/flights_as_copilot.html:26
+#: templates/flights_as_copilot.html:26
 msgid "Copilot flights list"
 msgstr "Lista dei voli come istruttore"
 
-#: templates/aircraftlogger/flights_as_copilot.html:27
+#: templates/flights_as_copilot.html:27
 msgid "List your flights as copilot stored on data base"
 msgstr "Visualizza i voli effetuati come istruttore"
 
-#: templates/aircraftlogger/flights_as_copilot.html:40
+#: templates/flights_as_copilot.html:40
 msgid "as copilot have"
 msgstr "come istruttore hai"
 
-#: templates/aircraftlogger/flights_bills.html:33
+#: templates/flights_bills.html:33
 msgid "Bills list"
 msgstr "Lista dei voli addebitati"
 
-#: templates/aircraftlogger/flights_bills.html:34
+#: templates/flights_bills.html:34
 msgid "List your flights bills stored on data base"
 msgstr "Visualizza i voli addebitati a te"
 
-#: templates/aircraftlogger/flights_bills.html:38
+#: templates/flights_bills.html:38
 #, python-format
 msgid ""
 "\n"
@@ -757,50 +753,47 @@ msgstr[1] ""
 "            %(length)s voli trovati\n"
 "            "
 
-#: templates/aircraftlogger/flights_bills.html:46
-#: templates/aircraftlogger/receipts.html:38
+#: templates/flights_bills.html:46 templates/receipts.html:38
 msgid " has"
 msgstr "ha"
 
-#: templates/aircraftlogger/flights_bills.html:50
+#: templates/flights_bills.html:50
 msgid "used"
 msgstr "usato"
 
-#: templates/aircraftlogger/flights_bills.html:50
-#: templates/aircraftlogger/receipts.html:46
+#: templates/flights_bills.html:50 templates/receipts.html:46
 msgid "units"
 msgstr "unità"
 
-#: templates/aircraftlogger/flights_bills.html:50
-#: templates/aircraftlogger/receipts.html:46
+#: templates/flights_bills.html:50 templates/receipts.html:46
 msgid "for"
 msgstr "per"
 
-#: templates/aircraftlogger/flights_bills.html:58
+#: templates/flights_bills.html:58
 msgid "Duration"
 msgstr "Durata"
 
-#: templates/aircraftlogger/flights_bills.html:58
+#: templates/flights_bills.html:58
 msgid "Cost"
 msgstr "Costo"
 
-#: templates/aircraftlogger/flights_sheet.html:21
+#: templates/flights_sheet.html:21
 msgid "Flights Insert"
 msgstr "Inserimento dei voli"
 
-#: templates/aircraftlogger/flights_sheet.html:22
+#: templates/flights_sheet.html:22
 msgid "Input table for register tow flights sheets"
 msgstr "Tabella per l'inserimento dei folgi di traino"
 
-#: templates/aircraftlogger/flights_sheet.html:24
+#: templates/flights_sheet.html:24
 msgid "Form SAVED"
 msgstr "Modulo SALVATO"
 
-#: templates/aircraftlogger/flights_sheet.html:26
+#: templates/flights_sheet.html:26
 msgid "Form not saved"
 msgstr "Modulo non salvato"
 
-#: templates/aircraftlogger/flights_table.html:4
+#: templates/flights_table.html:4
 #, python-format
 msgid ""
 "\n"
@@ -819,146 +812,145 @@ msgstr[1] ""
 "            %(length)s voli trovati\n"
 "            "
 
-#: templates/aircraftlogger/flights_table.html:12
+#: templates/flights_table.html:12
 #, python-format
 msgid " from %(first_date)s you:"
 msgstr " dal %(first_date)s tu hai:"
 
-#: templates/aircraftlogger/flights_table.html:16
+#: templates/flights_table.html:16
 #, python-format
 msgid " used %(tow_cents)s cents  for towing"
 msgstr " usato %(tow_cents)s centesimi per il traino"
 
-#: templates/aircraftlogger/flights_table.html:19
+#: templates/flights_table.html:19
 #, python-format
 msgid " used %(tmg_cents)s cents for motorglider"
 msgstr " usato %(tmg_cents)s centesimi per il motoaliante"
 
-#: templates/aircraftlogger/flights_table.html:64
+#: templates/flights_table.html:64
 msgid "all"
 msgstr "tutti"
 
-#: templates/aircraftlogger/form.html:14
+#: templates/form.html:14
 msgid "Delete"
 msgstr "Elimina"
 
-#: templates/aircraftlogger/index.html:48
+#: templates/index.html:47
 msgid "Welcome"
 msgstr "Benvenuto"
 
-#: templates/aircraftlogger/index.html:49
+#: templates/index.html:48
 #, python-format
 msgid " You are logged in as <strong>%(username)s</strong> "
 msgstr " Ti sei collegato come <strong>%(username)s</strong> "
 
-#: templates/aircraftlogger/index.html:51
+#: templates/index.html:50
 msgid "Logout"
 msgstr "Esci"
 
-#: templates/aircraftlogger/index.html:55
+#: templates/index.html:54
 msgid "You are registered as"
 msgstr "Sei registrato come"
 
-#: templates/aircraftlogger/index.html:60
-#, python-format
+#: templates/index.html:59
+#, fuzzy, python-format
 msgid ""
 "\n"
-"\t\t        At %(initial_date)s your credit was setted to %"
-"(tow_initial_credit)s tow cents and %(tmg_initial_credit)s TMG cents\n"
-"\t\t        "
+"                At %(initial_date)s your credit was setted to "
+"%(tow_initial_credit)s tow cents and %(tmg_initial_credit)s TMG cents\n"
+"                "
 msgstr ""
 "\n"
-"\t\t        Il %(initial_date)s il tuo credito è stato impostato a %"
-"(tow_initial_credit)s centesimi per il traino and %(tmg_initial_credit)s "
+"\t\t        Il %(initial_date)s il tuo credito è stato impostato a "
+"%(tow_initial_credit)s centesimi per il traino e %(tmg_initial_credit)s "
 "centesimi per il motoaliante\n"
 "\t\t        "
 
-#: templates/aircraftlogger/index.html:68
+#: templates/index.html:67
 msgid "You still have"
 msgstr "Hai ancora"
 
-#: templates/aircraftlogger/index.html:68
-#: templates/aircraftlogger/index.html:70
+#: templates/index.html:67 templates/index.html.py:69
 msgid "units for"
 msgstr "unità per"
 
-#: templates/aircraftlogger/index.html:70
+#: templates/index.html:69
 msgid "Your debit is"
 msgstr "Il tuo debito è"
 
-#: templates/aircraftlogger/index.html:70
+#: templates/index.html:69
 msgid "Please remeber to pay"
 msgstr "Ricordati di pagare"
 
-#: templates/aircraftlogger/index.html:79
+#: templates/index.html:78
 msgid "Login to view your data"
 msgstr "Accedi per visualizzare i tuoi dati"
 
-#: templates/aircraftlogger/index.html:81
+#: templates/index.html:80
 msgid "Login"
 msgstr "Accedi"
 
-#: templates/aircraftlogger/receipt_update_note.html:28
+#: templates/receipt_update_note.html:28
 msgid "Receipt view"
 msgstr "Vista ricevuta"
 
-#: templates/aircraftlogger/receipt_update_note.html:29
+#: templates/receipt_update_note.html:29
 msgid "Receipt detail and note change"
 msgstr "Visione della ricevuta e modifica nota"
 
-#: templates/aircraftlogger/receipt_update_note.html:37
+#: templates/receipt_update_note.html:37
 msgid "Receipt note update"
 msgstr "Modifica nota ricevuta"
 
-#: templates/aircraftlogger/receipt_update_note.html:40
+#: templates/receipt_update_note.html:40
 msgid "Note update"
 msgstr "Modifica nota"
 
-#: templates/aircraftlogger/receipt_update_note.html:44
+#: templates/receipt_update_note.html:44
 msgid "Please enter a note if you have someone."
 msgstr "Inserisci una nota se ne hai qualcuna"
 
-#: templates/aircraftlogger/receipt_update_note.html:46
+#: templates/receipt_update_note.html:46
 msgid "Receipt saved successfully"
 msgstr "Ricevuta salvata con successo"
 
-#: templates/aircraftlogger/receipt_update_note.html:76
+#: templates/receipt_update_note.html:76
 msgid "Created"
 msgstr "Creata"
 
-#: templates/aircraftlogger/receipt_update_note.html:83
+#: templates/receipt_update_note.html:83
 msgid "Updated"
 msgstr "Modificata il"
 
-#: templates/aircraftlogger/receipt_update_note.html:93
+#: templates/receipt_update_note.html:93
 msgid "Others amounts"
 msgstr "Altri importi"
 
-#: templates/aircraftlogger/receipt_update_note.html:98
+#: templates/receipt_update_note.html:98
 msgid "Tow amount"
 msgstr "Importo traino"
 
-#: templates/aircraftlogger/receipt_update_note.html:108
+#: templates/receipt_update_note.html:108
 msgid "Motorglider amount"
 msgstr "Importo motoaliante"
 
-#: templates/aircraftlogger/receipt_update_note.html:113
+#: templates/receipt_update_note.html:113
 msgid "Motorglider cents"
 msgstr "Centesimi motoaliante"
 
-#: templates/aircraftlogger/receipt_update_note.html:134
+#: templates/receipt_update_note.html:134
 msgid "Return to receipts list"
 msgstr "Ritorna alla lista ricevute"
 
-#: templates/aircraftlogger/receipts.html:24
+#: templates/receipts.html:24
 msgid "Receipts view"
 msgstr "Vista ricevute"
 
-#: templates/aircraftlogger/receipts.html:25
+#: templates/receipts.html:25
 msgid "List bills payed by you"
 msgstr "Elenca le ricevute che hai pagato"
 
-#: templates/aircraftlogger/receipts.html:30
+#: templates/receipts.html:30
 #, python-format
 msgid ""
 "\n"
@@ -977,88 +969,126 @@ msgstr[1] ""
 "            %(length)s ricevute trovate\n"
 "            "
 
-#: templates/aircraftlogger/receipts.html:42
+#: templates/receipts.html:42
 msgid "spent"
 msgstr "speso"
 
-#: templates/aircraftlogger/receipts.html:46
+#: templates/receipts.html:46
 msgid "purchased"
 msgstr "acquistato"
 
-#: templates/aircraftlogger/report_cents.html:28
-#: templates/aircraftlogger/reports.html:33
+#: templates/report_cents.html:28
 msgid "Reports view"
 msgstr "Vista rapporti"
 
-#: templates/aircraftlogger/report_cents.html:29
+#: templates/report_cents.html:29
 msgid "For now you find only cents report"
 msgstr ""
 
-#: templates/aircraftlogger/reports.html:35
+#: templates/reports.html:33
+#, fuzzy
+msgid "Reports view-->"
+msgstr "Vista rapporti"
+
+#: templates/reports.html:36
+msgid "List of pilots with flight clearance"
+msgstr "Lista dei piloti abilitati a volare"
+
+#: templates/reports.html:40
 msgid "Report cents for every member"
 msgstr "Resoconto dei centesimi per ogni socio"
 
-#: templates/aircraftlogger/reports.html:39
+#: templates/reports.html:44
 msgid "Report debits for member"
 msgstr "Resoconto debiti per socio"
 
-#: templates/aircraftlogger/reports.html:43
+#: templates/reports.html:48
 msgid "Report receipts"
 msgstr "Resoconto ricevute"
 
-#: templates/aircraftlogger/reports.html:47
+#: templates/reports.html:52
 msgid "Here you find various reports"
 msgstr "Qui si possono ottenere vari rapporti"
 
 #
-#: templates/aircraftlogger/reports.html:56
+#: templates/reports.html:61
 msgid "Balance for"
 msgstr "Saldo per"
 
-#: templates/aircraftlogger/reports.html:82
+#: templates/reports.html:87
 #, python-format
 msgid " Period: from %(from)s to %(to)s  "
 msgstr "Periodo: dal %(from)s al %(to)s"
 
-#: templates/aircraftlogger/reports.html:86
+#: templates/reports.html:91
 msgid "Report for member"
 msgstr "Resoconto per socio"
 
-#: templates/aircraftlogger/reports.html:107
-msgid "Report debits for every member"
-msgstr "Resoconto dei debiti per ogni socio"
+#: templates/reports.html:120
+msgid "Report pilots with clearance to flight"
+msgstr "Resoconto dei piloti abilitati a volare"
 
-#: templates/aircraftlogger/reports.html:110
-msgid "Members Debits"
-msgstr "Debiti Soci"
+#: templates/reports.html:123
+msgid "Pilots with clearance"
+msgstr "Piloti abilitati"
 
-#: templates/aircraftlogger/reports.html:113
+#: templates/reports.html:126 templates/reports.html.py:146
 msgid "Click button to view."
 msgstr "Clicca il pulsante per vedere"
 
-#: templates/aircraftlogger/reports.html:123
+#: templates/reports.html:140
+msgid "Report debits for every member"
+msgstr "Resoconto dei debiti per ogni socio"
+
+#: templates/reports.html:143
+msgid "Members Debits"
+msgstr "Debiti Soci"
+
+#: templates/reports.html:156
 msgid "All"
 msgstr "Tutti"
 
-#: templates/aircraftlogger/reports.html:135
+#: templates/reports.html:168
 msgid "Receipts report"
 msgstr "Rapporto ricevute"
 
-#: templates/aircraftlogger/reports.html:138
+#: templates/reports.html:171
 msgid "Receipts range"
 msgstr "Intervallo ricevute"
 
-#: templates/aircraftlogger/reports.html:141
+#: templates/reports.html:174
 msgid "Please enter receipt references."
 msgstr "Inserisci i riferimenti delle ricevute"
 
-#: templates/aircraftlogger/reports.html:164
+#: templates/reports.html:198
 msgid "Set personality"
 msgstr "Impersona socio"
 
-#: templates/aircraftlogger/reports.html:170
+#: templates/reports.html:204
 msgid "Please choose a member."
 msgstr "Seleziona un socio"
+
+#: templates/admin/no_login.html:18
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Correggi l'errore qui sotto'"
+msgstr[1] "Correggi gli errori qui sotto'"
+
+#: templates/admin/no_login.html:35
+msgid "Username:"
+msgstr "Utente:"
+
+#: templates/admin/no_login.html:39
+msgid "Password:"
+msgstr "Password:"
+
+#: templates/admin/no_login.html:48
+msgid "Forgotten your password or username?"
+msgstr "Dimenticata la tua password o nome utente?"
+
+#: templates/admin/no_login.html:52
+msgid "Log in"
+msgstr "Collegati"
 
 #~ msgid "Landing is before takeoff. Check values"
 #~ msgstr "L'atterragio è prima del decollo. Controlla i valori"
@@ -1076,47 +1106,48 @@ msgstr "Seleziona un socio"
 
 #~ msgid ""
 #~ "\n"
-#~ "\t\t            You still have <span style=\"color:green\"><strong>%"
-#~ "(tow_cents)s</strong></span> cents for tow plane\n"
+#~ "\t\t            You still have <span style=\"color:green\"><strong>"
+#~ "%(tow_cents)s</strong></span> cents for tow plane\n"
 #~ "\t\t            "
 #~ msgstr ""
 #~ "\n"
-#~ "\t\t            Ti rimangono ancora <span style=\"color:green\"><strong>%"
-#~ "(tow_cents)s</strong></span> centesimi per il traino\n"
+#~ "\t\t            Ti rimangono ancora <span style=\"color:green\"><strong>"
+#~ "%(tow_cents)s</strong></span> centesimi per il traino\n"
 #~ "\t\t            "
 
 #~ msgid ""
 #~ "\n"
-#~ "\t\t            Your balance is <span style=\"color:red\"><strong>%"
-#~ "(tow_cents)s</strong></span> cents for tow plane. Please remeber to pay.\n"
+#~ "\t\t            Your balance is <span style=\"color:red\"><strong>"
+#~ "%(tow_cents)s</strong></span> cents for tow plane. Please remeber to "
+#~ "pay.\n"
 #~ "\t\t            "
 #~ msgstr ""
 #~ "\n"
-#~ "\t\t            Sei in passivo di <span style=\"color:red\"><strong>%"
-#~ "(tow_cents)s</strong></span> centesimi per il traino. Ricordati di "
+#~ "\t\t            Sei in passivo di <span style=\"color:red\"><strong>"
+#~ "%(tow_cents)s</strong></span> centesimi per il traino. Ricordati di "
 #~ "pagare.\n"
 #~ "\t\t            "
 
 #~ msgid ""
 #~ "\n"
-#~ "\t\t            You still have <span style=\"color:green\"><strong>%"
-#~ "(tmg_cents)s</strong></span> cents for TMG\n"
+#~ "\t\t            You still have <span style=\"color:green\"><strong>"
+#~ "%(tmg_cents)s</strong></span> cents for TMG\n"
 #~ "\t\t            "
 #~ msgstr ""
 #~ "\n"
-#~ "\t\t            Ti rimangono ancora <span style=\"color:green\"><strong>%"
-#~ "(tmg_cents)s</strong></span> centesimi per il motoaliante\n"
+#~ "\t\t            Ti rimangono ancora <span style=\"color:green\"><strong>"
+#~ "%(tmg_cents)s</strong></span> centesimi per il motoaliante\n"
 #~ "\t\t            "
 
 #~ msgid ""
 #~ "\n"
-#~ "\t\t            Your balance is <span style=\"color:red\"><strong>%"
-#~ "(tmg_cents)s</strong></span> cents for TMG. Please remeber to pay.\n"
+#~ "\t\t            Your balance is <span style=\"color:red\"><strong>"
+#~ "%(tmg_cents)s</strong></span> cents for TMG. Please remeber to pay.\n"
 #~ "\t\t            "
 #~ msgstr ""
 #~ "\n"
-#~ "\t\t            Sei in passivo di <span style=\"color:red\"><strong>%"
-#~ "(tmg_cents)s</strong></span> centesimi per il motoaliante. Ricordati di "
+#~ "\t\t            Sei in passivo di <span style=\"color:red\"><strong>"
+#~ "%(tmg_cents)s</strong></span> centesimi per il motoaliante. Ricordati di "
 #~ "pagare.\n"
 #~ "\t\t            "
 

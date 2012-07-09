@@ -11,7 +11,7 @@
     <tbody>
     {% for collect in collects %}
       <tr class="{% cycle 'even' 'odd' %}">
-        <td><a href="/admin/collect/{{ collect.id }}/">{{ collect.reference }}</a><td>{{ collect.date|date:"j M Y" }}</td><td>{{ collect.payer }}</td><td  abbr="{{ collect.total|floatformat:2 }}"  class="dt-number dst-EUR">{{ collect.total|floatformat:2 }}</td><td>{{ collect.description }}</td>
+        <td><a href="/admin/collect/{{ collect.id }}/">{{ collect.reference }}</a></td><td>{{ collect.date|date:"j M Y" }}</td><td>{{ collect.payer }}</td><td  abbr="{{ collect.total|floatformat:2 }}"  class="dt-number dst-EUR">{{ collect.total|floatformat:2 }}</td><td>{{ collect.description }}</td>
       </tr>
     {% endfor %}
     </tbody>

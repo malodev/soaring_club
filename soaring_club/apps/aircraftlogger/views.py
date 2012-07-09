@@ -24,7 +24,9 @@ import decimal
 from decorators import handle404
 import towerlog
 from debug import debug_print
-
+import logging
+from django.utils.log import getLogger
+logger = getLogger('app')
 
 
 def get_planes_from_flarm(flarm_id, date=None):
@@ -380,12 +382,13 @@ def reports(request, action=None):
                         context.update({'member':member})
 
                 elif action == 'clearance':
-                    form_member = MemberChooseForm(request.POST)
-                    if form_member.is_valid():
-                        member = form_member.cleaned_data['member']
-                        request.session['member'] = member
-                        context.update({'member':member})
-
+                    logger.debug("Detected clearance action!")
+                    report = clearance_report()
+                    context.update({
+                                   'clearance': report,
+                                   'action':request.POST['clearance'], 
+                                  })
+                    
                 context.update({
                                 'form_only_negative': form_only_negative,
                                 'form_range_receipts': form_range_receipts,

@@ -1,15 +1,15 @@
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import  ObjectDoesNotExist
 from django.db import models
+from django.db.models import Max, Min
+from django.db.models import Q, permalink, signals
 from django.contrib.auth.models import User, UserManager, Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
-from django.db.models import Q, permalink, signals
 import django.dispatch
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
 from django.utils.functional import curry
-
 from django.conf import settings
 
 import os
@@ -51,8 +51,6 @@ def cents_report(qfilter=None):
             report += [{'member_id':m.id, 'first_name':m.first_name, 'last_name':m.last_name,'tow_cents':tc, 'tmg_cents':mc}]
     return report
 
-
-
 def debits_report(qfilter=None):
     report = []
     if not qfilter:
@@ -66,6 +64,29 @@ def debits_report(qfilter=None):
             debits += ((dsc, d),)
         report += [{'member_id':m.id, 'first_name':m.first_name, 'last_name':m.last_name,'debits': debits}]
     return report
+
+def clearance_report(date=None, qfilter=None):
+    """
+    Reports pilots with clearance
+    
+    """
+    if date is None:
+        date = datetime.date.today()
+    report = []
+    if not qfilter:
+        members = Member.objects.all()
+    else:
+        members = Member.objects.filter(qfilter)
+    for m in members:
+        private_ok = False
+        club_ok = False
+        if m.is_pilot_permitted_to_fly():
+            private_ok = m.last_flight_date() > (date - settings.MAX_DAYS_FROM_LAST_FLIGHT_PRIVATE)
+            club_ok = m.last_flight_date() > (date - settings.MAX_DAYS_FROM_LAST_FLIGHT_CLUB)
+        if private_ok or club_ok:    
+            report += [{'member_id':m.id, 'first_name':m.first_name, 'last_name':m.last_name, 'private_ok': private_ok, 'club_ok':club_ok}]
+    return report
+
 
 def accumulate_time(begin, plus, base = datetime.datetime(1,1,1,0,0,0)):
     delta = datetime.datetime(base.year, base.month , base.day , base.hour+plus.hour , base.minute + plus.minute, base.second + plus.second ) - base
@@ -102,7 +123,6 @@ def flight_time_report(flights_from=None, flights_to=None, qfilter=None):
 
 
 # Create your models here.
-
 
 class FlarmInstallationError(Exception):
     """
@@ -164,6 +184,8 @@ class Member(models.Model):
     email = models.EmailField(_("email"), null=True, blank=True)
     notes = models.TextField(_("Notes"), null=True, blank=True)
     picture = models.ImageField(_("Picture"), null=True, blank=True, max_length=1048576, upload_to='picture/profile')
+    license_expiration = models.DateField(_("License expiration date"), null=True, blank=True)
+    medical_expiration = models.DateField(_("Medical certificate expiration date"), null=True, blank=True)
     
     @property
     def types(self):
@@ -205,7 +227,29 @@ class Member(models.Model):
         ))
         return (has_membership or has_perms)
 
+    def is_licence_valid(self, on_date = None):
+        if self.license_expiration is None:
+            return False
+        if on_date is None:
+            on_date = datetime.date.today()
+        if self.license_expiration<on_date:
+            return False
+        else:
+            return True
+ 
+    def is_medical_certificate_valid(self, on_date = None):
+        if self.medical_expiration is None:
+            return False
+        if on_date is None:
+            on_date = datetime.date.today()
+        if self.medical_expiration<on_date:
+            return False
+        else:
+            return True
 
+    def is_pilot_permitted_to_fly(self, on_date = None):
+            return self.is_licence_valid(on_date) and self.is_medical_certificate_valid(on_date)
+        
     def first_receipt_date(self):
         #Check if a member has a membercredit associated. Usually membercredit
         #is created for reset member credit situation.
@@ -227,10 +271,19 @@ class Member(models.Model):
 
     def first_flight_date(self, flights = 'pilot', flights_from=None, flights_to=None):
         flights = self.active_flights(flights, flights_from, flights_to)
-        if flights:
-            return min([fb.date for fb in flights])
+        date_min=flights.aggregate(Min('date'))
+        if date_min:
+            return date_min['date__min']
         else:
-            return datetime.date.today()            
+            return None            
+
+    def last_flight_date(self, flights = 'pilot', flights_from=None, flights_to=None):
+        flights = self.active_flights(flights, flights_from, flights_to)
+        date_max=flights.aggregate(Max('date'))
+        if date_max:
+            return date_max['date__max']
+        else:
+            return None            
 
     def flights_missing_time_landing(self, flights = 'pilot', flights_from=None, flights_to=None):
         return self.active_flights(flights, flights_from, flights_to).filter(landing__isnull=True)
@@ -287,6 +340,10 @@ class Member(models.Model):
             
         if flights_from and flights_to:
             flights_list = flights.filter(Q(date__gte=flights_from) & Q(date__lte=flights_to))
+        elif flights_to:
+            flights_list = flights.filter(Q(date__lte=flights_to))
+        elif flights_from:
+            flights_list = flights.filter(Q(date__gte=flights_from))
         else:
             flights_list = flights.all()
         

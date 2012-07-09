@@ -32,19 +32,19 @@ def has_settings_option():
                              option_list=BaseCommand.option_list)
     try:
         options = parser.parse_args(sys.argv[:])[0]
-        print "=" * 20
-        print "%s has_settings_option '%s%s%s'%s" % (BYELLOW,BRED,bool(options.settings),BYELLOW,NORMAL)
-        print "=" * 20
+        if options.settings:
+            print "=" * 20
+            print "%s has_settings_option '%s%s%s'%s" % (BYELLOW,BRED,options.settings,BYELLOW,NORMAL)
+            print "=" * 20
     except:
         return False # Ignore any option errors at this point.
     return bool(options.settings)
-
-print "=" * 20
-print "%s python.path '%s%s%s'%s" % (BYELLOW,BRED,sys.path,BYELLOW,NORMAL)
-print "=" * 20
 
 if not has_settings_option() and not 'DJANGO_SETTINGS_MODULE' in os.environ:
     settings_module = '%s.conf.local.settings' % PROJECT_MODULE_NAME
     os.environ['DJANGO_SETTINGS_MODULE'] = settings_module
 
+print "=" * 20
+print "%s settings module is '%s%s%s'%s" % (BYELLOW,BRED,os.environ['DJANGO_SETTINGS_MODULE'],BYELLOW,NORMAL)
+print "=" * 20
 execute_from_command_line()

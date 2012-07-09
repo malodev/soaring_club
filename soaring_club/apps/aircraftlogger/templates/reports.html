@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n staticfiles%}
 
 {% block subtitle %}
  - Reports
@@ -7,8 +7,8 @@
 
 {% block fullscript %}
    <script type="text/javascript" src="/admin/jsi18n/"></script>
-   <script type="text/javascript" src="/admin_media/js/core.js"></script> 
-   <script type="text/javascript" src="/admin_media/js/admin/RelatedObjectLookups.js"></script>
+   <script type="text/javascript" src="{% static "admin/js/core.js" %}"></script> 
+   <script type="text/javascript" src="{% static "admin/js/admin/RelatedObjectLookups.js" %}"></script>
    {{ form_range_receipts.media }}
 {% endblock %}
 {% block stylesheet_bottom %}
@@ -48,7 +48,7 @@
         <p class="meta">{% trans "Report receipts" %}</p>
         {% endif %}
 
-        {% if empty %}
+		{% if request.method != "POST" %}
 		<p class="meta">{% trans "Here you find various reports" %}</p>
         {% endif %}
 		
@@ -97,15 +97,43 @@
             {% if flights %}
                 {% include "flights_table.html" %}
             {% endif %}
+
+	        {% if clearance %}
+                {% include "clearance_table.html" %}
+	        {% endif %}
+
     	</div>
 	</div>
-    {% if not receipts and not report%}
-	<div id="banner"><img src="/static/images/img07.jpg" alt="" /></div>
+	{% if request.method != "POST" %}
+	<div id="banner"><img src="/static/images/img07.jpg" alt="prato fiorito" width="546" height="156" /></div>
     {% endif %}
 	<div style="clear: both;">&nbsp;</div>
 
 {% endblock %}{% block sidebar %}
+
+<!-- Choises list -->   
 <div id="sidebar">
+    <!-- Pilots with clearance -->
+    <form action="/reports/clearance/" method="POST">{% csrf_token %}
+        <fieldset>
+            <legend>{% trans "Report pilots with clearance to flight" %}</legend>
+            <div class="notes">
+                <h4>
+                    {% trans "Pilots with clearance" %}
+                </h4>
+                <p class="last">
+                    {% trans "Click button to view." %}
+                </p>
+            </div> 
+            <div class="submit">
+                <div>
+                    <input type="submit" name="clearance" value={% trans "View" %} />                    
+                </div>
+            </div>
+        </fieldset>                        
+    </form>
+
+    <!-- Debits list -->
     <form action="/reports/debits/" method="POST">{% csrf_token %}
         <fieldset>
             <legend>{% trans "Report debits for every member" %}</legend>
@@ -132,7 +160,7 @@
         </fieldset>                        
     </form>
 
-
+    <!-- Receipts list -->   
     {% if form_range_receipts %}
     <form class="receipt" action="/reports/receipts/" method="POST">{% csrf_token %}
         <fieldset>
@@ -162,6 +190,7 @@
     </form>
     {% endif %}
 
+    <!-- Run as another Member -->   
     {% if form_member %}
     <form class="receipt" action="/reports/member/" method="POST">{% csrf_token %}
         <fieldset>
@@ -185,7 +214,6 @@
         </fieldset>                        
     </form>
     {% endif %}
-
 
 </div>
 

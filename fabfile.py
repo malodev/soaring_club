@@ -117,7 +117,7 @@ def install_supervisor():
 
     with cd(env.supervisor_dir):
         with settings(warn_only=True):
-            run('./start_supervisor.sh stop && ./start_supervisor.sh start')
+          run('./start_supervisor.sh stop && ./start_supervisor.sh start')
 
 
 

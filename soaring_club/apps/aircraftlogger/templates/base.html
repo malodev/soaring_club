@@ -15,6 +15,8 @@ Released   : 20090918
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="icon" href="{{ STATIC_URL }}images/favicon.ico" /> 
+
 <title>
 {% block title %}
 Soaring Club
@@ -48,9 +50,8 @@ Soaring Club
         {% block flights_bills %}<li><a href="/bills/">{% trans "Flights bills" %}</a></li>{% endblock %}
         {% block receipts %}<li><a href="/receipts/">{% trans "Receipts" %}</a></li>{% endblock %}
         {% if user.is_staff %}
-            {% block admin %}<li><a href="/reports/">{% trans "Reports" %}</a></li>{% endblock %}
-            {% block logs %}<li><a href="/logs/">Logs</a></li>{% endblock %}
-            {% block sheet %}<li><a href="/sheet/">{% trans "Fligths sheet" %}</a></li>{% endblock %}
+            {% block admin %}<li class="admin"><a href="/reports/">{% trans "Reports" %}</a></li>{% endblock %}
+            {% block sheet %}<li class="admin"><a href="/sheet/">{% trans "Fligths sheet" %}</a></li>{% endblock %}
         {% endif %}
 
         
