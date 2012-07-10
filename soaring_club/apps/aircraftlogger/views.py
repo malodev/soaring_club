@@ -79,6 +79,7 @@ def index(request):
         logged = request.user
     else:
         logged = False
+
     return render(request, 'index.html', {'logged' : logged,
                                                          'member' : member,
                                                          'membercredit' : membercredit,

@@ -12,6 +12,7 @@ TEMPLATE_DEBUG = DEBUG
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 TIME_ZONE = 'Europe/Rome'
 USE_I18N = True
+USE_L10N = True
 LANGUAGE_CODE = 'it-it'
 DEFAULT_COUNTRY_ISO = 'IT'
 SITE_ID = 1
@@ -103,6 +104,14 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
 
+)
+MIDDLEWARE_CLASSES = (
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 INSTALLED_APPS = (

@@ -7,22 +7,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-08 23:05+0200\n"
+"POT-Creation-Date: 2012-07-10 08:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Mauro Longano <mlongano@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
 
-#: admin.py:66 forms.py:114 models.py:563
+#: admin.py:66 forms.py:114 models.py:572
 #: templates/flight_update_landing.html:60 templates/flights.html:75
 #: templates/flights_as_copilot.html:64 templates/flights_table.html:28
 msgid "Takeoff field"
 msgstr "Aeroporto di decollo"
 
-#: admin.py:67 forms.py:116 forms.py:137 forms.py:168 models.py:565
+#: admin.py:67 forms.py:116 forms.py:137 forms.py:168 models.py:574
 #: templates/flights.html:75 templates/flights_as_copilot.html:64
 #: templates/flights_table.html:28
 msgid "Landing field"
@@ -52,7 +52,7 @@ msgstr "Volo promozionale"
 msgid "Member Note"
 msgstr "Nota dell'utente"
 
-#: forms.py:27 models.py:459 models.py:900 templates/reports.html:201
+#: forms.py:27 models.py:468 models.py:909 templates/reports.html:201
 msgid "Member"
 msgstr "Socio"
 
@@ -92,7 +92,7 @@ msgstr "Alla data:"
 msgid "From date come after to date. Check values"
 msgstr "La data 'da' viene dopo la data 'a'. Controlla i valori"
 
-#: forms.py:112 forms.py:187 forms.py:211 models.py:561 models.py:654
+#: forms.py:112 forms.py:187 forms.py:211 models.py:570 models.py:663
 #: templates/collects_table.html:8 templates/flight_update_landing.html:54
 #: templates/flights.html:70 templates/flights_as_copilot.html:64
 #: templates/flights_bills.html:58 templates/flights_table.html:28
@@ -101,36 +101,36 @@ msgstr "La data 'da' viene dopo la data 'a'. Controlla i valori"
 msgid "Date"
 msgstr "Data"
 
-#: forms.py:113 forms.py:188 forms.py:202 models.py:562
+#: forms.py:113 forms.py:188 forms.py:202 models.py:571
 #: templates/flight_update_landing.html:57 templates/flights.html:75
 #: templates/flights_as_copilot.html:64 templates/flights_table.html:28
 msgid "Takeoff"
 msgstr "Decollo"
 
 #: forms.py:115 forms.py:136 forms.py:167 forms.py:189 forms.py:203
-#: models.py:564 templates/flights.html:75
+#: models.py:573 templates/flights.html:75
 #: templates/flights_as_copilot.html:64 templates/flights_table.html:28
 msgid "Landing"
 msgstr "Atterraggio"
 
-#: forms.py:183 forms.py:190 forms.py:200 models.py:566
+#: forms.py:183 forms.py:190 forms.py:200 models.py:575
 #: templates/flight_update_landing.html:63 templates/flights.html:72
 #: templates/flights_as_copilot.html:64 templates/flights_table.html:28
 msgid "Pilot"
 msgstr "Pilota"
 
-#: forms.py:191 forms.py:201 models.py:139 models.py:567
+#: forms.py:191 forms.py:201 models.py:144 models.py:576
 msgid "Instructor"
 msgstr "Istruttore"
 
-#: forms.py:192 models.py:489 models.py:510 models.py:519 models.py:568
+#: forms.py:192 models.py:498 models.py:519 models.py:528 models.py:577
 #: templates/flight_update_landing.html:66 templates/flights.html:70
 #: templates/flights_as_copilot.html:64 templates/flights_bills.html:58
 #: templates/flights_table.html:28
 msgid "Plane"
 msgstr "Veivolo"
 
-#: forms.py:199 models.py:470
+#: forms.py:199 models.py:479
 msgid "Glider"
 msgstr "Aliante"
 
@@ -138,7 +138,7 @@ msgstr "Aliante"
 msgid "Tow Cost"
 msgstr "Costo Traino"
 
-#: forms.py:205 models.py:569 templates/flight_update_landing.html:69
+#: forms.py:205 models.py:578 templates/flight_update_landing.html:69
 msgid "Porpouse"
 msgstr "Finalità"
 
@@ -150,7 +150,7 @@ msgstr "Atterraggio Aliante"
 msgid "Tow Plane"
 msgstr "Traino"
 
-#: forms.py:213 models.py:137
+#: forms.py:213 models.py:142
 msgid "Tow Pilot"
 msgstr "Trainatore"
 
@@ -186,302 +186,302 @@ msgstr "Volo promozionale"
 msgid "Service flight"
 msgstr "Volo di servizio"
 
-#: models.py:134
+#: models.py:139
 msgid "Glider Pilot"
 msgstr "Pilota di Aliante"
 
-#: models.py:135
+#: models.py:140
 msgid "TMG Pilot"
 msgstr "Pilota di Motoaliante"
 
-#: models.py:136
+#: models.py:141
 msgid "PPL Pilot"
 msgstr "Pilota PPL"
 
-#: models.py:138
+#: models.py:143
 msgid "Student"
 msgstr "Allievo"
 
-#: models.py:140 views.py:324 templates/reports.html:158
+#: models.py:145 views.py:324 templates/reports.html:158
 msgid "Registered"
 msgstr "Iscritto"
 
-#: models.py:141
+#: models.py:146
 msgid "Inactive"
 msgstr "Non attivo"
 
-#: models.py:142
+#: models.py:147
 msgid "Guest"
 msgstr "Ospite"
 
-#: models.py:154
+#: models.py:159
 msgid "Member type"
 msgstr "Tipo di socio"
 
-#: models.py:155
+#: models.py:160
 msgid "Member types"
 msgstr "Tipi di socio"
 
-#: models.py:175
+#: models.py:180
 msgid "Type"
 msgstr "Tipo"
 
-#: models.py:176
+#: models.py:181
 msgid "First Name"
 msgstr "Nome"
 
-#: models.py:177
+#: models.py:182
 msgid "Last Name"
 msgstr "Cognome"
 
-#: models.py:178
+#: models.py:183
 msgid "sort name"
 msgstr "nome per ordinamento"
 
-#: models.py:179
+#: models.py:184
 msgid "email"
 msgstr "email"
 
-#: models.py:180 models.py:757
+#: models.py:185 models.py:766
 msgid "Notes"
 msgstr "Note"
 
-#: models.py:181
+#: models.py:186
 msgid "Picture"
 msgstr "Foto"
 
-#: models.py:182
+#: models.py:187
 msgid "License expiration date"
 msgstr "Data scadenza licenza"
 
-#: models.py:183
+#: models.py:188
 msgid "Medical certificate expiration date"
 msgstr "Data scadenza visita medica"
 
-#: models.py:460
+#: models.py:469
 msgid "Members"
 msgstr "Soci"
 
-#: models.py:471
+#: models.py:480
 msgid "Self-launching"
 msgstr "Decollo autonomo"
 
-#: models.py:472
+#: models.py:481
 msgid "Touring Motor Gliders"
 msgstr "Motoaliante"
 
-#: models.py:473
+#: models.py:482
 msgid "Propeller"
 msgstr "Elica"
 
-#: models.py:476
+#: models.py:485
 msgid "Plane Type"
 msgstr "Tipo di veivolo"
 
-#: models.py:477
+#: models.py:486
 msgid "Owner"
 msgstr "Proprietario"
 
-#: models.py:478
+#: models.py:487
 msgid "Registration Mark"
 msgstr "Marche"
 
-#: models.py:479 models.py:509
+#: models.py:488 models.py:518
 msgid "Manufacter"
 msgstr "Fabbricante"
 
-#: models.py:480
+#: models.py:489
 msgid "Model"
 msgstr "Modello"
 
-#: models.py:490
+#: models.py:499
 msgid "Planes"
 msgstr "Veivoli"
 
-#: models.py:508
+#: models.py:517
 msgid "Serial"
 msgstr "Seriale"
 
-#: models.py:520
+#: models.py:529
 msgid "Flarm"
 msgstr "Flarm"
 
-#: models.py:521
+#: models.py:530
 msgid "Flarm ID"
 msgstr "Idendificativo Flarm"
 
-#: models.py:522
+#: models.py:531
 msgid "Installation date"
 msgstr "Data di installazione"
 
-#: models.py:523
+#: models.py:532
 msgid "Change/Removed date"
 msgstr "Data di modifica/rimozione"
 
-#: models.py:543
+#: models.py:552
 msgid "Installation"
 msgstr "Installazione"
 
-#: models.py:544
+#: models.py:553
 msgid "Installations"
 msgstr "Installazioni"
 
-#: models.py:550
+#: models.py:559
 msgid "Purchase date"
 msgstr "Data di acquisto"
 
-#: models.py:551
+#: models.py:560
 msgid "Date of sale"
 msgstr "Data di vendita"
 
-#: models.py:557
+#: models.py:566
 msgid "Ownership"
 msgstr "Proprietà"
 
-#: models.py:558
+#: models.py:567
 msgid "Ownerships"
 msgstr "Proprietà"
 
-#: models.py:594 models.py:852 templates/flight_base.html:14
+#: models.py:603 models.py:861 templates/flight_base.html:14
 msgid "Flight"
 msgstr "Volo"
 
-#: models.py:595 templates/base.html:49 templates/flight_detail.html:23
+#: models.py:604 templates/base.html:49 templates/flight_detail.html:23
 #: templates/flight_update_landing.html:85 templates/flights.html:28
 #: templates/flights.html.py:125 templates/flights_bills.html:98
 msgid "Flights"
 msgstr "Voli"
 
-#: models.py:653 templates/collects_table.html:8
+#: models.py:662 templates/collects_table.html:8
 #: templates/receipt_update_note.html:64 templates/receipts.html:55
 #: templates/receipts_table.html:8
 msgid "Reference"
 msgstr "Riferimento"
 
-#: models.py:659 models.py:862 templates/collects_table.html:8
+#: models.py:668 models.py:871 templates/collects_table.html:8
 #: templates/receipt_update_note.html:70 templates/receipts_table.html:8
 msgid "Payer"
 msgstr "Pagante"
 
-#: models.py:661 templates/receipt_update_note.html:73
+#: models.py:670 templates/receipt_update_note.html:73
 #: templates/receipts.html:61
 msgid "Description of payment"
 msgstr "Causale"
 
-#: models.py:662
+#: models.py:671
 msgid "Created in"
 msgstr "Creata il"
 
-#: models.py:663
+#: models.py:672
 msgid "Updated in"
 msgstr "Modificata il"
 
-#: models.py:667 templates/receipt_update_note.html:79
+#: models.py:676 templates/receipt_update_note.html:79
 msgid "Created by"
 msgstr "Creata da"
 
-#: models.py:672 templates/receipt_update_note.html:88
+#: models.py:681 templates/receipt_update_note.html:88
 msgid "Updated by"
 msgstr "Modificata da"
 
-#: models.py:676 templates/receipts.html:61
+#: models.py:685 templates/receipts.html:61
 msgid "Note"
 msgstr "Nota"
 
-#: models.py:746
+#: models.py:755
 msgid "Receipt"
 msgstr "Ricevuta"
 
-#: models.py:747 templates/base.html:51 templates/receipt_update_note.html:23
+#: models.py:756 templates/base.html:51 templates/receipt_update_note.html:23
 #: templates/receipt_update_note.html:136 templates/receipts.html:19
 msgid "Receipts"
 msgstr "Ricevute"
 
-#: models.py:756
+#: models.py:765
 msgid "Invoice"
 msgstr "Ricevuta"
 
-#: models.py:758
+#: models.py:767
 msgid "Total Price"
 msgstr "Prezzo totale"
 
-#: models.py:772
+#: models.py:781
 msgid "Description"
 msgstr "Descrizione"
 
-#: models.py:773
+#: models.py:782
 msgid "Quantity"
 msgstr "Quantità"
 
-#: models.py:774
+#: models.py:783
 msgid "Unit Price"
 msgstr "Prezzo unitario"
 
-#: models.py:792
+#: models.py:801
 msgid "Receipt generic detail"
 msgstr "Voce generica"
 
-#: models.py:793
+#: models.py:802
 msgid "Receipt generics details"
 msgstr "Voci generiche"
 
-#: models.py:797
+#: models.py:806
 msgid "Credit"
 msgstr "Credito"
 
-#: models.py:798
+#: models.py:807
 msgid "Price/credit unit"
 msgstr "Prezzo/centesimo"
 
-#: models.py:799
+#: models.py:808
 msgid "Credit class"
 msgstr "Classe di credito"
 
-#: models.py:821
+#: models.py:830
 msgid "Flight receipt detail"
 msgstr "Detteglio ricevuta per i voli"
 
-#: models.py:822
+#: models.py:831
 msgid "Flights receipt details"
 msgstr "Dettegli ricevuta per i voli"
 
-#: models.py:856
+#: models.py:865
 msgid "Tow Flight"
 msgstr "Traino di"
 
-#: models.py:864
+#: models.py:873
 msgid "Flight cost"
 msgstr "Costo del volo"
 
-#: models.py:869 templates/flights_bills.html:58
+#: models.py:878 templates/flights_bills.html:58
 msgid "Cost class"
 msgstr "Classe di costo"
 
-#: models.py:877
+#: models.py:886
 msgid "Flight Bill"
 msgstr "Stralcio del volo"
 
-#: models.py:878
+#: models.py:887
 msgid "Flights Bills"
 msgstr "Stralci dei voli"
 
-#: models.py:901
+#: models.py:910
 msgid "Initial date"
 msgstr "Data iniziale"
 
-#: models.py:902
+#: models.py:911
 msgid "Initial tow credit"
 msgstr "Credito traino iniziale"
 
-#: models.py:903
+#: models.py:912
 msgid "Initial TMG credit"
 msgstr "Credito motoaliante iniziale"
 
-#: models.py:913
+#: models.py:922
 msgid "Member credit"
 msgstr "Credito Socio"
 
-#: models.py:914
+#: models.py:923
 msgid "Member credits"
 msgstr "Crediti Socio"
 
@@ -506,13 +506,9 @@ msgstr "Stralci dei voli"
 msgid "Reports"
 msgstr "Resoconti"
 
-#: templates/base.html:55 templates/flights_sheet.html:16
+#: templates/base.html:54 templates/flights_sheet.html:16
 msgid "Fligths sheet"
 msgstr "Stralci"
-
-#: templates/clearance_table.html:5
-msgid "List of pilots permitted to fly on "
-msgstr "Lista dei piloti abilitati a volare in data "
 
 #: templates/clearance_table.html:9
 msgid "Surname"
@@ -856,13 +852,13 @@ msgstr "Sei registrato come"
 #, fuzzy, python-format
 msgid ""
 "\n"
-"                At %(initial_date)s your credit was setted to "
-"%(tow_initial_credit)s tow cents and %(tmg_initial_credit)s TMG cents\n"
+"                At %(initial_date)s your credit was setted to %"
+"(tow_initial_credit)s tow cents and %(tmg_initial_credit)s TMG cents\n"
 "                "
 msgstr ""
 "\n"
-"\t\t        Il %(initial_date)s il tuo credito è stato impostato a "
-"%(tow_initial_credit)s centesimi per il traino e %(tmg_initial_credit)s "
+"\t\t        Il %(initial_date)s il tuo credito è stato impostato a %"
+"(tow_initial_credit)s centesimi per il traino e %(tmg_initial_credit)s "
 "centesimi per il motoaliante\n"
 "\t\t        "
 
@@ -977,18 +973,13 @@ msgstr "speso"
 msgid "purchased"
 msgstr "acquistato"
 
-#: templates/report_cents.html:28
+#: templates/report_cents.html:28 templates/reports.html:33
 msgid "Reports view"
 msgstr "Vista rapporti"
 
 #: templates/report_cents.html:29
 msgid "For now you find only cents report"
 msgstr ""
-
-#: templates/reports.html:33
-#, fuzzy
-msgid "Reports view-->"
-msgstr "Vista rapporti"
 
 #: templates/reports.html:36
 msgid "List of pilots with flight clearance"
@@ -1090,6 +1081,9 @@ msgstr "Dimenticata la tua password o nome utente?"
 msgid "Log in"
 msgstr "Collegati"
 
+#~ msgid "List of pilots permitted to fly on "
+#~ msgstr "Lista dei piloti abilitati a volare in data "
+
 #~ msgid "Landing is before takeoff. Check values"
 #~ msgstr "L'atterragio è prima del decollo. Controlla i valori"
 
@@ -1106,48 +1100,47 @@ msgstr "Collegati"
 
 #~ msgid ""
 #~ "\n"
-#~ "\t\t            You still have <span style=\"color:green\"><strong>"
-#~ "%(tow_cents)s</strong></span> cents for tow plane\n"
+#~ "\t\t            You still have <span style=\"color:green\"><strong>%"
+#~ "(tow_cents)s</strong></span> cents for tow plane\n"
 #~ "\t\t            "
 #~ msgstr ""
 #~ "\n"
-#~ "\t\t            Ti rimangono ancora <span style=\"color:green\"><strong>"
-#~ "%(tow_cents)s</strong></span> centesimi per il traino\n"
+#~ "\t\t            Ti rimangono ancora <span style=\"color:green\"><strong>%"
+#~ "(tow_cents)s</strong></span> centesimi per il traino\n"
 #~ "\t\t            "
 
 #~ msgid ""
 #~ "\n"
-#~ "\t\t            Your balance is <span style=\"color:red\"><strong>"
-#~ "%(tow_cents)s</strong></span> cents for tow plane. Please remeber to "
-#~ "pay.\n"
+#~ "\t\t            Your balance is <span style=\"color:red\"><strong>%"
+#~ "(tow_cents)s</strong></span> cents for tow plane. Please remeber to pay.\n"
 #~ "\t\t            "
 #~ msgstr ""
 #~ "\n"
-#~ "\t\t            Sei in passivo di <span style=\"color:red\"><strong>"
-#~ "%(tow_cents)s</strong></span> centesimi per il traino. Ricordati di "
+#~ "\t\t            Sei in passivo di <span style=\"color:red\"><strong>%"
+#~ "(tow_cents)s</strong></span> centesimi per il traino. Ricordati di "
 #~ "pagare.\n"
 #~ "\t\t            "
 
 #~ msgid ""
 #~ "\n"
-#~ "\t\t            You still have <span style=\"color:green\"><strong>"
-#~ "%(tmg_cents)s</strong></span> cents for TMG\n"
+#~ "\t\t            You still have <span style=\"color:green\"><strong>%"
+#~ "(tmg_cents)s</strong></span> cents for TMG\n"
 #~ "\t\t            "
 #~ msgstr ""
 #~ "\n"
-#~ "\t\t            Ti rimangono ancora <span style=\"color:green\"><strong>"
-#~ "%(tmg_cents)s</strong></span> centesimi per il motoaliante\n"
+#~ "\t\t            Ti rimangono ancora <span style=\"color:green\"><strong>%"
+#~ "(tmg_cents)s</strong></span> centesimi per il motoaliante\n"
 #~ "\t\t            "
 
 #~ msgid ""
 #~ "\n"
-#~ "\t\t            Your balance is <span style=\"color:red\"><strong>"
-#~ "%(tmg_cents)s</strong></span> cents for TMG. Please remeber to pay.\n"
+#~ "\t\t            Your balance is <span style=\"color:red\"><strong>%"
+#~ "(tmg_cents)s</strong></span> cents for TMG. Please remeber to pay.\n"
 #~ "\t\t            "
 #~ msgstr ""
 #~ "\n"
-#~ "\t\t            Sei in passivo di <span style=\"color:red\"><strong>"
-#~ "%(tmg_cents)s</strong></span> centesimi per il motoaliante. Ricordati di "
+#~ "\t\t            Sei in passivo di <span style=\"color:red\"><strong>%"
+#~ "(tmg_cents)s</strong></span> centesimi per il motoaliante. Ricordati di "
 #~ "pagare.\n"
 #~ "\t\t            "
 
