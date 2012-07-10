@@ -35,8 +35,8 @@ form fieldset {
   clear: both;
   font-size: 100%;
   border-color: #000000;
-  border-width: 1px 0 0 0;
-  border-style: solid none none none;
+  border-width: 0 1px 1px 1px;
+  border-style: dotted;
   padding: 10px;
   margin: 0 0 0 0;
 }
@@ -98,6 +98,7 @@ form fieldset div.notes {
   background-color: #eff8fd;
   color: #666666;
   font-size: 88%;
+  display: none;
 }
 
 form.w300 fieldset div.notes {
@@ -321,11 +322,11 @@ form div small {
 }
 
 #sidebar form div select, #sidebar form div textarea {
-    width: auto;
+    width: 100%;
 }
 #sidebar form div.submit {
     padding: 0px;
-    width: auto;
+    width: 100%;
 }
 
 /* data-info */
@@ -346,3 +347,7 @@ ul.data-info .data {
     float: right;
 }
 
+input[type="checkbox"] + label {
+display: inline;
+float: none;
+}

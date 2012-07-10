@@ -5,14 +5,50 @@
  - Reports
 {% endblock %}
 
-{% block fullscript %}
-   <script type="text/javascript" src="/admin/jsi18n/"></script>
-   <script type="text/javascript" src="{% static "admin/js/core.js" %}"></script> 
-   <script type="text/javascript" src="{% static "admin/js/admin/RelatedObjectLookups.js" %}"></script>
-   {{ form_range_receipts.media }}
-{% endblock %}
 {% block stylesheet_bottom %}
-<link href="/static/css/print.css" rel="stylesheet" type="text/css" media="print" />
+<link href="{% static "css/print.css" %} rel="stylesheet" type="text/css" media="print" />
+<link href="{% static "css/custom-theme/jquery-ui-1.7.3.custom.css" %}" rel="stylesheet" type="text/css" media="screen" />
+<link href='http://fonts.googleapis.com/css?family=Belleza' rel='stylesheet' type='text/css'>
+{% endblock %}
+{% block fullscript %}
+	<script type="text/javascript" src="/admin/jsi18n/"></script>
+	<script type="text/javascript" src="{% static "admin/js/core.js" %}"></script> 
+	<script type="text/javascript" src="{% static "admin/js/admin/RelatedObjectLookups.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/jquery-1.3.2.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/jquery-ui-1.7.3.custom.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/jquery-ui-i18n.min.js" %}"></script>
+	<script>
+		$(function() {
+			var icons = {
+				header: "ui-icon-circle-arrow-e",
+				headerSelected: "ui-icon-circle-arrow-s"
+			};
+		
+			$( "#accordion" ).accordion({ 
+				header: "h3", 
+				collapsible: true,
+				icons: icons,
+				autoHeight: false,
+				navigation: true,
+				active: false
+			});
+			$( ".nonotes" ).dialog({ autoOpen: false });
+
+			$('legend').hover(function(){
+				$(this).next('.notes').show();
+				$(this).next('.notes').position({at: 'bottom center', of: $(this), my: 'top'})
+			});
+			$('legend').mouseleave(function(){
+			  $('.notes').hide();
+			});
+			
+			
+		});
+		
+	</script>
+	
+	
+	
 {% endblock %}
 {% block header %}
 	<div id="logo">
@@ -113,108 +149,122 @@
 
 <!-- Choises list -->   
 <div id="sidebar">
-    <!-- Pilots with clearance -->
-    <form action="/reports/clearance/" method="POST">{% csrf_token %}
-        <fieldset>
-            <legend>{% trans "Report pilots with clearance to flight" %}</legend>
-            <div class="notes">
-                <h4>
-                    {% trans "Pilots with clearance" %}
-                </h4>
-                <p class="last">
-                    {% trans "Click button to view." %}
-                </p>
-            </div> 
-            <div class="submit">
-                <div>
-                    <input type="submit" name="clearance" value={% trans "View" %} />                    
-                </div>
-            </div>
-        </fieldset>                        
-    </form>
-
-    <!-- Debits list -->
-    <form action="/reports/debits/" method="POST">{% csrf_token %}
-        <fieldset>
-            <legend>{% trans "Report debits for every member" %}</legend>
-            <div class="notes">
-                <h4>
-                    {% trans "Members Debits" %}
-                </h4>
-                <p class="last">
-                    {% trans "Click button to view." %}
-                </p>
-            </div> 
-            <div class="float-left">
-                {{ form_only_negative.istrue }}  {{ form_only_negative.istrue.label_tag }}
-{{ form_only_negative.istrue.errors }}
-            </div>
-                      
-            <div class="submit">
-                <div>
-                    <input type="submit" name="debits" value={% trans "All" %} />                    
-                    <input type="submit" name="debits" value={% trans "Active" %} />
-                    <input type="submit" name="debits" value={% trans "Registered" %} />
-                </div>
-            </div>
-        </fieldset>                        
-    </form>
-
-    <!-- Receipts list -->   
-    {% if form_range_receipts %}
-    <form class="receipt" action="/reports/receipts/" method="POST">{% csrf_token %}
-        <fieldset>
-            <legend>{% trans "Receipts report" %}</legend>
-            <div class="notes">
-                <h4>
-                    {% trans "Receipts range" %}
-                </h4>
-                <p class="last">
-                    {% trans "Please enter receipt references." %}
-                </p>
-            </div>            
-            <div class="float-left required">
-                 {{ form_range_receipts.reference_from.label_tag }} {{ form_range_receipts.reference_from }}
-{{ form_range_receipts.reference_from.errors }}
-            </div>
-            <div class="float-left required">
-                 {{ form_range_receipts.reference_to.label_tag }} {{ form_range_receipts.reference_to }}
-{{ form_range_receipts.reference_to.errors }}
-            </div>
-            <div class="submit">
-                <div>
-                    <input type="submit" value={% trans "View" %} />
-                </div>
-            </div>
-        </fieldset>                        
-    </form>
-    {% endif %}
-
-    <!-- Run as another Member -->   
-    {% if form_member %}
-    <form class="receipt" action="/reports/member/" method="POST">{% csrf_token %}
-        <fieldset>
-            <legend>{% trans "Set personality" %}</legend>
-            <div class="notes">
-                <h4>
-                    {% trans "Member" %}
-                </h4>
-                <p class="last">
-                    {% trans "Please choose a member." %}
-                </p>
-            </div>            
-            <div class="float-left required">
-                 {{ form_member.member }} {{ form_member.member.errors }}
-            </div>
-            <div class="submit">
-                <div>
-                    <input type="submit" value={% trans "View" %} />
-                </div>
-            </div>
-        </fieldset>                        
-    </form>
-    {% endif %}
-
+	<div id="accordion">
+		<!-- Pilots with clearance -->   
+		<div>
+	    <h3><a href="#">{% trans "Pilots with clearance" %}</a></h3>
+	    <div>
+	    <form action="/reports/clearance/" method="POST">{% csrf_token %}
+	        <fieldset>
+	            <legend>{% trans "Report pilots with clearance to flight" %}</legend>
+	            <div class="notes">
+	                <h4>
+	                    {% trans "Pilots with clearance" %}
+	                </h4>
+	                <p class="last">
+	                    {% trans "Click button to view." %}
+	                </p>
+	            </div> 
+	            <div class="submit">
+	                <div>
+	                    <input type="submit" name="clearance" value="{% trans "View" %}" />                    
+	                </div>
+	            </div>
+	        </fieldset>                        
+	    </form>
+	    </div></div>
+	    <!-- Debits list -->
+		<div>
+	    <h3><a href="#">{% trans "Debits list" %}</a></h3>
+	    <div>
+	    <form action="/reports/debits/" method="POST">{% csrf_token %}
+	        <fieldset>
+	            <legend>{% trans "Report debits for every member" %}</legend>
+	            <div class="notes">
+	                <h4>
+	                    {% trans "Members debits" %}
+	                </h4>
+	                <p class="last">
+	                    {% trans "Click button to view." %}
+	                </p>
+	            </div> 
+	            <div class="float-left">
+	                {{ form_only_negative.istrue }}  {{ form_only_negative.istrue.label_tag }}
+	{{ form_only_negative.istrue.errors }}
+	            </div>
+	                      
+	            <div class="submit">
+	                <div>
+	                    <input type="submit" name="debits" value={% trans "All" %} />                    
+	                    <input type="submit" name="debits" value={% trans "Active" %} />
+	                    <input type="submit" name="debits" value={% trans "Registered" %} />
+	                </div>
+	            </div>
+	        </fieldset>                        
+	    </form>
+	    </div></div>
+	    <!-- Receipts list -->   
+		<div>
+	    <h3><a href="#">{% trans "Receipts list" %}</a></h3>
+	    <div>
+	    {% if form_range_receipts %}
+	    <form class="receipt" action="/reports/receipts/" method="POST">{% csrf_token %}
+	        <fieldset>
+	            <legend>{% trans "Receipts report" %}</legend>
+	            <div class="notes">
+	                <h4>
+	                    {% trans "Receipts range" %}
+	                </h4>
+	                <p class="last">
+	                    {% trans "Please enter receipt references." %}
+	                </p>
+	            </div>            
+	            <div class="float-left required">
+	                 {{ form_range_receipts.reference_from.label_tag }} {{ form_range_receipts.reference_from }}
+	{{ form_range_receipts.reference_from.errors }}
+	            </div>
+	            <div class="float-left required">
+	                 {{ form_range_receipts.reference_to.label_tag }} {{ form_range_receipts.reference_to }}
+	{{ form_range_receipts.reference_to.errors }}
+	            </div>
+	            <div class="submit">
+	                <div>
+	                    <input type="submit" value={% trans "View" %} />
+	                </div>
+	            </div>
+	        </fieldset>                        
+	    </form>
+	    {% endif %}
+	    </div></div>
+	    <!-- Show as another Member -->   
+		<div>
+	    <h3><a href="#">{% trans "Show as another member" %}</a></h3>
+	    <div>
+	    {% if form_member %}
+	    <form class="receipt" action="/reports/member/" method="POST">{% csrf_token %}
+	        <fieldset>
+	            <legend>{% trans "Set personality" %}</legend>
+	            <div class="notes">
+	                <h4>
+	                    {% trans "Member" %}
+	                </h4>
+	                <p class="last">
+	                    {% trans "Please choose a member." %}
+	                </p>
+	            </div>            
+	            <div class="float-left required">
+	                 {{ form_member.member }} {{ form_member.member.errors }}
+	            </div>
+	            <div class="submit">
+	                <div>
+	                    <input type="submit" value={% trans "View" %} />
+	                </div>
+	            </div>
+	        </fieldset>                        
+	    </form>
+	    {% endif %}
+	    </div></div>
+	</div>
 </div>
 
 

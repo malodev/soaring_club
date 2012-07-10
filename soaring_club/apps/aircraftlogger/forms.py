@@ -11,6 +11,18 @@ from django.conf import settings
 from django.core.exceptions import  ObjectDoesNotExist
 import datetime
 
+media_css = { 'screen': ( settings.STATIC_URL+"css/custom-theme/jquery-ui-1.7.3.custom.css",
+                            settings.STATIC_URL+"css/jquery.timepickr.css",
+                          )
+            }
+
+media_js = (settings.STATIC_URL+"js/jquery-1.3.2.min.js",
+              settings.STATIC_URL+"js/jquery-ui-1.7.3.custom.min.js",
+              settings.STATIC_URL+"js/jquery-ui-i18n.min.js",
+              settings.STATIC_URL+"js/ui.timepickr.min.js",
+              settings.STATIC_URL+"js/datepicker.js",
+            )
+
     
 class MemberForm(ModelForm):
     class Meta:
@@ -88,16 +100,8 @@ class DateRangeForm(forms.Form):
         return cleaned_data
         
     class Media:
-        css = { 'screen': ( settings.MEDIA_URL+"jquery/css/jquery-ui-1.7.2.custom.css",
-	                        settings.MEDIA_URL+"jquery/css/jquery.timepickr.css",
-	                      )
-        }
-        js = (settings.MEDIA_URL+"jquery/jquery-1.3.2.min.js",
-              settings.MEDIA_URL+"jquery/jquery-ui-1.7.2.custom.min.js",
-              settings.MEDIA_URL+"jquery/jquery-ui-i18n.min.js",
-              settings.MEDIA_URL+"jquery/ui.timepickr.min.js",
-              settings.MEDIA_URL+"datepicker/datepicker.js",
-             )
+        css = media_css
+        js = media_js
         
     
 class ReceiptDetailGenericForm(ModelForm):
@@ -118,16 +122,8 @@ class FlightForm(ModelForm):
         model = Flight
         
     class Media:
-        css = { 'screen': ( settings.MEDIA_URL+"jquery/css/jquery-ui-1.7.2.custom.css",
-	                        settings.MEDIA_URL+"jquery/css/jquery.timepickr.css",
-	                      )
-        }
-        js = (settings.MEDIA_URL+"jquery/jquery-1.3.2.min.js",
-              settings.MEDIA_URL+"jquery/jquery-ui-1.7.2.custom.min.js",
-              settings.MEDIA_URL+"jquery/jquery-ui-i18n.min.js",
-              settings.MEDIA_URL+"jquery/ui.timepickr.min.js",
-              settings.MEDIA_URL+"datepicker/datepicker.js",
-             )
+        css = media_css
+        js = media_js
 
 class FlightLandingForm(forms.Form):
 #     date_from = forms.DateField(widget=DatepickerDateInput(attrs={'class':'date'}), label=_('From date'))
@@ -152,36 +148,19 @@ class FlightLandingForm(forms.Form):
 #         # Always return the full receiption of cleaned data.
 #         return cleaned_data    
 
-
     class Media:
-        css = { 'screen': ( settings.MEDIA_URL+"jquery/css/jquery-ui-1.7.2.custom.css",
-	                      )
-        }
-        js = (settings.MEDIA_URL+"jquery/jquery-1.3.2.min.js",
-              settings.MEDIA_URL+"jquery/jquery-ui-1.7.2.custom.min.js",
-              settings.MEDIA_URL+"jquery/jquery-ui-i18n.min.js",
-              settings.MEDIA_URL+"datepicker/datepicker.js",
-             )
+        css = media_css
+        js = media_js
 
 class FlightFilterForm(forms.Form):
     landing = forms.TimeField(widget=TimepickerTimeInput(attrs={'class':'landing'}), required=True, label=_('Landing'))
     landing_field = forms.CharField(max_length=20, initial=settings.HOME_AIRPORT, required=True, label=_('Landing field'))
     class Media:
-        css = { 'screen': ( settings.MEDIA_URL+"jquery/css/jquery-ui-1.7.2.custom.css",
-	                        settings.MEDIA_URL+"jquery/css/jquery.timepickr.css",
-	                      )
-        }
-        js = (settings.MEDIA_URL+"jquery/jquery-1.3.2.min.js",
-              settings.MEDIA_URL+"jquery/jquery-ui-1.7.2.custom.min.js",
-              settings.MEDIA_URL+"jquery/jquery-ui-i18n.min.js",
-              settings.MEDIA_URL+"jquery/ui.timepickr.min.js",
-             )
-        
-
+        css = media_css
+        js = media_js
         
 class PilotForm(forms.Form):
     pilot = forms.ModelChoiceField(queryset=Member.objects.filter(type__type__in=('glider_pilot',)), label=_('Pilot'))
-
 
 class FlightBillItem(forms.Form):
     date = forms.DateField(widget=DatepickerDateInput(attrs={'class':'date'}), required=True, label=_('Date'))
@@ -190,10 +169,7 @@ class FlightBillItem(forms.Form):
     pilot = forms.ModelChoiceField(queryset=Member.objects.filter(type__type__in=('glider_pilot', 'student')), required=True, label=_('Pilot'))
     instructor = forms.ModelChoiceField(queryset=Member.objects.filter(type__type__in=('instructor',)), label=_('Instructor'))
     plane = forms.ModelChoiceField(queryset=Plane.objects.exclude(type__in=('tmg',)), required=True, label=_('Plane'))
-    
     pass
-
-
 
 class FlightsSheetItem(forms.Form):
     glider = forms.ModelChoiceField(queryset=Plane.objects.filter(type__in=('glider','self-launching')), required=True, label=_('Glider'))    
@@ -215,17 +191,8 @@ class FlightsSheet(forms.Form):
     counter_unit = forms.TypedChoiceField(choices=(('cents',_('Cents')),('minutes',_('Minutes'))), initial='cents', label=_('Counter unit'))       
 
     class Media:
-        css = { 'screen': ( settings.MEDIA_URL+"jquery/css/jquery-ui-1.7.2.custom.css",
-	                        settings.MEDIA_URL+"jquery/css/jquery.timepickr.css",
-	                      )
-        }
-        js = (settings.MEDIA_URL+"jquery/jquery-1.3.2.min.js",
-              settings.MEDIA_URL+"jquery/jquery-ui-1.7.2.custom.min.js",
-              settings.MEDIA_URL+"jquery/jquery-ui-i18n.min.js",
-              settings.MEDIA_URL+"jquery/ui.timepickr.min.js",
-              settings.MEDIA_URL+"datepicker/datepicker.js",
-             )
-
+        css = media_css
+        js = media_js
     
 class OwnershipForm(ModelForm):
     class Meta:
@@ -242,4 +209,3 @@ class MemberCreditForm(ModelForm):
 class TowerLogForm(forms.Form):
     file_log = forms.IntegerField(widget=forms.Select(choices =
            [(f.id, f.created.isoformat(' ')) for f in TowerLog.objects.order_by('created')]))
-
