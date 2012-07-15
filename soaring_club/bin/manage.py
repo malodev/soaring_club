@@ -6,12 +6,12 @@ from django.core.management import execute_from_command_line, LaxOptionParser
 from django.core.management.base import BaseCommand
 from colors import * #@UnusedWildImport
 
-sys.path.append('/media/VAR/opt/Aptana_Studio_3/plugins/org.python.pydev_2.6.0.2012062121/pysrc')
-import pydevd
-pydevd.patch_django_autoreload(
-patch_remote_debugger=True, #Connect to the remote debugger.
-patch_show_console=True
-)
+#sys.path.append('/media/VAR/opt/Aptana_Studio_3/plugins/org.python.pydev_2.6.0.2012062121/pysrc')
+#import pydevd
+#pydevd.patch_django_autoreload(
+#patch_remote_debugger=True, #Connect to the remote debugger.
+#patch_show_console=True
+#)
 
 
 

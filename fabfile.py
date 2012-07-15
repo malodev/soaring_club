@@ -6,6 +6,12 @@ and supervisor.
 
 
 from fabric.api import *
+#abort          get            open_shell     prompt         roles          show           
+#cd             hide           output         put            run            sudo           
+#env            hosts          parallel       puts           runs_once      task           
+#execute        lcd            path           reboot         serial         warn           
+#fastprint      local          prefix         require        settings       with_settings  
+
 from fabric.contrib.files import upload_template, exists, append
 import xmlrpclib
 import sys
@@ -31,23 +37,26 @@ env.virtualenv_dir  = VIRTUALENVS
 env.supervisor_ve_dir = env.virtualenv_dir + '/supervisor'
 
 def deploy():
-    bootstrap()
-    
+    """Install supervisor if not exist. Call boostrap and install_app
+    """
     if not exists(env.supervisor_dir):
         install_supervisor()
-    
+    bootstrap()
     install_app()
 
-
-
 def bootstrap():
+    """Install pip virtualenv virtualenvwrapper on webfaction
+    """
     run('mkdir -p %s/lib/python2.7' % env.home)
     run('easy_install-2.7 pip')
     run('pip-2.7 install virtualenv virtualenvwrapper')
 
 
 def install_app():
-    """Installs the django project in its own wf app and virtualenv
+    """Create a new webfaction custom app with name fabsettings.PROJECT_NAME. 
+       upload template for supervisor besed an fabsettings
+       clone project from github if setup.py dosen't exist
+       Installs the django project in its own wf app and virtualenv
     """
     response = _webfaction_create_app(env.project)
     env.app_port = response['port']
@@ -119,8 +128,6 @@ def install_supervisor():
         with settings(warn_only=True):
           run('./start_supervisor.sh stop && ./start_supervisor.sh start')
 
-
-
 def reload_app(arg=None):
     """Pulls app and refreshes requirements"""
 
@@ -133,10 +140,11 @@ def reload_app(arg=None):
             _ve_run(env.project, "pip install -r requirements.pip")
             _ve_run(env.project, "pip install -e ./")
             _ve_run(env.project, "manage.py syncdb")
-            _ve_run(env.project, "manage.py collectstatic")
 
+    with cd(env.project_dir):
+        _ve_run(env.project, "manage.py collectstatic")
+        _ve_run(env.project, "manage.py compilemessages")
     restart_app()
-
 
 def restart_app():
     """Restarts the app using supervisorctl"""
