@@ -1,5 +1,5 @@
 {% load i18n %}
-{% if hits %}
+{% if hits and flights %}
     <h2>
     {% blocktrans count hits as length %}
     one flight found
@@ -57,11 +57,11 @@
     </table>
 
     <div class="pagination">
-    <form class="pages" action="?page=all" method="POST">
+    <form class="pages" action="?page=all" method="post">
         <input type="hidden" name="member" value="{{ member.id }}" />
         
         
-        <input type="submit" value={% trans "all" %} />
+        <input type="submit" value="{% trans "all" %}" />
     </form>
    
     <span class="step-links">

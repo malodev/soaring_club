@@ -44,7 +44,6 @@ form fieldset {
 form fieldset legend {
   font-size: 120%;
   font-weight: normal;
-  color: #000000;
   margin: 0 0 0 0;
   padding: 0 5px;
 }
@@ -98,7 +97,6 @@ form fieldset div.notes {
   background-color: #eff8fd;
   color: #666666;
   font-size: 88%;
-  display: none;
 }
 
 form.w300 fieldset div.notes {
@@ -314,6 +312,7 @@ form div small {
 
 /* sidebar forms */
 #sidebar form fieldset div.notes {
+  width: 88%;
   float: left;    
 }
 
@@ -328,6 +327,62 @@ form div small {
     padding: 0px;
     width: 100%;
 }
+
+#reports-forms {
+	background-color: transparent;
+}
+
+#reports-forms legend {
+    line-height: 150%;
+    padding-bottom: 10px;
+}
+
+#reports-forms h3 {
+	color: #285C00;
+	text-align: center;
+	padding-top: 0.8em;
+	padding-bottom: 0.5em;
+	font-size: 1.5em;
+    line-height: 100%;
+}
+
+#reports-forms h3 a {
+	color: #285C00;
+	text-decoration: none;
+}
+
+#jqradio input {
+	display: block;
+	float: left;
+}
+
+#reports-forms fieldset { 
+    clear: both;
+    font-size: 100%;
+    left: 7px;
+    margin: 0;
+    padding: 5px;
+    position: relative;
+    width: 90%;
+}
+
+#reports-forms form {
+    font-size: 100%;
+    margin: 0;
+    padding: 0 0 5px;
+}
+
+
+#reports-forms form div.submit div {
+    display: inline;
+    float: left;
+    margin: 0 0 0 35%;
+    padding: 0;
+    text-align: left;
+    width: auto;
+}
+
+
 
 /* data-info */
 ul.data-info {
@@ -351,3 +406,26 @@ input[type="checkbox"] + label {
 display: inline;
 float: none;
 }
+
+/*
+#debits_form ul {
+	clear: left;
+	margin-top: 10px;
+	line-height: 100%;
+}
+
+#debits_form li {
+	clear: left;
+}
+
+#debits_form label[for="id_status_filter_0"] {
+	position: relative;
+	top: -105px;
+	left: -35px;	
+}
+#debits_form li label[for=id_status_filter_0] {
+	position: static;
+	padding: 0;
+	margin:0;
+}
+*/

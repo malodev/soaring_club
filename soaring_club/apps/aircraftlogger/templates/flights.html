@@ -1,21 +1,16 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n staticfiles %}
 {% load paginator %}
 
 {% block subtitle %}
  - Flights
 {% endblock %}
 
-{% block fullscript %}
-   <script type="text/javascript" src="/admin/jsi18n/"></script>
-   <script type="text/javascript" src="/admin_media/js/core.js"></script> 
-   <script type="text/javascript" src="/admin_media/js/admin/RelatedObjectLookups.js"></script>
+{% block stylesheets_bottom %}
+{% endblock %}
+{% block scripts %}
    {{ form_range_flights.media }}
 {% endblock %}
-{% block stylesheet_bottom %}
-<link href="/media/css/print.css" rel="stylesheet" type="text/css" media="print" />
-{% endblock %}
-
 
 {% block header %}
 	<div id="logo">
@@ -140,7 +135,7 @@
             </div>
             <div class="submit">
                 <div>
-                    <input type="submit" value={% trans "View" %} />
+                    <input type="submit" value="{% trans "View" %}" />
                 </div>
             </div>
         </fieldset>                        
@@ -161,7 +156,7 @@
             </div>            
             <div class="submit">
                 <div>
-                    <input type="submit" value={% trans "Copilot" %} />
+                    <input type="submit" value="{% trans "Copilot" %}" />
                 </div>
             </div>
         </fieldset>                        

@@ -1,32 +1,97 @@
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
-from django.db.models import Q
-from django.shortcuts import render_to_response
+from django.http import HttpResponse, Http404
+from django.db.models import Q #@UnusedImport
+from django.shortcuts import render
 from django.shortcuts import  redirect
 from django.shortcuts import get_object_or_404
-from django.shortcuts import get_list_or_404
-from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
 from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ugettext
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from django.core.exceptions import  ObjectDoesNotExist
-from django.conf import settings
+from django.core.exceptions import  ObjectDoesNotExist #@UnusedImport
+from django.conf import settings #@UnusedImport
+from django.views.generic import View
+from django.views.generic.edit import FormMixin
+from django.utils import simplejson as json
+from django.template.loader import get_template
+from django.template import TemplateDoesNotExist
 
-from models import *
-from forms import *
-
-
-import datetime
-import random
 import decimal
-
-from decorators import handle404
 import towerlog
-from debug import debug_print
-import logging
 from django.utils.log import getLogger
+from forms import * #@UnusedWildImport
+from models import * #@UnusedWildImport
+
 logger = getLogger('app')
+
+class JSONResponseMixin(object):
+    def render_to_response(self, context):
+        "Returns a JSON response containing 'context' as payload"
+        return self.get_json_response(self.convert_context_to_json(context))
+
+    def get_json_response(self, content, **httpresponse_kwargs):
+        "Construct an `HttpResponse` object."
+        return HttpResponse(content,
+                                 content_type='application/json',
+                                 **httpresponse_kwargs)
+
+    def convert_context_to_json(self, context):
+        "Convert the context dictionary into a JSON object"
+        # Note: This is *EXTREMELY* naive; in reality, you'll need
+        # to do much more complex handling to ensure that arbitrary
+        # objects -- such as Django model instances or querysets
+        # -- can be serialized as JSON.
+        return json.dumps(context)
+
+
+class JSONFormView(FormMixin, View, JSONResponseMixin):
+    success_message = ''
+
+    def form_valid(self, form, request):
+        form.save()
+        return self.success(_(self.success_message))
+    
+    def form_invalid(self, form):
+        response = SimpleResponse()
+        response.setError(_("Validation failed."))
+        response.setData(form.errors)
+        return self.render_to_response(response.json())
+    
+    def success(self, message):
+        response = SimpleResponse()
+        response.setSuccess(message)
+        return self.render_to_response(response.json()) 
+    
+    def get(self, request, *args, **kwargs):
+        raise Http404
+    
+    def post(self, request, *args, **kwargs):
+        form = self.get_form(self.get_form_class()) #@UnusedVariable
+
+
+class SimpleResponse(object):
+    """
+    The simplest form of our ajax response
+    """
+    def __init__(self, error=False, message=None):
+        self.error = error
+        self.message = message
+        self.data = {}
+    
+    def setError(self, message):
+        self.error = True
+        self.message = message
+        
+    def setSuccess(self, message):
+        self.error = False
+        self.message = message
+    
+    def setData(self,data={}):
+        self.data = data.copy()
+    
+    def json(self):
+        return {'error': self.error,
+                'message': self.message,
+                'data':self.data
+                } 
 
 
 def get_planes_from_flarm(flarm_id, date=None):
@@ -90,9 +155,6 @@ def index(request):
                                                          'tmg_good_status' : tmg_good_status,
                                                           })
 
-def render(request, template, payload):
-    return render_to_response(template, payload, context_instance=RequestContext(request))
-
 def display_meta(request):
     values = request.META.items()
     values.sort()
@@ -138,7 +200,7 @@ def logs(request):
 
 def member_flights(role, member, request, paginator=None):
     flights_missing = flights_durations = first_date = flights_page = flights_from = flights_to = None
-    member_types = flights_list = []
+    flights_list = []
     form_range_flights = DateRangeForm()
     form_year = YearChooseForm()
     if member:
@@ -151,7 +213,6 @@ def member_flights(role, member, request, paginator=None):
             first_date = member.first_flight_date(role, flights_from, flights_to)
             flights_list = member.active_flights(role, flights_from, flights_to)
             flights_missing = member.flights_missing_time_landing(role, flights_from, flights_to).count()
-            member_types = [t.type for t in member.type.all()]
             flights_durations = member.flights_durations(role, flights_from, flights_to)
         except (AttributeError, TypeError):
             pass
@@ -212,7 +273,7 @@ def flights_bills(request):
     """
 
     first_date = bills_from = bills_to = None
-    member_types = bills_list = []
+    bills_list = []
     member = get_current_member(request)
     form_range_flightbills = DateRangeForm()
     if member:
@@ -304,98 +365,153 @@ def update_receipt_note(request, receipt_id):
     else:
         return redirect('/')
 
+
+class ReceiptRangeView(JSONFormView):
+    form_class = ReceiptRangeForm
+    success_message="FATTO!!"
+
+
 @login_required
-def reports(request, action=None):
+def reports(request, action=None, template=None):
+    """
+    This view render the 'Report' tab. The URL that is responding to is /reports/action.
+    action can be 'debits' for retrieving cents balance, 'receipts' for get a list of 
+    receipts in an interval, 'member' to impersonate a member for viewing flights etc..,
+    'clearance' to retrieve a list of pilots permitted to flight.   
+    """
+    #TODO: change word debits in balance
     if request.user.is_authenticated():
         if request.user.is_staff:
             logged = request.user
             form_range_receipts = ReceiptRangeForm()
             form_member = MemberChooseForm()
-            form_only_negative = CheckIfForm()
+            form_debits_filter = DebitsForm(initial={'status_filter' : 'Active'})
             context = {'logged' : logged,
-                       'form_only_negative': form_only_negative,
+                       'form_debits_filter': form_debits_filter,
                        'form_range_receipts': form_range_receipts,
                        'form_member': form_member,
+                       'club_limit':settings.MAX_DAYS_FROM_LAST_FLIGHT_CLUB.days,
+                       'private_limit':settings.MAX_DAYS_FROM_LAST_FLIGHT_PRIVATE.days,
                       }
             if request.method == 'POST':
                 if action == 'debits':
-                    form_only_negative = CheckIfForm(request.POST)
-                    if request.POST['debits'] == _('Active'):
-                        report = debits_report(~Q(type__type__exact='inactive'))
-                    elif request.POST['debits'] == _('Registered'):
-                        report = debits_report(Q(type__type__exact='registered'))
-                    else:
-                        report = debits_report()
-                    if form_only_negative.is_valid():
-                        if form_only_negative.cleaned_data['istrue']:
-                            new_report = []
-                            for r in report:
-                                for dsc, d in r['debits']:
-                                    if d < settings.MIN_CREDIT:
-                                        new_report += [r]
-                                        break
-                            report = new_report
-                    totals = []
-                    for cls,dsc in CREDIT_CLASSES:
-                        totals += ((dsc, sum([dict(r['debits'])[dsc] for r in report]),),)
-                    context.update({
-                                   'debits': report,
-                                   'action':request.POST['debits'], 
-                                   'totals': totals,
-                                  })
+                    #Form for filter debits  
+                    form_debits_filter = DebitsForm(request.POST)
+                    #Retrieve data only if request is for results template
+                    if not request.is_ajax() or template == "debits_table":
+                        # tourism, glider tow, motorglider, etc... may be there is a better method to do this...
+                        if form_debits_filter.is_valid():
+                            #Check what button was pressed and apply related filter to members
+                            if form_debits_filter.cleaned_data['status_filter'] == 'Active':
+                                report = debits_report(~Q(type__type__exact='inactive'))
+                            elif form_debits_filter.cleaned_data['status_filter'] == 'Registered':
+                                report = debits_report(Q(type__type__exact='registered'))
+                            else:
+                                report = debits_report()
+                            #Filter report with a credit lesser than settings.MIN_CREDIT in any type of balance:
+                            if form_debits_filter.cleaned_data['only_negative']:
+                                new_report = []
+                                for r in report:
+                                    for dsc, d in r['debits']:
+                                        if d < settings.MIN_CREDIT:
+                                            new_report += [r]
+                                            break
+                                report = new_report
+                            totals = []
+                            #Compute totals for every credit classes
+                            for cls,dsc in CREDIT_CLASSES:
+                                totals += ((dsc, sum([dict(r['debits'])[dsc] for r in report]),),)
+                            context.update({
+                                           'debits': report,
+                                           'totals': totals,
+                                          })
+                        else:
+                            if request.is_ajax():
+                                template = 'blank'             
                 elif action == 'receipts':
+                    #refresh form with POST data 
                     form_range_receipts = ReceiptRangeForm(request.POST)
-                    if form_range_receipts.is_valid():
-                        reference_from = form_range_receipts.cleaned_data['reference_from']
-                        reference_to = form_range_receipts.cleaned_data['reference_to']
-                        receipt_from = Receipt.objects.get(reference=reference_from)
-                        receipt_to = Receipt.objects.get(reference=reference_to)
-                        try:
-                            from_int = int(reference_from)
-                            to_int = int(reference_to)
-                        except ValueError:
-                            from_int = to_int = None
-                        receipts = []
-                        if from_int and to_int:
-                            for ref in range(from_int,to_int+1):
-                                try:
-                                    r = Receipt.objects.get(reference=str(ref))
-                                except ObjectDoesNotExist:
-                                    r = None
-                                if r:
-                                    receipts.append(r)
-                        if not receipts:
-                            receipts = Receipt.objects.filter(date__lte=receipt_to.date, date__gte=receipt_from.date)
-                        total = 0
-                        for receipt in receipts:
-                            total += receipt.total
-                        context.update({
-                                        'total':total, 
-                                        'receipts':receipts, 
-                                        'from':receipt_from.date, 
-                                        'to':receipt_to.date,
-                                        })
+                    #Retrieve data only if request is for results template
+                    if not request.is_ajax() or template == "receipts_table":
+                        if form_range_receipts.is_valid():
+                            reference_from = form_range_receipts.cleaned_data['reference_from']
+                            reference_to = form_range_receipts.cleaned_data['reference_to']
+                            receipt_from = Receipt.objects.get(reference=reference_from)
+                            receipt_to = Receipt.objects.get(reference=reference_to)
+                            try:
+                                from_int = int(reference_from)
+                                to_int = int(reference_to)
+                            except ValueError:
+                                from_int = to_int = None
+                            receipts = []
+                            if from_int and to_int:
+                                for ref in range(from_int,to_int+1):
+                                    try:
+                                        r = Receipt.objects.get(reference=str(ref))
+                                    except ObjectDoesNotExist:
+                                        r = None
+                                    if r:
+                                        receipts.append(r)
+                            if not receipts:
+                                receipts = Receipt.objects.filter(date__lte=receipt_to.date, date__gte=receipt_from.date)
+                            total = 0
+                            for receipt in receipts:
+                                total += receipt.total
+                            context.update({
+                                            'total':total, 
+                                            'receipts':receipts, 
+                                            'from':receipt_from.date, 
+                                            'to':receipt_to.date,
+                                            })
+                        else:
+                            if request.is_ajax():
+                                template = 'blank'             
+
                 elif action == 'member':
+                    #refresh form with POST data 
                     form_member = MemberChooseForm(request.POST)
-                    if form_member.is_valid():
-                        member = form_member.cleaned_data['member']
-                        request.session['member'] = member
-                        context.update({'member':member})
+                    #Check if request is for results or for refreshing form
+                    #Retrieve data only if request is for results template
+                    if not request.is_ajax() or template == "member_table":
+                        if form_member.is_valid():
+                            member = form_member.cleaned_data['member']
+                            request.session['member'] = member
+                            context.update({'member':member})
+                        else:
+                            #form is invalid, clear results
+                            if request.is_ajax():
+                                template = 'blank'             
 
                 elif action == 'clearance':
-                    logger.debug("Detected clearance action!")
-                    report = clearance_report()
-                    context.update({
-                                   'clearance': report,
-                                   'action':request.POST['clearance'], 
-                                  })
+                    #There's no need to update form but for avoid data retrieve when call is for form only
+                    #check is done
+                    #Retrieve data only if request is for results template                   
+                    logger.debug("clearance action with path=%s is_ajax=%s template=%s" % (request.get_full_path(),request.is_ajax(), template))
+                    if not request.is_ajax() or template == "clearance_table":
+                        logger.debug("clearance report")
+                        report = clearance_report()
+                        context.update({
+                                       'clearance': report,
+                                      })
                     
+                #Update form values
                 context.update({
-                                'form_only_negative': form_only_negative,
+                                'form_debits_filter': form_debits_filter,
                                 'form_range_receipts': form_range_receipts,
                                 'form_member': form_member,
                               })
-            return render(request, 'reports.html', context)
+            
+                
+            if template is None:
+                template='reports.html'
+            else:
+                try:
+                    template += '.html' 
+                    get_template(template)
+                except TemplateDoesNotExist:
+                    template='reports.html'
+            logger.debug(" with request=%s context=%s template=%s" % (request.get_full_path(), context, template))                   
+            return render(request, template, context)
     return redirect('/')
 
 def set_member(request, member_id):
@@ -404,19 +520,17 @@ def set_member(request, member_id):
     return redirect('/')
 
 def member_receipts(member):
-    receipts = total = tow_cents = tmg_cents = first_date = show_tmg = None
-    member_types = []
+    receipts = total = tow_cents = tmg_cents = first_date = None
     if member:
         try:
             receipts = member.active_receipts()
-            member_types = [t.type for t in member.type.all()]
             tow_cents = member.tow_cents_aquired()
             tmg_cents = member.tmg_cents_aquired()
             total = Receipt.objects.user_total(member.id)
             first_date = member.first_receipt_date()
-            credits = []
+            _credits = []
             for cls, dsc in CREDIT_CLASSES:
-                credits += ( (dsc, member.credit(cls)), )
+                _credits += ( (dsc, member.credit(cls)), )
             
         except (AttributeError, TypeError):
             pass
@@ -425,7 +539,7 @@ def member_receipts(member):
             'total':total,
             'tow_cents':tow_cents,
             'tmg_cents':tmg_cents,
-            'credits':credits,
+            'credits':_credits,
             'first_date':first_date,
             'receipts': receipts,
             'member': member,
@@ -436,8 +550,6 @@ def member_receipts(member):
 def flights_sheet_submit(request, form, formset, head, flights):
     logged = request.user
     if logged.is_staff:
-        for f in flights:
-            pass
         return render(request, 'flights_sheet.html', {'form':form, 'formset': formset})
     else:
         return redirect('/')
@@ -448,7 +560,6 @@ def flights_sheet(request):
     saved = False
     if logged.is_staff:
         if request.method == 'POST':
-            response_dict = {}
             form = FlightsSheet(request.POST)
             formset = FlightsSheetItemSet(request.POST)
             if form.is_valid() and formset.is_valid():

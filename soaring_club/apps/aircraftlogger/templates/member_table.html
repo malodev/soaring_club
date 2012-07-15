@@ -1,0 +1,6 @@
+{% load i18n %}
+{% if member %}
+<div id="member_table">
+    {% trans "Report for member" %}: <span class="strong">{{ member.first_name }} {{ member.last_name }}</span>
+</div>    
+{% endif %}

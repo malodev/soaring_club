@@ -1,0 +1,24 @@
+{% load i18n %}
+<form id="debits_form" action="/reports/debits/" method="post">{% csrf_token %}
+    <fieldset>
+        <legend>{% trans "Report debits for every member" %}</legend>
+        <div class="notes">
+            <h4>
+                {% trans "Members debits" %}
+            </h4>
+            <p class="last">
+                {% trans "Click button to view." %}
+            </p>
+        </div> 
+        <div id="input_filter">
+            {{ form_debits_filter.only_negative }}{{ form_debits_filter.only_negative.label_tag }}{{ form_debits_filter.only_negative.errors }}
+            {{ form_debits_filter.status_filter}}{{ form_debits_filter.status_filter.errors }}
+        </div>
+                  
+        <div class="submit">
+            <div>
+                <input type="submit" value="{% trans "View" %}" />
+            </div>
+        </div>
+    </fieldset>                        
+</form>

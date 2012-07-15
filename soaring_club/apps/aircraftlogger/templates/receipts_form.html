@@ -1,0 +1,27 @@
+{% load i18n %}
+{% if form_range_receipts %}
+<form id="receipts_form" class="receipt" action="/reports/receipts/" method="post">{% csrf_token %}
+    <fieldset>
+        <legend>{% trans "Receipts report" %}</legend>
+        <div class="notes">
+            <h4>
+                {% trans "Receipts range" %}
+            </h4>
+            <p class="last">
+                {% trans "Please enter receipt references." %}
+            </p>
+        </div>            
+        <div class="float-left required">
+             {{ form_range_receipts.reference_from.label_tag }} {{ form_range_receipts.reference_from }}{{ form_range_receipts.reference_from.errors }}
+        </div>
+        <div class="float-left required">
+             {{ form_range_receipts.reference_to.label_tag }} {{ form_range_receipts.reference_to }}{{ form_range_receipts.reference_to.errors }}
+        </div>
+        <div class="submit">
+            <div>
+                <input type="submit" value="{% trans "View" %}" />
+            </div>
+        </div>
+    </fieldset>                        
+</form>
+{% endif %}

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 *~
 *.swp
 *.orig
@@ -9,9 +8,14 @@
 .installed.cfg
 .svn
 .DS_Store
+### eclipse/aptana files:
 .project
 .pydevproject
 .idea
+.metadata
+.settings
+
+
 __minitage__*
 
 #Locale
@@ -43,4 +47,3 @@ settings/email.py
 *.pot
 *.pyc
 local_settings.py
->>>>>>> e8346a844b610c7a2f4451c7441bd7d39e0094b7

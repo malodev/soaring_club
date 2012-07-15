@@ -31,6 +31,7 @@
 django==1.4
 south==0.7.5
 django-extensions
+django-assets
 configobj
 Werkzeug
 Fabric

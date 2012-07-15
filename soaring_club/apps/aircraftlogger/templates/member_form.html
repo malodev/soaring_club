@@ -1,0 +1,24 @@
+{% load i18n %}
+{% if form_member %}
+<form id="member_form" class="member" action="/reports/member/" method="post">{% csrf_token %}
+    <fieldset>
+        <legend>{% trans "Set personality" %}</legend>
+        <div class="notes">
+            <h4>
+                {% trans "Member" %}
+            </h4>
+            <p class="last">
+                {% trans "Please choose a member." %}
+            </p>
+        </div>            
+        <div class="float-left required">
+             {{ form_member.member }} {{ form_member.member.errors }}
+        </div>
+        <div class="submit">
+            <div>
+                <input type="submit" value="{% trans "View" %}" />
+            </div>
+        </div>
+    </fieldset>                        
+</form>
+{% endif %}

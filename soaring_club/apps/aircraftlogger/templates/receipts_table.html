@@ -1,6 +1,10 @@
 {% load i18n %}
-<table class="report">
+{% if receipts %}
+<table id="receipts_table">
     <caption>
+        {% if from and to %}
+            {% blocktrans with from|date:"j M Y" as from and to|date:"j M Y" as to %} Period: from {{ from }} to {{ to }}  {% endblocktrans %}
+        {% endif %}<br />
         {% trans "Total" %}: <span abbr="{{ total|floatformat:2 }}" class="dt-number dst-EUR">{{ total|floatformat:2 }}</span>
     </caption>
     <thead>
@@ -16,4 +20,5 @@
     {% endfor %}
     </tbody>
 </table>
+{% endif %}
 

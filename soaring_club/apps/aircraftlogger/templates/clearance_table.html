@@ -1,5 +1,6 @@
 {% load i18n %}
-<div class="clearance">
+{% if clearance %}
+<div id="clearance_table">
 <table class="report">
 	<caption>
 	    {% now "l, d F Y" %}
@@ -21,4 +22,5 @@
 	</tbody>
 </table>
 </div>
+{% endif %}
 

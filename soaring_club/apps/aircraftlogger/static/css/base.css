@@ -107,6 +107,25 @@ a.button:active span {
     padding: 6px 0 4px 18px; /* push text down 1px */
 } 
 
+#darkLayer
+{
+    background-color: #eee;
+    filter:alpha(opacity=50); /* IE */
+    opacity: 0.8; /* Safari, Opera */
+    -moz-opacity:0.50; /* FireFox */
+    z-index: 20;
+    height: 100%;
+    width: 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+
+
+
 /* Header */
 
 #header {

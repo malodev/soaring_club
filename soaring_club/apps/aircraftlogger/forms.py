@@ -1,15 +1,14 @@
 from django import forms
 from django.forms import ModelForm
+from django.forms.widgets import RadioInput, RadioFieldRenderer, conditional_escape, force_unicode, mark_safe
 from django.forms.formsets import formset_factory
 from django.forms.util import ErrorList
-from django.db.models import Q, Min, Max
-from models import *
+from django.db.models import Q, Min, Max #@UnusedImport
+from models import * #@UnusedWildImport
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.admin import widgets as adminwidgets
 from datepicker.widgets import  DatepickerDateInput, TimepickerTimeInput
-from django.conf import settings
-from django.core.exceptions import  ObjectDoesNotExist
-import datetime
+from django.conf import settings #@Reimport
+from django.core.exceptions import  ObjectDoesNotExist #@Reimport
 
 media_css = { 'screen': ( settings.STATIC_URL+"css/custom-theme/jquery-ui-1.7.3.custom.css",
                             settings.STATIC_URL+"css/jquery.timepickr.css",
@@ -23,7 +22,59 @@ media_js = (settings.STATIC_URL+"js/jquery-1.3.2.min.js",
               settings.STATIC_URL+"js/datepicker.js",
             )
 
+class JqUIRadioInput(RadioInput):
+    """
+    An object used by JqUIRadioFieldRenderer that represents a single
+    <input type='radio'>.
+    """
+
+    def __init__(self, name, value, attrs, choice, index):
+        super(JqUIRadioInput,self).__init__(name, value, attrs, choice, index)
+
+    def __unicode__(self):
+        return self.render()
+
+    def render(self, name=None, value=None, attrs=None, choices=()):
+        name = name or self.name
+        value = value or self.value
+        attrs = attrs or self.attrs
+
+        if 'id' in self.attrs:
+            label_for = ' for="%s_%s"' % (self.attrs['id'], self.index)
+        else:
+            label_for = ''
+        choice_label = conditional_escape(force_unicode(self.choice_label))
+        return mark_safe(u'%s<label%s>%s</label>' % (self.tag(),label_for, choice_label))
+
+class JqUIRadioFieldRenderer( RadioFieldRenderer ):
+    """
+    An object used by RadioSelect to enable customization of radio widgets with support for jQuery UI.
+    """
+    def __init__(self, name, value, attrs, choices):
+        super(JqUIRadioFieldRenderer,self).__init__(name, value, attrs, choices)
     
+    def __iter__(self):
+        for i, choice in enumerate(self.choices):
+            yield JqUIRadioInput(self.name, self.value, self.attrs.copy(), choice, i)
+
+    def __getitem__(self, idx):
+        choice = self.choices[idx] # Let the IndexError propogate
+        return JqUIRadioInput(self.name, self.value, self.attrs.copy(), choice, idx)
+
+    def __unicode__(self):
+        return self.render()
+
+    def render(self):
+        """Outputs a <div> for this set of radio fields."""
+
+        if 'id' in self.attrs:
+            div_tag = ' id="%s"' % self.attrs['id']
+        else:
+            div_tag = ' id="radio"'
+        input_list = u'%s\n' % u'\n'.join([u'%s\n' % force_unicode(w) for w in self]) 
+ 
+        return mark_safe(u'<div%s>%s</div>' % (div_tag, input_list) )
+   
 class MemberForm(ModelForm):
     class Meta:
         model = Member
@@ -38,8 +89,17 @@ class ReceiptNoteForm(forms.Form):
 class MemberChooseForm(forms.Form):
     member = forms.ModelChoiceField(queryset=Member.objects.all(), label=_('Member'))
 
-class CheckIfForm(forms.Form):
-    istrue = forms.BooleanField(label=_('Only member with negative balance'), required=False)
+class DebitsForm(forms.Form):
+    only_negative = forms.BooleanField(label=_('Only member with negative balance'), required=False)
+    status_filter = forms.ChoiceField(
+                                    choices=(('All' , _('All')),
+                                             ('Active' , _('Active')),
+                                             ('Registered' , _('Registered')), 
+                                             ),
+                                    widget=forms.RadioSelect(renderer=JqUIRadioFieldRenderer, attrs={'id':'jqradio'}),
+                                    required=True,
+                                    )
+
 
 class YearChooseForm(forms.Form):
     maxmin = Flight.objects.aggregate(min_date=django.db.models.Min('date'), max_date=django.db.models.Max('date'))

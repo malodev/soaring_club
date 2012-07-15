@@ -1,0 +1,30 @@
+{% load i18n %}
+{% if debits and totals %}
+    <table id="debits_table" class=".debits">
+    <caption>
+    {% for debit in totals %}
+        <p>
+        {% trans "Balance for" %} {{ debit.0 }}:
+        <span  abbr="{{ debit.1|floatformat:0 }}" class="dt-number dst-neg"> {{ debit.1|floatformat:0 }}</span>
+        </p>
+    {% endfor %}
+    </caption>
+    <thead>
+    <tr>
+        <th>Cognome</th><th>Nome</th>
+        {% for debit in totals %}
+        <th>{{ debit.0 }}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    {% for member in debits %}
+      <tr class="{% cycle 'even' 'odd' %}">
+        <td><a href="{{ member.member_id }}">{{ member.last_name }}</a><td>{{ member.first_name }}</td>
+        {% for debit in member.debits %}
+        <td abbr="{{ debit.1|floatformat:0 }}" class="dt-number dst-neg">{{ debit.1|floatformat:0 }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </table>
+
+{% endif %}

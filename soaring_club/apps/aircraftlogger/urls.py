@@ -5,8 +5,6 @@ import os #@UnusedImport
 from django.views.generic.list_detail import object_detail #@UnusedImport
 from models import * #@UnusedWildImport
 
-
-
 urlpatterns = patterns('aircraftlogger.views',
     # Example:
     url(r'^meta/$', 'display_meta'),
@@ -29,7 +27,11 @@ urlpatterns += patterns('aircraftlogger.views',
     url(r'^receipts/$', 'receipts'),
     url(r'^receipts/(?P<receipt_id>\d+)/$', 'update_receipt_note'),
     url(r'^reports/$', 'reports'),
-    url(r'^reports/(?P<action>\w+)/$', 'reports'),
+    
+    url(r'^reports/(?P<action>\w+)/(?P<template>\w+)/$', 'reports', name='reports_ajax'), #this is for ajax
+    
+    url(r'^reports/(?P<action>\w+)/$', 'reports', name='reports_normal'), #this is for non javascript browser
+    
     url(r'^reports/debits/(?P<member_id>\d+)/$', 'set_member'),
     url(r'^reports/clearance/(?P<member_id>\d+)/$', 'set_member'),
     

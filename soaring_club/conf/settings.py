@@ -1,5 +1,5 @@
 # Import global settings to make it easier to extend settings. 
-from django.conf.global_settings import *
+from django.conf.global_settings import * #@UnusedWildImport
 
 #==============================================================================
 # Generic Django project settings
@@ -23,7 +23,6 @@ SECRET_KEY = '+4fljb@0b!zw&v1_iq^=d13v&fbzly=k)r7x963!0*hr1a8=l1'
 #==============================================================================
 # Calculation of directories relative to the module location
 #==============================================================================
-import os
 import os.path
 import sys
 #import soaring_club
@@ -77,6 +76,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #'django_assets.finders.AssetsFinder',
 )
 
 LOCALE_PATHS = (
@@ -123,54 +123,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
-    'django.contrib.databrowse',
     'django_extensions',
     'aircraftlogger',
     'south',
     'gunicorn',
+    #'django_assets',
 )
-
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(asctime)s  %(module)s %(message)s'
-        },
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple'
-        },
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-        'app': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    }
-}
-    
+   
 AUTH_PROFILE_MODULE = 'aircraftlogger.Member'    
 SESSION_COOKIE_AGE = 3600 # Default: 1209600 (2 weeks, in seconds)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -185,6 +144,6 @@ AJAX_LOOKUP_CHANNELS = {
 #    print "email settings import failed"
 
 try:
-    from aircraftlogger.settings import *
+    from aircraftlogger.settings import * #@UnusedWildImport
 except ImportError:
     print "aircraftlogger.settings import error" 

@@ -1,6 +1,5 @@
 import os.path #@UnusedImport
 from django.conf.urls.defaults import * #@UnusedWildImport
-from django.contrib import databrowse
 from django.contrib.auth.decorators import login_required
 from aircraftlogger.models import * #@UnusedWildImport
 
@@ -20,10 +19,7 @@ urlpatterns = patterns('',
     url(r'^admin/jsi18n/$', 'django.views.i18n.javascript_catalog'),
     url(r'^admin/',include(admin.site.urls)),
     url(r'^admin_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': os.path.join(os.path.dirname(__file__), 'admin_media')}),
-
-
-    
-    url(r'^databrowse/(.*)', login_required(databrowse.site.root)),
+   
     url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout'),
 
@@ -36,9 +32,3 @@ urlpatterns = patterns('',
     url(r'', include('aircraftlogger.urls')),
 
 )
-
-databrowse.site.register(Flight)
-databrowse.site.register(Member)
-databrowse.site.register(Plane)
-databrowse.site.register(TowerLog)
-

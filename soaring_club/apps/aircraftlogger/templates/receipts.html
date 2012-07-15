@@ -1,18 +1,14 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n staticfiles %}
 
 {% block subtitle %}
  - Receipts
 {% endblock %}
 
-{% block fullscript %}
-   <script type="text/javascript" src="/admin/jsi18n/"></script>
-   <script type="text/javascript" src="/admin_media/js/core.js"></script> 
-   <script type="text/javascript" src="/admin_media/js/admin/RelatedObjectLookups.js"></script>
+{% block scripts %}
    {{ form.media }}
 {% endblock %}
-{% block stylesheet_bottom %}
-<link href="/media/css/print.css" rel="stylesheet" type="text/css" media="print" />
+{% block stylesheets_bottom %}
 {% endblock %}
 
 {% block receipts %}
@@ -35,7 +31,7 @@
                 </h2>
                 {% if first_date %}
                     <h3> 
-                    {% trans "From" %} {{ first_date|date:"d F Y"  }} {{ member.first_name }} {{ member.last_name }} {% trans " has" %}:</h3>
+                    {% trans "From" %} {{ first_date|date:"d F Y"  }} {{ member.first_name }} {{ member.last_name }} {% trans " has" %}:
                     </h3>
                     <ul>
                     {% if total %}
@@ -84,9 +80,6 @@
 
     	</div>
 	</div>
-	<div id="banner"><img src="/media/images/img07.jpg" alt="" /></div>
-	<div style="clear: both;">&nbsp;</div>
-
 {% endblock %}{% block sidebar %}
 {% endblock %}
 {% block column1 %}

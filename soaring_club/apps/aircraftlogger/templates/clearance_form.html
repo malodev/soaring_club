@@ -1,0 +1,24 @@
+{% load i18n %}
+<form id="clearance_form" action="/reports/clearance/" method="POST">{% csrf_token %}
+    <fieldset>
+        <legend>{% trans "Report pilots with clearance to flight" %}</legend>
+        <div class="notes">
+            <h4>
+                {% trans "Pilots with clearance" %}
+            </h4>
+            <p class="last">
+                List all pilot with clearance to flight. 
+                The check is done against the expiring date of license and medical certificates.
+                Alondside pilot must have to flight in the last:</p>	                    
+                <ul class="last">
+                <li><b>{{ private_limit }}</b> days for using a private plane</li>
+                <li><b>{{ club_limit }}</b> days for using a club plane</li>
+                </ul> 
+        </div> 
+        <div class="submit">
+            <div>
+                <input type="submit" value="{% trans "View" %}" />                    
+            </div>
+        </div>
+    </fieldset>                        
+</form>

@@ -2,275 +2,146 @@
 {% load i18n staticfiles%}
 
 {% block subtitle %}
- - Reports
+- Reports
 {% endblock %}
 
-{% block stylesheet_bottom %}
-<link href="{% static "css/print.css" %} rel="stylesheet" type="text/css" media="print" />
-<link href="{% static "css/custom-theme/jquery-ui-1.7.3.custom.css" %}" rel="stylesheet" type="text/css" media="screen" />
-<link href='http://fonts.googleapis.com/css?family=Belleza' rel='stylesheet' type='text/css'>
+{% block stylesheets_bottom %}
+<link href="{{ STATIC_URL }}css/custom-theme/jquery-ui-1.7.3.custom.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="{{ STATIC_URL }}css/custom-theme/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css" media="screen" />
+<!-- <link href='http://fonts.googleapis.com/css?family=Belleza' rel='stylesheet' type='text/css'> -->
 {% endblock %}
-{% block fullscript %}
-	<script type="text/javascript" src="/admin/jsi18n/"></script>
-	<script type="text/javascript" src="{% static "admin/js/core.js" %}"></script> 
-	<script type="text/javascript" src="{% static "admin/js/admin/RelatedObjectLookups.js" %}"></script>
-	<script type="text/javascript" src="{% static "js/jquery-1.3.2.min.js" %}"></script>
-	<script type="text/javascript" src="{% static "js/jquery-ui-1.7.3.custom.min.js" %}"></script>
-	<script type="text/javascript" src="{% static "js/jquery-ui-i18n.min.js" %}"></script>
-	<script>
-		$(function() {
-			var icons = {
-				header: "ui-icon-circle-arrow-e",
-				headerSelected: "ui-icon-circle-arrow-s"
-			};
-		
-			$( "#accordion" ).accordion({ 
-				header: "h3", 
-				collapsible: true,
-				icons: icons,
-				autoHeight: false,
-				navigation: true,
-				active: false
-			});
-			$( ".nonotes" ).dialog({ autoOpen: false });
-
-			$('legend').hover(function(){
-				$(this).next('.notes').show();
-				$(this).next('.notes').position({at: 'bottom center', of: $(this), my: 'top'})
-			});
-			$('legend').mouseleave(function(){
-			  $('.notes').hide();
-			});
-			
-			
-		});
-		
-	</script>
-	
-	
-	
+{% block scripts %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-i18n.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-csrf.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/reports-ajax.js"></script>
 {% endblock %}
-{% block header %}
-	<div id="logo">
-		<h1><a href="/">Volo a Vela</a></h1>
-		<p><a href="/">CUS Trento</a></p>
-	</div>
-{% endblock %}
-
 
 {% if user.is_staff %}
-    {% block admin %}
-    <li class="current_page_item"><a href="/reports/">{% trans "Reports" %}</a></li>
-    {% endblock %}
+{% block admin %}
+<li class="current_page_item">
+	<a href="/reports/">{% trans "Reports" %}</a>
+</li>
+{% endblock %}
 {% endif %}
 
 {% block content %}
-	<div class="post">
-		<h2 class="title">{% trans "Reports view" %}</h2>
+<div class="post">
+	<h2 class="title">{% trans "Reports view" %}</h2>
 
-        {% if clearance %}
-        <p class="meta">{% trans "List of pilots with flight clearance" %}</p>
-        {% endif %}
-
-        {% if report %}
-        <p class="meta">{% trans "Report cents for every member" %}</p>
-        {% endif %}
-
-        {% if debits %}
-        <p class="meta">{% trans "Report debits for member" %}</p>
-        {% endif %}
-
-        {% if receipts %}
-        <p class="meta">{% trans "Report receipts" %}</p>
-        {% endif %}
-
-		{% if request.method != "POST" %}
-		<p class="meta">{% trans "Here you find various reports" %}</p>
-        {% endif %}
-		
-		<div class="entry">
-            {% if debits %}
-                <table class="report">
-                <caption>
-                {% for debit in totals %}
-                    <p>
-                    {% trans "Balance for" %} {{ debit.0 }}:
-                    <span  abbr="{{ debit.1|floatformat:0 }}" class="dt-number dst-neg"> {{ debit.1|floatformat:0 }}</span>
-                    </p>
-                {% endfor %}
-                </caption>
-                <thead>
-                <tr>
-                    <th>Cognome</th><th>Nome</th>
-                    {% for debit in totals %}
-                    <th>{{ debit.0 }}</th>
-                    {% endfor %}
-                </tr>
-                </thead>
-                {% for member in debits %}
-                  <tr class="{% cycle 'even' 'odd' %}">
-                    <td><a href="{{ member.member_id }}">{{ member.last_name }}</a><td>{{ member.first_name }}</td>
-                    {% for debit in member.debits %}
-                    <td abbr="{{ debit.1|floatformat:0 }}" class="dt-number dst-neg">{{ debit.1|floatformat:0 }}</td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-                </table>
-
-            {% endif %}
-
-            {% if from and to %}
-                {% blocktrans with from|date:"j M Y" as from and to|date:"j M Y" as to %} Period: from {{ from }} to {{ to }}  {% endblocktrans %}
-            {% endif %}
-
-            {% if member %}
-                {% trans "Report for member" %}: <span class="strong">{{ member.first_name }} {{ member.last_name }}</span>
-            {% endif %}
-
-            {% if receipts %}
-                {% include "receipts_table.html" %}
-            {% endif %}
-            {% if flights %}
-                {% include "flights_table.html" %}
-            {% endif %}
-
-	        {% if clearance %}
-                {% include "clearance_table.html" %}
-	        {% endif %}
-
-    	</div>
+	<div class="results clearance">
+		<p class="meta results clearance" style="display: none">
+			{% blocktrans %}List of pilots with flight clearance{% endblocktrans %}
+		</p>
+		{% if clearance %}
+		<!-- javascrit not enable or using url selector -->
+		<p class="meta">
+			{% blocktrans %}List of pilots with flight clearance{% endblocktrans %}
+		</p>
+		{% endif %}
 	</div>
-	{% if request.method != "POST" %}
-	<div id="banner"><img src="/static/images/img07.jpg" alt="prato fiorito" width="546" height="156" /></div>
-    {% endif %}
-	<div style="clear: both;">&nbsp;</div>
 
-{% endblock %}{% block sidebar %}
+	<div class="results debits">
+		<p class="meta results debits" style="display: none">
+			{% trans "Report debits for member" %}
+		</p>
+		<!-- javascrit not enable or using url selector -->
+		{% if debits %}
+		<p class="meta">
+			{% trans "Report debits for member" %}
+		</p>
+		{% endif %}
+	</div>
 
-<!-- Choises list -->   
-<div id="sidebar">
-	<div id="accordion">
-		<!-- Pilots with clearance -->   
-		<div>
-	    <h3><a href="#">{% trans "Pilots with clearance" %}</a></h3>
-	    <div>
-	    <form action="/reports/clearance/" method="POST">{% csrf_token %}
-	        <fieldset>
-	            <legend>{% trans "Report pilots with clearance to flight" %}</legend>
-	            <div class="notes">
-	                <h4>
-	                    {% trans "Pilots with clearance" %}
-	                </h4>
-	                <p class="last">
-	                    {% trans "Click button to view." %}
-	                </p>
-	            </div> 
-	            <div class="submit">
-	                <div>
-	                    <input type="submit" name="clearance" value="{% trans "View" %}" />                    
-	                </div>
-	            </div>
-	        </fieldset>                        
-	    </form>
-	    </div></div>
-	    <!-- Debits list -->
-		<div>
-	    <h3><a href="#">{% trans "Debits list" %}</a></h3>
-	    <div>
-	    <form action="/reports/debits/" method="POST">{% csrf_token %}
-	        <fieldset>
-	            <legend>{% trans "Report debits for every member" %}</legend>
-	            <div class="notes">
-	                <h4>
-	                    {% trans "Members debits" %}
-	                </h4>
-	                <p class="last">
-	                    {% trans "Click button to view." %}
-	                </p>
-	            </div> 
-	            <div class="float-left">
-	                {{ form_only_negative.istrue }}  {{ form_only_negative.istrue.label_tag }}
-	{{ form_only_negative.istrue.errors }}
-	            </div>
-	                      
-	            <div class="submit">
-	                <div>
-	                    <input type="submit" name="debits" value={% trans "All" %} />                    
-	                    <input type="submit" name="debits" value={% trans "Active" %} />
-	                    <input type="submit" name="debits" value={% trans "Registered" %} />
-	                </div>
-	            </div>
-	        </fieldset>                        
-	    </form>
-	    </div></div>
-	    <!-- Receipts list -->   
-		<div>
-	    <h3><a href="#">{% trans "Receipts list" %}</a></h3>
-	    <div>
-	    {% if form_range_receipts %}
-	    <form class="receipt" action="/reports/receipts/" method="POST">{% csrf_token %}
-	        <fieldset>
-	            <legend>{% trans "Receipts report" %}</legend>
-	            <div class="notes">
-	                <h4>
-	                    {% trans "Receipts range" %}
-	                </h4>
-	                <p class="last">
-	                    {% trans "Please enter receipt references." %}
-	                </p>
-	            </div>            
-	            <div class="float-left required">
-	                 {{ form_range_receipts.reference_from.label_tag }} {{ form_range_receipts.reference_from }}
-	{{ form_range_receipts.reference_from.errors }}
-	            </div>
-	            <div class="float-left required">
-	                 {{ form_range_receipts.reference_to.label_tag }} {{ form_range_receipts.reference_to }}
-	{{ form_range_receipts.reference_to.errors }}
-	            </div>
-	            <div class="submit">
-	                <div>
-	                    <input type="submit" value={% trans "View" %} />
-	                </div>
-	            </div>
-	        </fieldset>                        
-	    </form>
-	    {% endif %}
-	    </div></div>
-	    <!-- Show as another Member -->   
-		<div>
-	    <h3><a href="#">{% trans "Show as another member" %}</a></h3>
-	    <div>
-	    {% if form_member %}
-	    <form class="receipt" action="/reports/member/" method="POST">{% csrf_token %}
-	        <fieldset>
-	            <legend>{% trans "Set personality" %}</legend>
-	            <div class="notes">
-	                <h4>
-	                    {% trans "Member" %}
-	                </h4>
-	                <p class="last">
-	                    {% trans "Please choose a member." %}
-	                </p>
-	            </div>            
-	            <div class="float-left required">
-	                 {{ form_member.member }} {{ form_member.member.errors }}
-	            </div>
-	            <div class="submit">
-	                <div>
-	                    <input type="submit" value={% trans "View" %} />
-	                </div>
-	            </div>
-	        </fieldset>                        
-	    </form>
-	    {% endif %}
-	    </div></div>
+	<div class="results receipts">
+		<p class="meta results receipts" style="display: none">
+			{% blocktrans %}Report receipts{% endblocktrans %}
+		</p>
+		<!-- javascrit not enable or using url selector -->
+		{% if receipts %}
+		<p class="meta">
+			{% blocktrans %}Report receipts{% endblocktrans %}
+		</p>
+		{% endif %}
+	</div>
+
+	<div class="results member">
+		<p class="meta results member" style="display: none">
+			{% blocktrans %}Member review{% endblocktrans %}
+		</p>
+		<!-- javascrit not enable or using url selector -->
+		{% if member %}
+		<p class="meta">
+			{% blocktrans %}Member review{% endblocktrans %}
+		</p>
+		{% endif %}
+	</div>
+
+	{% if request.path == "/reports/" %}
+	<p class="meta results intro">
+		{% trans "Here you find various reports" %}
+	</p>
+	{% endif %}
+
+	<div id="ajax-entry" class="entry">
+		<!-- This content is replaced by AJAX results -->
+		{% include "debits_table.html" %}
+		{% include "member_table.html" %}
+		{% include "receipts_table.html" %}
+		{% include "flights_table.html" %}
+		{% include "clearance_table.html" %}
 	</div>
 </div>
-
-
 {% endblock %}
+{% block banner %}
+{% if request.path == "/reports/" %}
+<div id="banner"><img src="{{ STATIC_URL }}images/img07.jpg" alt="prato fiorito" width="546" height="156" />
+</div>
+<div style="clear: both;">
+	&nbsp;
+</div>
+{% endif %}
+{% endblock %}
+
+<!-- Reports right menu  -->
+{% block sidebar %}
+<div id="sidebar">
+	<div id="reports-forms">
+		<!-- Pilots with clearance (accordion structure) -->
+		<div>
+			<h3><a href="#">{% trans "Pilots with clearance" %}</a></h3>
+			<div id="clearance_ajax_form">
+				{% include "clearance_form.html" %}
+			</div>
+		</div>
+		<!-- Debits form (accordion structure) -->
+		<div>
+			<h3><a href="#">{% trans "Debits list" %}</a></h3>
+			<div id="debits_ajax_form">
+				{% include "debits_form.html" %}
+			</div>
+		</div>
+		<!-- Receipts form (accordion structure) -->
+		<div>
+			<h3><a href="#">{% trans "Receipts list" %}</a></h3>
+			<div id="receipts_ajax_form">
+				{% include "receipts_form.html" %}
+			</div>
+		</div>
+		<!-- Member form (accordion structure) -->
+		<div>
+			<h3><a href="#">{% trans "Show as another member" %}</a></h3>
+			<div id="member_ajax_form">
+				{% include "member_form.html" %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
 {% block column1 %}
 {% endblock %}
+
 {% block column2 %}
 {% endblock %}
-

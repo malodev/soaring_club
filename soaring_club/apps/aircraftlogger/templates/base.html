@@ -9,7 +9,8 @@ Description: A two-column, fixed-width design with dark color scheme.
 Version    : 1.0
 Released   : 20090918
 -->
-{% load i18n %}
+{% load i18n staticfiles %}
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="keywords" content="" />
@@ -24,27 +25,31 @@ Soaring Club
 {% block subtitle %}
 {% endblock %}
 </title>
-{% block stylesheet_top %}{% endblock %}
-{% block stylesheet %}
+{% block stylesheets_top %}{% endblock %}
+{% block stylesheets %}
 <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="{{ STATIC_URL }}css/print.css" rel="stylesheet" type="text/css" media="print" />
 {% endblock %}
-{% block stylesheet_bottom %}{% endblock %}
-{% block fullscript %}{% endblock %}
+{% block stylesheets_bottom %}{% endblock %}
+{% block scripts %}{% endblock %}
 </head>
 <body>
+<div id="darkLayer" class="darkClass">
+<div id="spinner" ><img src="{{ STATIC_URL }}images/spinner1.gif"/></div>
+</div>
 <div id="wrapper">
-	<div id="header">
+    <div id="header">
     {% block header %}
-    	<div id="logo">
-		<h1><a href="/">Volo a Vela</a></h1>
-		<p><a href="/">CUS Trento</a></p>
-	</div>
+        <div id="logo">
+        <h1><a href="/">Volo a Vela</a></h1>
+        <p><a href="/">CUS Trento</a></p>
+    </div>
     {% endblock %}
-	</div>
-	<!-- end #header -->
-	<div id="menu">
+    </div>
+    <!-- end #header -->
+    <div id="menu">
     {% block topmenu %}
-   	<ul>
+       <ul>
         {% block home %}<li><a href="/">Home</a></li> {% endblock %}
         {% block flights %}<li><a href="/flights/">{% trans "Flights" %}</a></li>{% endblock %}
         {% block flights_bills %}<li><a href="/bills/">{% trans "Flights bills" %}</a></li>{% endblock %}
@@ -55,35 +60,40 @@ Soaring Club
         {% endif %}
 
         
-	</ul>
+    </ul>
     {% endblock %}
-	</div>
-	<!-- end #menu -->
-	<div id="page">
+    </div>
+    <!-- end #menu -->
+    <div id="page">
     {% block page %}
-		<div id="content">
+        <div id="content">
         {% block content %}
         {% endblock %}
-		</div>
-		<!-- end #content -->
-        {% block sidebar %}
-		<div id="sidebar">
-			<ul>
-				<li>
-					<h2>Barra Laterale</h2>
-					<p></p>
-				</li>
-				<li>
-					<h2>Barra Laterale</h2>
-				</li>
-			</ul>
-		</div>
+        {% block banner %}
+            {% if request.method != "POST" %}
+                <div id="banner"><img src="{{ STATIC_URL }}images/img07.jpg" alt="prato fiorito" width="546" height="156" /></div>
+                <div style="clear: both;">&nbsp;</div>
+            {% endif %}
         {% endblock %}
-		<!-- end #sidebar -->
-		<div style="clear: both;">&nbsp;</div>
+        </div>
+        <!-- end #content -->
+        {% block sidebar %}
+        <div id="sidebar">
+            <ul>
+                <li>
+                    <h2>Barra Laterale</h2>
+                </li>
+                <li>
+                    <h2>Barra Laterale</h2>
+                </li>
+            </ul>
+        </div>
+        {% endblock %}
+        <!-- end #sidebar -->
+        <div style="clear: both;">&nbsp;</div>
     {% endblock %}
-	</div>
-	<!-- end #page -->
+    </div>
+    <!-- end #page -->
 </div>
 
 {% block footer-content %}
@@ -95,7 +105,7 @@ Soaring Club
        <a href="http://www.webfaction.com/services/hosting?affiliate=voloavela">
            <img src="{{STATIC_URL}}images/webfaction-240x60-django-rails-wp.png"
                 alt="Webfaction: Smarter web hosting"
-                text="Webfaction: Smarter web hosting"
+                title="Webfaction: Smarter web hosting"
                 width="240" height="60" />
        </a>
     </div>
