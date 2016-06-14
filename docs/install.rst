@@ -29,7 +29,7 @@ Installing the Project
 
 Install the requirements and the project source::
 
-	cd path/to/your/soaring_club/repository
+    cd path/to/your/soaring_club/repository
     pip install -r requirements.pip
     pip install -e .
 
